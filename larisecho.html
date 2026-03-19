@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Laris Echo — Harmony Through Sight & Sound</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+:root {
+  --ink: #0e0e0e;
+  --paper: #f5f2ed;
+  --paper-warm: #ede9e0;
+  --accent: #b8966e;
+  --accent-light: rgba(184,150,110,0.15);
+  --accent-glow: rgba(184,150,110,0.35);
+  --mist: #8a9ba8;
+  --text-main: #1a1a1a;
+  --text-soft: #6b6560;
+  --text-xsoft: #a09890;
+  --rule: rgba(26,26,26,0.1);
+  --rule-accent: rgba(184,150,110,0.3);
+  --white: #ffffff;
+}
+
+html { scroll-behavior: smooth; }
+
+body {
+  background: var(--paper);
+  color: var(--text-main);
+  font-family: 'Jost', sans-serif;
+  font-weight: 300;
+  overflow-x: hidden;
+}
+
+/* GRAIN OVERLAY */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 999;
+  opacity: 0.4;
+}
+
+/* NAV */
+nav {
+  position: fixed;
+  top: 0; left: 0; right: 0;
+  z-index: 100;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.5rem 4rem;
+  background: rgba(245,242,237,0.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--rule);
+  transition: padding 0.4s ease;
+}
+
+.nav-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.8rem;
+  letter-spacing: 0.4em;
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2.5rem;
+  list-style: none;
+}
+
+.nav-links a {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.nav-links a:hover { color: var(--accent); }
+
+/* HERO */
+.hero {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  padding: 8rem 4rem 4rem;
+  gap: 4rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::after {
+  content: '';
+  position: absolute;
+  right: -100px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(184,150,110,0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.hero-text { position: relative; z-index: 1; }
+
+.hero-eyebrow {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.55em;
+  color: var(--accent);
+  margin-bottom: 2rem;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.2s;
+}
+
+.hero-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(3.5rem, 7vw, 6.5rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: var(--text-main);
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.4s;
+}
+
+.hero-title em {
+  font-style: italic;
+  color: var(--accent);
+}
+
+.hero-tagline {
+  margin-top: 2rem;
+  font-size: 0.85rem;
+  font-weight: 300;
+  line-height: 1.9;
+  color: var(--text-soft);
+  max-width: 420px;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.6s;
+}
+
+.hero-cta-row {
+  margin-top: 3rem;
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  opacity: 0;
+  animation: fadeUp 1s ease forwards 0.8s;
+}
+
+.btn-primary {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--white);
+  background: var(--text-main);
+  padding: 1rem 2.5rem;
+  text-decoration: none;
+  transition: background 0.3s ease, color 0.3s ease;
+  border: 1px solid var(--text-main);
+}
+
+.btn-primary:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.btn-secondary {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 300;
+  letter-spacing: 0.25em;
+  color: var(--text-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule-accent);
+  padding-bottom: 2px;
+  transition: color 0.3s ease;
+}
+
+.btn-secondary:hover { color: var(--accent); }
+
+.hero-visual {
+  position: relative;
+  opacity: 0;
+  animation: fadeIn 1.4s ease forwards 0.5s;
+}
+
+.hero-img-frame {
+  position: relative;
+  aspect-ratio: 3/4;
+  overflow: hidden;
+  max-height: 70vh;
+}
+
+.hero-img-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.9);
+  transition: transform 8s ease;
+}
+
+.hero-img-frame:hover img { transform: scale(1.03); }
+
+.hero-img-caption {
+  position: absolute;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-family: 'Cinzel', serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.4em;
+  color: rgba(255,255,255,0.6);
+  background: rgba(14,14,14,0.4);
+  padding: 4px 8px;
+  backdrop-filter: blur(4px);
+}
+
+.hero-scroll-hint {
+  position: absolute;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  opacity: 0;
+  animation: fadeIn 1s ease forwards 1.5s;
+}
+
+.scroll-line {
+  width: 1px;
+  height: 50px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+.scroll-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.4em;
+  color: var(--text-xsoft);
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
+/* SECTION COMMONS */
+section { position: relative; }
+
+.section-label {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.55em;
+  color: var(--accent);
+  margin-bottom: 1rem;
+}
+
+.section-rule {
+  width: 40px;
+  height: 1px;
+  background: var(--accent);
+  margin-bottom: 2.5rem;
+}
+
+/* PILLARS / PHILOSOPHY */
+.philosophy {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8rem 4rem;
+  overflow: hidden;
+}
+
+.philosophy-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 6rem;
+  align-items: start;
+}
+
+.philosophy-left .section-label { color: var(--accent); }
+
+.philosophy-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  font-style: italic;
+  line-height: 1.1;
+  color: var(--paper);
+  margin-bottom: 2rem;
+}
+
+.philosophy-body {
+  font-size: 0.8rem;
+  line-height: 2;
+  color: rgba(245,242,237,0.55);
+  margin-bottom: 2rem;
+}
+
+.philosophy-pillars {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 2px;
+  margin-top: 1rem;
+}
+
+.pillar {
+  background: rgba(245,242,237,0.04);
+  border: 1px solid rgba(245,242,237,0.08);
+  padding: 2.5rem 2rem;
+  transition: background 0.4s ease;
+}
+
+.pillar:hover { background: rgba(184,150,110,0.08); }
+
+.pillar-number {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3rem;
+  font-weight: 300;
+  color: var(--accent);
+  opacity: 0.4;
+  line-height: 1;
+  margin-bottom: 1rem;
+}
+
+.pillar-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.6rem;
+  letter-spacing: 0.4em;
+  color: var(--paper);
+  margin-bottom: 1rem;
+}
+
+.pillar-text {
+  font-size: 0.75rem;
+  line-height: 1.8;
+  color: rgba(245,242,237,0.5);
+}
+
+/* SENSES */
+.senses {
+  padding: 8rem 4rem;
+  background: var(--paper-warm);
+}
+
+.senses-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.senses-header {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-bottom: 5rem;
+  align-items: end;
+}
+
+.senses-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+}
+
+.senses-title em { font-style: italic; color: var(--accent); }
+
+.senses-body {
+  font-size: 0.8rem;
+  line-height: 2;
+  color: var(--text-soft);
+}
+
+.sense-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.sense-card {
+  background: var(--paper);
+  padding: 4rem 3rem;
+  border: 1px solid var(--rule);
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s ease;
+}
+
+.sense-card:hover { border-color: var(--accent); }
+
+.sense-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 2px;
+  background: var(--accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.5s ease;
+}
+
+.sense-card:hover::before { transform: scaleX(1); }
+
+.sense-icon {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 3.5rem;
+  font-weight: 300;
+  color: var(--accent);
+  opacity: 0.3;
+  margin-bottom: 1.5rem;
+  line-height: 1;
+}
+
+.sense-name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.65rem;
+  letter-spacing: 0.5em;
+  color: var(--text-main);
+  margin-bottom: 1rem;
+}
+
+.sense-desc {
+  font-size: 0.8rem;
+  line-height: 1.9;
+  color: var(--text-soft);
+}
+
+.sense-products {
+  margin-top: 1.5rem;
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sense-tag {
+  font-family: 'Cinzel', serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+  border: 1px solid var(--rule-accent);
+  padding: 3px 8px;
+}
+
+/* COLLECTIONS */
+.collections {
+  padding: 8rem 4rem;
+  background: var(--paper);
+}
+
+.collections-inner { max-width: 1200px; margin: 0 auto; }
+
+.collections-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 4rem;
+}
+
+.collections-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 300;
+}
+
+.collections-title em { font-style: italic; color: var(--accent); }
+
+.collections-link {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  color: var(--text-soft);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+  padding-bottom: 2px;
+  transition: color 0.3s, border-color 0.3s;
+}
+
+.collections-link:hover { color: var(--accent); border-color: var(--accent); }
+
+.collections-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+
+.collection-card {
+  position: relative;
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  overflow: hidden;
+  text-decoration: none;
+  color: inherit;
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  display: block;
+}
+
+.collection-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 60px rgba(14,14,14,0.12);
+}
+
+.collection-card-img {
+  aspect-ratio: 4/5;
+  overflow: hidden;
+  background: var(--ink);
+}
+
+.collection-card-img-placeholder {
+  width: 100%;
+  height: 100%;
+  min-height: 280px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.4em;
+  color: rgba(245,242,237,0.2);
+}
+
+.collection-card-body { padding: 1.8rem 1.5rem; }
+
+.collection-universe {
+  font-family: 'Cinzel', serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+}
+
+.collection-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 0.75rem;
+}
+
+.collection-desc {
+  font-size: 0.72rem;
+  line-height: 1.8;
+  color: var(--text-soft);
+  margin-bottom: 1.2rem;
+}
+
+.collection-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-top: 1px solid var(--rule);
+  padding-top: 1rem;
+}
+
+.collection-type {
+  font-family: 'Cinzel', serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.3em;
+  color: var(--text-xsoft);
+}
+
+.collection-cta {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.3em;
+  color: var(--accent);
+}
+
+/* ABOUT */
+.about {
+  background: var(--ink);
+  padding: 8rem 4rem;
+  overflow: hidden;
+}
+
+.about-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 5fr 4fr;
+  gap: 8rem;
+  align-items: center;
+}
+
+.about-label { color: var(--accent); }
+
+.about-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: 300;
+  font-style: italic;
+  color: var(--paper);
+  line-height: 1.15;
+  margin-bottom: 2.5rem;
+}
+
+.about-body {
+  font-size: 0.82rem;
+  line-height: 2.1;
+  color: rgba(245,242,237,0.6);
+  margin-bottom: 1.5rem;
+}
+
+.about-body strong {
+  color: var(--paper);
+  font-weight: 400;
+}
+
+.about-signature {
+  margin-top: 3rem;
+  padding-top: 2rem;
+  border-top: 1px solid rgba(245,242,237,0.08);
+}
+
+.about-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--accent);
+}
+
+.about-role {
+  font-family: 'Cinzel', serif;
+  font-size: 0.45rem;
+  letter-spacing: 0.4em;
+  color: rgba(245,242,237,0.3);
+  margin-top: 0.3rem;
+}
+
+.about-visual {
+  position: relative;
+}
+
+.about-quote-block {
+  background: rgba(245,242,237,0.04);
+  border: 1px solid rgba(245,242,237,0.08);
+  border-left: 2px solid var(--accent);
+  padding: 3rem 2.5rem;
+}
+
+.about-quote {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.5rem;
+  font-style: italic;
+  font-weight: 300;
+  color: var(--paper);
+  line-height: 1.6;
+  opacity: 0.85;
+}
+
+.about-quote-sub {
+  margin-top: 1.5rem;
+  font-size: 0.7rem;
+  line-height: 1.9;
+  color: rgba(245,242,237,0.45);
+}
+
+/* MUSIC COMING */
+.music {
+  padding: 8rem 4rem;
+  background: var(--paper-warm);
+  text-align: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.music::before {
+  content: 'SOUND';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: 'Cinzel', serif;
+  font-size: clamp(6rem, 20vw, 18rem);
+  font-weight: 600;
+  color: rgba(184,150,110,0.04);
+  white-space: nowrap;
+  pointer-events: none;
+  letter-spacing: 0.2em;
+}
+
+.music-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
+
+.music-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 300;
+  line-height: 1.1;
+  margin-bottom: 1.5rem;
+}
+
+.music-title em { font-style: italic; color: var(--accent); }
+
+.music-body {
+  font-size: 0.8rem;
+  line-height: 2;
+  color: var(--text-soft);
+  margin-bottom: 2.5rem;
+}
+
+.music-badge {
+  display: inline-block;
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.5em;
+  color: var(--accent);
+  border: 1px solid var(--rule-accent);
+  padding: 0.7rem 2rem;
+}
+
+/* SOCIALS */
+.connect {
+  padding: 6rem 4rem;
+  background: var(--paper);
+  border-top: 1px solid var(--rule);
+}
+
+.connect-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6rem;
+  align-items: center;
+}
+
+.connect-title {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 300;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.connect-title em { font-style: italic; color: var(--accent); }
+
+.connect-body {
+  font-size: 0.8rem;
+  line-height: 2;
+  color: var(--text-soft);
+  margin-bottom: 2rem;
+}
+
+.social-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2px;
+}
+
+.social-item {
+  background: var(--paper-warm);
+  border: 1px solid var(--rule);
+  padding: 1.5rem;
+  text-decoration: none;
+  color: inherit;
+  transition: border-color 0.3s, background 0.3s;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.social-item:hover {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}
+
+.social-platform {
+  font-family: 'Cinzel', serif;
+  font-size: 0.55rem;
+  letter-spacing: 0.35em;
+  color: var(--text-main);
+}
+
+.social-handle {
+  font-size: 0.65rem;
+  color: var(--text-xsoft);
+  margin-top: 0.2rem;
+}
+
+/* FOOTER */
+footer {
+  background: var(--ink);
+  padding: 3rem 4rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-logo {
+  font-family: 'Cinzel', serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.4em;
+  color: rgba(245,242,237,0.4);
+}
+
+.footer-copy {
+  font-family: 'Jost', sans-serif;
+  font-size: 0.6rem;
+  color: rgba(245,242,237,0.25);
+  letter-spacing: 0.1em;
+}
+
+.footer-store {
+  font-family: 'Cinzel', serif;
+  font-size: 0.5rem;
+  letter-spacing: 0.4em;
+  color: var(--accent);
+  text-decoration: none;
+  opacity: 0.7;
+  transition: opacity 0.3s;
+}
+
+.footer-store:hover { opacity: 1; }
+
+/* ANIMATIONS */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.9s ease, transform 0.9s ease;
+}
+
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-delay-1 { transition-delay: 0.15s; }
+.reveal-delay-2 { transition-delay: 0.3s; }
+.reveal-delay-3 { transition-delay: 0.45s; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  nav { padding: 1.2rem 2rem; }
+  .nav-links { gap: 1.5rem; }
+  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
+  .hero-visual { display: none; }
+  .philosophy-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .philosophy-pillars { grid-template-columns: 1fr; }
+  .senses-header { grid-template-columns: 1fr; gap: 2rem; }
+  .sense-cards { grid-template-columns: 1fr; }
+  .collections-grid { grid-template-columns: 1fr 1fr; }
+  .collections-header { flex-direction: column; align-items: start; gap: 1rem; }
+  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .connect-inner { grid-template-columns: 1fr; gap: 3rem; }
+  .philosophy, .senses, .collections, .about, .music, .connect { padding: 5rem 2rem; }
+  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+}
+
+@media (max-width: 600px) {
+  .collections-grid { grid-template-columns: 1fr; }
+  .social-grid { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">LARIS ECHO</a>
+  <ul class="nav-links">
+    <li><a href="#collections">Collections</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#music">Sound</a></li>
+    <li><a href="#connect">Connect</a></li>
+    <li><a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" style="color:var(--accent);">Shop →</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-text">
+    <div class="hero-eyebrow">A UNIVERSE OF HARMONY</div>
+    <h1 class="hero-title">
+      Art that<br>
+      <em>brings you</em><br>
+      back to now.
+    </h1>
+    <p class="hero-tagline">
+      Laris Echo is a creative universe of high-resolution digital art and sound — born from mythology, emotion, and the belief that beauty can return you to yourself.
+    </p>
+    <div class="hero-cta-row">
+      <a href="#collections" class="btn-primary">Explore Collections</a>
+      <a href="#philosophy" class="btn-secondary">Our Philosophy</a>
+    </div>
+  </div>
+  <div class="hero-visual">
+    <div class="hero-img-frame">
+      <img src="IMG_7738.png" alt="Laris Echo — Male Siren Collection" draggable="false" oncontextmenu="return false">
+      <div class="hero-img-caption">WANNA DROWN? · MALE SIREN COLLECTION</div>
+    </div>
+  </div>
+  <div class="hero-scroll-hint">
+    <div class="scroll-label">SCROLL</div>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <div class="philosophy-inner">
+    <div class="philosophy-left reveal">
+      <div class="section-label">THE FOUNDATION</div>
+      <div class="section-rule"></div>
+      <h2 class="philosophy-title">Three pillars.<br>One state of being.</h2>
+      <p class="philosophy-body">
+        Every piece created under Laris Echo is guided by a philosophy — not a trend. The work exists to shift something in you, even briefly. That shift is the product.
+      </p>
+    </div>
+    <div class="philosophy-pillars reveal reveal-delay-1">
+      <div class="pillar">
+        <div class="pillar-number">I</div>
+        <div class="pillar-name">PLEASURE</div>
+        <p class="pillar-text">Aesthetic pleasure that satisfies deeply — not just visually, but emotionally. Every image, every sound is crafted to invoke a positive state of mind through precise intention.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">II</div>
+        <div class="pillar-name">WELLBEING</div>
+        <p class="pillar-text">If an image or sound can teach or shift a mindset toward something lighter, then it was worth creating. Laris Echo exists to add real value to the person who encounters it.</p>
+      </div>
+      <div class="pillar">
+        <div class="pillar-number">III</div>
+        <div class="pillar-name">HARMONY</div>
+        <p class="pillar-text">The most sustainable human state. Not bliss — which is a peak. Not ecstasy — which is a moment. Harmony is liveable. Imperturbable. That is what Laris Echo reaches for.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SENSES -->
+<section class="senses" id="senses">
+  <div class="senses-inner">
+    <div class="senses-header reveal">
+      <div>
+        <div class="section-label">TWO BRIDGES</div>
+        <div class="section-rule"></div>
+        <h2 class="senses-title">Sight<br>and <em>Sound.</em></h2>
+      </div>
+      <p class="senses-body">
+        Of the five human senses, Laris Echo speaks through two — the ones that digital creation makes possible. Sight through imagery. Hearing through music and audio. Both aimed at the same destination: a moment of stillness, wonder, or return to self.
+      </p>
+    </div>
+    <div class="sense-cards">
+      <div class="sense-card reveal">
+        <div class="sense-icon">◎</div>
+        <div class="sense-name">SIGHT</div>
+        <p class="sense-desc">High-resolution digital art collections spanning world mythologies, elemental landscapes, and ethereal portraiture. Each image is a chapter. Each chapter is an invitation to feel something real.</p>
+        <div class="sense-products">
+          <span class="sense-tag">DIGITAL PRINTS</span>
+          <span class="sense-tag">ART COLLECTIONS</span>
+          <span class="sense-tag">MYTHOLOGICAL SERIES</span>
+        </div>
+      </div>
+      <div class="sense-card reveal reveal-delay-1">
+        <div class="sense-icon">◈</div>
+        <div class="sense-name">SOUND</div>
+        <p class="sense-desc">AI music and audio crafted for enjoyment and intention. From ambient soundscapes to purposeful audio — sound that can carry you somewhere, or anchor you exactly where you are.</p>
+        <div class="sense-products">
+          <span class="sense-tag">AI MUSIC</span>
+          <span class="sense-tag">AUDIO FILES</span>
+          <span class="sense-tag">COMING SOON</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COLLECTIONS -->
+<section class="collections" id="collections">
+  <div class="collections-inner">
+    <div class="collections-header reveal">
+      <div>
+        <div class="section-label">THE UNIVERSES</div>
+        <div class="section-rule"></div>
+        <h2 class="collections-title">Every world<br><em>is a feeling.</em></h2>
+      </div>
+      <a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" class="collections-link">VIEW ALL IN STORE →</a>
+    </div>
+    <div class="collections-grid">
+
+      <a href="https://payhip.com/AetherVisuals/collection/all" target="_blank" class="collection-card reveal">
+        <div class="collection-card-img">
+          <img src="IMG_7738.png" alt="Wanna Drown" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.9);" draggable="false" oncontextmenu="return false">
+        </div>
+        <div class="collection-card-body">
+          <div class="collection-universe">WATER · MYTHOLOGY</div>
+          <div class="collection-name">Wanna Drown?</div>
+          <p class="collection-desc">A male siren across five scenes of increasing depth. From moonlit surface to breathtaking underwater realm. Descent as invitation.</p>
+          <div class="collection-meta">
+            <span class="collection-type">5 PIECES · DIGITAL DOWNLOAD</span>
+            <span class="collection-cta">EXPLORE →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://payhip.com/AetherVisuals/collection/tlazohcamati-ixiptla" target="_blank" class="collection-card reveal reveal-delay-1">
+        <div class="collection-card-img">
+          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #1a0a00, #3d1f00);">TLAZOHCAMATI IXIPTLA</div>
+        </div>
+        <div class="collection-card-body">
+          <div class="collection-universe">AZTEC · GRATITUDE</div>
+          <div class="collection-name">Tlazohcamati Ixiptla</div>
+          <p class="collection-desc">Ethereal male portraits rooted in Aztec mythology. A world of sacred devotion, radiant gratitude, and divine embodiment.</p>
+          <div class="collection-meta">
+            <span class="collection-type">DIGITAL DOWNLOAD</span>
+            <span class="collection-cta">EXPLORE →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://payhip.com/AetherVisuals/collection/%E7%A6%8F%E7%A9%BA" target="_blank" class="collection-card reveal reveal-delay-2">
+        <div class="collection-card-img">
+          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #001a1a, #003333);">禊空</div>
+        </div>
+        <div class="collection-card-body">
+          <div class="collection-universe">JAPANESE · PURIFICATION</div>
+          <div class="collection-name">禊空 — Misogi Kū</div>
+          <p class="collection-desc">Ritual purification through sky and water. Japanese-inspired ethereal portraits exploring cleansing, stillness, and transcendence.</p>
+          <div class="collection-meta">
+            <span class="collection-type">DIGITAL DOWNLOAD</span>
+            <span class="collection-cta">EXPLORE →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://payhip.com/AetherVisuals/collection/baldrfrithuz" target="_blank" class="collection-card reveal">
+        <div class="collection-card-img">
+          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #0a0a1a, #1a1a3d);">BALDRFRIÞUZ</div>
+        </div>
+        <div class="collection-card-body">
+          <div class="collection-universe">NORSE · PEACE</div>
+          <div class="collection-name">BALDRFRIÞUZ</div>
+          <p class="collection-desc">From Norse mythology — the peace of Baldr. Luminous, gold-touched figures in realms of ancient serenity and sovereign calm.</p>
+          <div class="collection-meta">
+            <span class="collection-type">DIGITAL DOWNLOAD</span>
+            <span class="collection-cta">EXPLORE →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://payhip.com/AetherVisuals/collection/awen-fir-flaithemon" target="_blank" class="collection-card reveal reveal-delay-1">
+        <div class="collection-card-img">
+          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #0a1a0a, #1a3d1a);">AWEN FÍR FLAITHEMON</div>
+        </div>
+        <div class="collection-card-body">
+          <div class="collection-universe">CELTIC · SOVEREIGNTY</div>
+          <div class="collection-name">Awen Fír Flaithemon</div>
+          <p class="collection-desc">Celtic divine inspiration and the truth of sovereignty. Forest spirits, sacred light, and the ancient breath of inspired beings.</p>
+          <div class="collection-meta">
+            <span class="collection-type">DIGITAL DOWNLOAD</span>
+            <span class="collection-cta">EXPLORE →</span>
+          </div>
+        </div>
+      </a>
+
+      <a href="https://payhip.com/AetherVisuals/collection/elemental-landscapes" target="_blank" class="collection-card reveal reveal-delay-2">
+        <div class="collection-card-img">
+          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #1a0a1a, #2d1a3d);">ELEMENTAL LANDSCAPES</div>
+        </div>
+        <div class="collection-card-body">
+          <div class="collection-universe">NATURE · ELEMENTS</div>
+          <div class="collection-name">Elemental Landscapes</div>
+          <p class="collection-desc">Earth, fire, water, air — rendered as dreamlike worlds. Environments as emotional states. Every landscape is an inner terrain.</p>
+          <div class="collection-meta">
+            <span class="collection-type">DIGITAL DOWNLOAD</span>
+            <span class="collection-cta">EXPLORE →</span>
+          </div>
+        </div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-inner">
+    <div class="about-left reveal">
+      <div class="section-label about-label">THE CREATOR</div>
+      <div class="section-rule" style="background:var(--accent);"></div>
+      <h2 class="about-title">Made by a human<br>for human harmony.</h2>
+      <p class="about-body">
+        Behind Laris Echo is <strong>Elil Rosier Espitia</strong> — an artist who learned early that <strong>pleasure, wellbeing, and stability</strong> are not luxuries. They are the essentials of a life fully lived.
+      </p>
+      <p class="about-body">
+        The work here is not escapism. Even when it's fantasy-filled, the aim is to pull you <strong>toward the present</strong> — because that is where life actually happens. Each image is born from deep emotion or mythological perspective chosen to invoke a positive state of mind. Each prompt is precise. Each world is intentional.
+      </p>
+      <p class="about-body">
+        Laris Echo is a bridge. Not everyone is reached by images. Not everyone is reached by music. But everyone is reachable — through <strong>sight, through sound</strong>, through the right combination of beauty and meaning delivered at the right moment.
+      </p>
+      <div class="about-signature">
+        <div class="about-name">Elil Rosier Espitia</div>
+        <div class="about-role">CREATOR · LARIS ECHO · EST. 2025</div>
+      </div>
+    </div>
+    <div class="about-visual reveal reveal-delay-1">
+      <div class="about-quote-block">
+        <p class="about-quote">"Harmony is not bliss — bliss is a peak. It's not ecstasy — that's a moment. Harmony is liveable. That is what I make things for."</p>
+        <p class="about-quote-sub">
+          Of the five human senses, Laris Echo speaks through two — sight and hearing. Everything created here is aimed at the same destination: a state of being that is imperturbable, balanced, and genuinely felt.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MUSIC -->
+<section class="music" id="music">
+  <div class="music-inner reveal">
+    <div class="section-label" style="text-align:center;">COMING TO LARIS ECHO</div>
+    <div class="section-rule" style="margin: 0 auto 2.5rem;"></div>
+    <h2 class="music-title">The second<br><em>bridge arrives.</em></h2>
+    <p class="music-body">
+      AI music and audio crafted with the same intentionality as every image in this universe. Ambient soundscapes, purposeful audio, and sound that carries you somewhere — or anchors you exactly where you are. Hearing as harmony.
+    </p>
+    <div class="music-badge">SOUND · IN DEVELOPMENT</div>
+  </div>
+</section>
+
+<!-- CONNECT -->
+<section class="connect" id="connect">
+  <div class="connect-inner">
+    <div class="reveal">
+      <div class="section-label">FIND LARIS ECHO</div>
+      <div class="section-rule"></div>
+      <h2 class="connect-title">Every platform.<br><em>One universe.</em></h2>
+      <p class="connect-body">Follow the journey across all channels — new collections, behind-the-creation moments, and the ongoing world of Laris Echo published consistently and with intention.</p>
+      <a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block; margin-top:0.5rem;">Visit the Store</a>
+    </div>
+    <div class="social-grid reveal reveal-delay-1">
+      <a href="#" class="social-item">
+        <div>
+          <div class="social-platform">INSTAGRAM</div>
+          <div class="social-handle">@larisecho</div>
+        </div>
+      </a>
+      <a href="#" class="social-item">
+        <div>
+          <div class="social-platform">PINTEREST</div>
+          <div class="social-handle">Laris Echo</div>
+        </div>
+      </a>
+      <a href="#" class="social-item">
+        <div>
+          <div class="social-platform">YOUTUBE</div>
+          <div class="social-handle">Laris Echo</div>
+        </div>
+      </a>
+      <a href="#" class="social-item">
+        <div>
+          <div class="social-platform">THREADS</div>
+          <div class="social-handle">@larisecho</div>
+        </div>
+      </a>
+      <a href="#" class="social-item">
+        <div>
+          <div class="social-platform">X / TWITTER</div>
+          <div class="social-handle">@larisecho</div>
+        </div>
+      </a>
+      <a href="#" class="social-item">
+        <div>
+          <div class="social-platform">TUMBLR</div>
+          <div class="social-handle">larisecho</div>
+        </div>
+      </a>
+      <a href="#" class="social-item">
+        <div>
+          <div class="social-platform">BLUESKY</div>
+          <div class="social-handle">larisecho</div>
+        </div>
+      </a>
+      <a href="mailto:hello@larisecho.com" class="social-item">
+        <div>
+          <div class="social-platform">EMAIL</div>
+          <div class="social-handle">Contact</div>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">LARIS ECHO</div>
+  <div class="footer-copy">© 2026 Laris Echo · All rights reserved · Created by Elil Rosier Espitia</div>
+  <a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" class="footer-store">SHOP →</a>
+</footer>
+
+<script>
+  // Scroll reveal
+  const reveals = document.querySelectorAll('.reveal');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        e.target.classList.add('visible');
+        observer.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  reveals.forEach(r => observer.observe(r));
+
+  // Nav shrink on scroll
+  const nav = document.querySelector('nav');
+  window.addEventListener('scroll', () => {
+    nav.style.padding = window.scrollY > 60 ? '1rem 4rem' : '1.5rem 4rem';
+  });
+</script>
+</body>
+</html>
