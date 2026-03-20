@@ -1,922 +1,278 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" dir="ltr">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Laris Echo — Harmony Through Sight & Sound</title>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400&display=swap" rel="stylesheet">
+<meta name="description" content="Laris Echo is a creative universe of high-resolution digital art and sound — born from mythology, emotion, and the belief that beauty can return you to yourself.">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;500;600&family=Jost:wght@200;300;400&family=Noto+Sans+JP:wght@300;400&family=Noto+Sans+SC:wght@300;400&family=Noto+Sans+Arabic:wght@300;400&family=Noto+Sans+Hebrew:wght@300;400&display=swap" rel="stylesheet">
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
-
-:root {
-  --ink: #0e0e0e;
-  --paper: #f5f2ed;
-  --paper-warm: #ede9e0;
-  --accent: #b8966e;
-  --accent-light: rgba(184,150,110,0.15);
-  --accent-glow: rgba(184,150,110,0.35);
-  --mist: #8a9ba8;
-  --text-main: #1a1a1a;
-  --text-soft: #6b6560;
-  --text-xsoft: #a09890;
-  --rule: rgba(26,26,26,0.1);
-  --rule-accent: rgba(184,150,110,0.3);
-  --white: #ffffff;
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --ink:#0e0e0e;--paper:#f5f2ed;--paper-warm:#ede9e0;
+  --accent:#b8966e;--accent-light:rgba(184,150,110,0.15);
+  --text-main:#1a1a1a;--text-soft:#6b6560;--text-xsoft:#a09890;
+  --rule:rgba(26,26,26,0.1);--rule-accent:rgba(184,150,110,0.3);--white:#ffffff;
 }
+html{scroll-behavior:smooth;}
+body{background:var(--paper);color:var(--text-main);font-family:'Jost',sans-serif;font-weight:300;overflow-x:hidden;}
+body.lang-ja{font-family:'Noto Sans JP',sans-serif;}
+body.lang-zh{font-family:'Noto Sans SC',sans-serif;}
+body.lang-ar,body.lang-fa{font-family:'Noto Sans Arabic',sans-serif;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:999;opacity:0.4;}
 
-html { scroll-behavior: smooth; }
-
-body {
-  background: var(--paper);
-  color: var(--text-main);
-  font-family: 'Jost', sans-serif;
-  font-weight: 300;
-  overflow-x: hidden;
-}
-
-/* GRAIN OVERLAY */
-body::before {
-  content: '';
-  position: fixed;
-  inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
-  pointer-events: none;
-  z-index: 999;
-  opacity: 0.4;
-}
+/* RTL support */
+html[dir="rtl"] nav{flex-direction:row-reverse;}
+html[dir="rtl"] .nav-right{flex-direction:row-reverse;}
+html[dir="rtl"] .hero{direction:rtl;}
+html[dir="rtl"] .about-inner{direction:rtl;}
+html[dir="rtl"] .about-quote-block{border-left:none;border-right:2px solid var(--accent);}
 
 /* NAV */
-nav {
-  position: fixed;
-  top: 0; left: 0; right: 0;
-  z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 4rem;
-  background: rgba(245,242,237,0.88);
-  backdrop-filter: blur(12px);
-  border-bottom: 1px solid var(--rule);
-  transition: padding 0.4s ease;
-}
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.5rem 4rem;background:rgba(245,242,237,0.92);backdrop-filter:blur(12px);border-bottom:1px solid var(--rule);transition:padding 0.4s ease;}
+.nav-logo{font-family:'Cinzel',serif;font-size:0.8rem;letter-spacing:0.4em;color:var(--text-main);text-decoration:none;}
+.nav-right{display:flex;align-items:center;gap:2rem;}
+.nav-links{display:flex;gap:1.8rem;list-style:none;}
+.nav-links a{font-family:'Jost',sans-serif;font-size:0.62rem;font-weight:300;letter-spacing:0.22em;text-transform:uppercase;color:var(--text-soft);text-decoration:none;transition:color 0.3s;}
+.nav-links a:hover,.nav-links a.highlight{color:var(--accent);}
 
-.nav-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 0.8rem;
-  letter-spacing: 0.4em;
-  color: var(--text-main);
-  text-decoration: none;
-}
-
-.nav-links {
-  display: flex;
-  gap: 2.5rem;
-  list-style: none;
-}
-
-.nav-links a {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 300;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--text-soft);
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-
-.nav-links a:hover { color: var(--accent); }
+/* LANG DROPDOWN */
+.lang-dropdown{position:relative;}
+.lang-btn{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.3em;color:var(--accent);background:transparent;border:1px solid var(--rule-accent);padding:0.4rem 0.9rem;cursor:pointer;display:flex;align-items:center;gap:0.4rem;transition:background 0.3s,border-color 0.3s;white-space:nowrap;}
+.lang-btn:hover{background:var(--accent-light);border-color:var(--accent);}
+.lang-btn::after{content:'▾';font-size:0.7rem;transition:transform 0.3s;}
+.lang-dropdown.open .lang-btn::after{transform:rotate(180deg);}
+.lang-menu{position:absolute;top:calc(100% + 6px);right:0;background:var(--paper);border:1px solid var(--rule);min-width:170px;display:none;flex-direction:column;box-shadow:0 8px 30px rgba(14,14,14,0.1);max-height:60vh;overflow-y:auto;}
+.lang-dropdown.open .lang-menu{display:flex;}
+.lang-option{font-size:0.7rem;color:var(--text-soft);padding:0.75rem 1.2rem;cursor:pointer;transition:background 0.2s,color 0.2s;border:none;background:transparent;text-align:left;font-family:'Jost',sans-serif;display:flex;align-items:center;gap:0.6rem;}
+.lang-option:hover{background:var(--accent-light);color:var(--accent);}
+.lang-option.active{color:var(--accent);font-weight:400;}
+.lang-option .flag{font-size:1rem;}
 
 /* HERO */
-.hero {
-  min-height: 100vh;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  align-items: center;
-  padding: 8rem 4rem 4rem;
-  gap: 4rem;
-  position: relative;
-  overflow: hidden;
-}
+.hero{min-height:100vh;display:grid;grid-template-columns:1fr 1fr;align-items:center;padding:8rem 4rem 4rem;gap:4rem;position:relative;overflow:hidden;}
+.hero::after{content:'';position:absolute;right:-100px;top:50%;transform:translateY(-50%);width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(184,150,110,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-text{position:relative;z-index:1;}
+.hero-eyebrow{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.5em;color:var(--accent);margin-bottom:2rem;opacity:0;animation:fadeUp 1s ease forwards 0.2s;}
+.hero-title{font-family:'Cormorant Garamond',serif;font-size:clamp(3.5rem,7vw,6.5rem);font-weight:300;line-height:1;letter-spacing:-0.02em;color:var(--text-main);opacity:0;animation:fadeUp 1s ease forwards 0.4s;}
+.hero-title em{font-style:italic;color:var(--accent);}
+.hero-tagline{margin-top:2rem;font-size:0.85rem;line-height:1.9;color:var(--text-soft);max-width:440px;opacity:0;animation:fadeUp 1s ease forwards 0.6s;}
+.hero-cta-row{margin-top:3rem;display:flex;gap:1.5rem;align-items:center;opacity:0;animation:fadeUp 1s ease forwards 0.8s;flex-wrap:wrap;}
+.btn-primary{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.35em;color:var(--white);background:var(--text-main);padding:1rem 2.5rem;text-decoration:none;transition:background 0.3s;border:1px solid var(--text-main);cursor:pointer;display:inline-block;}
+.btn-primary:hover{background:var(--accent);border-color:var(--accent);}
+.btn-secondary{font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:300;letter-spacing:0.2em;color:var(--text-soft);text-decoration:none;border-bottom:1px solid var(--rule-accent);padding-bottom:2px;transition:color 0.3s;}
+.btn-secondary:hover{color:var(--accent);}
+.hero-visual{position:relative;opacity:0;animation:fadeIn 1.4s ease forwards 0.5s;}
+.hero-img-frame{position:relative;aspect-ratio:3/4;overflow:hidden;max-height:70vh;}
+.hero-img-frame img{width:100%;height:100%;object-fit:cover;filter:saturate(0.9);transition:transform 8s ease;pointer-events:none;}
+.hero-img-frame:hover img{transform:scale(1.03);}
+.hero-img-caption{position:absolute;bottom:1.5rem;right:1.5rem;font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.4em;color:rgba(255,255,255,0.6);background:rgba(14,14,14,0.4);padding:4px 8px;backdrop-filter:blur(4px);}
+.hero-scroll-hint{position:absolute;bottom:3rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:0.5rem;opacity:0;animation:fadeIn 1s ease forwards 1.5s;}
+.scroll-line{width:1px;height:50px;background:linear-gradient(to bottom,var(--accent),transparent);animation:scrollPulse 2s ease-in-out infinite;}
+.scroll-label{font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.4em;color:var(--text-xsoft);}
+@keyframes scrollPulse{0%,100%{opacity:0.4}50%{opacity:1}}
 
-.hero::after {
-  content: '';
-  position: absolute;
-  right: -100px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 500px;
-  height: 500px;
-  border-radius: 50%;
-  background: radial-gradient(circle, rgba(184,150,110,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
+/* SHARED */
+.section-label{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.5em;color:var(--accent);margin-bottom:1rem;}
+.section-rule{width:40px;height:1px;background:var(--accent);margin-bottom:2.5rem;}
+.section-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.1;}
+.section-title em{font-style:italic;color:var(--accent);}
 
-.hero-text { position: relative; z-index: 1; }
-
-.hero-eyebrow {
-  font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.55em;
-  color: var(--accent);
-  margin-bottom: 2rem;
-  opacity: 0;
-  animation: fadeUp 1s ease forwards 0.2s;
-}
-
-.hero-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(3.5rem, 7vw, 6.5rem);
-  font-weight: 300;
-  line-height: 1;
-  letter-spacing: -0.02em;
-  color: var(--text-main);
-  opacity: 0;
-  animation: fadeUp 1s ease forwards 0.4s;
-}
-
-.hero-title em {
-  font-style: italic;
-  color: var(--accent);
-}
-
-.hero-tagline {
-  margin-top: 2rem;
-  font-size: 0.85rem;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--text-soft);
-  max-width: 420px;
-  opacity: 0;
-  animation: fadeUp 1s ease forwards 0.6s;
-}
-
-.hero-cta-row {
-  margin-top: 3rem;
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  opacity: 0;
-  animation: fadeUp 1s ease forwards 0.8s;
-}
-
-.btn-primary {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.4em;
-  color: var(--white);
-  background: var(--text-main);
-  padding: 1rem 2.5rem;
-  text-decoration: none;
-  transition: background 0.3s ease, color 0.3s ease;
-  border: 1px solid var(--text-main);
-}
-
-.btn-primary:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.btn-secondary {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 300;
-  letter-spacing: 0.25em;
-  color: var(--text-soft);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule-accent);
-  padding-bottom: 2px;
-  transition: color 0.3s ease;
-}
-
-.btn-secondary:hover { color: var(--accent); }
-
-.hero-visual {
-  position: relative;
-  opacity: 0;
-  animation: fadeIn 1.4s ease forwards 0.5s;
-}
-
-.hero-img-frame {
-  position: relative;
-  aspect-ratio: 3/4;
-  overflow: hidden;
-  max-height: 70vh;
-}
-
-.hero-img-frame img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: saturate(0.9);
-  transition: transform 8s ease;
-}
-
-.hero-img-frame:hover img { transform: scale(1.03); }
-
-.hero-img-caption {
-  position: absolute;
-  bottom: 1.5rem;
-  right: 1.5rem;
-  font-family: 'Cinzel', serif;
-  font-size: 0.45rem;
-  letter-spacing: 0.4em;
-  color: rgba(255,255,255,0.6);
-  background: rgba(14,14,14,0.4);
-  padding: 4px 8px;
-  backdrop-filter: blur(4px);
-}
-
-.hero-scroll-hint {
-  position: absolute;
-  bottom: 3rem;
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 0.5rem;
-  opacity: 0;
-  animation: fadeIn 1s ease forwards 1.5s;
-}
-
-.scroll-line {
-  width: 1px;
-  height: 50px;
-  background: linear-gradient(to bottom, var(--accent), transparent);
-  animation: scrollPulse 2s ease-in-out infinite;
-}
-
-.scroll-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.45rem;
-  letter-spacing: 0.4em;
-  color: var(--text-xsoft);
-}
-
-@keyframes scrollPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 1; }
-}
-
-/* SECTION COMMONS */
-section { position: relative; }
-
-.section-label {
-  font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.55em;
-  color: var(--accent);
-  margin-bottom: 1rem;
-}
-
-.section-rule {
-  width: 40px;
-  height: 1px;
-  background: var(--accent);
-  margin-bottom: 2.5rem;
-}
-
-/* PILLARS / PHILOSOPHY */
-.philosophy {
-  background: var(--ink);
-  color: var(--paper);
-  padding: 8rem 4rem;
-  overflow: hidden;
-}
-
-.philosophy-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 2fr;
-  gap: 6rem;
-  align-items: start;
-}
-
-.philosophy-left .section-label { color: var(--accent); }
-
-.philosophy-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 300;
-  font-style: italic;
-  line-height: 1.1;
-  color: var(--paper);
-  margin-bottom: 2rem;
-}
-
-.philosophy-body {
-  font-size: 0.8rem;
-  line-height: 2;
-  color: rgba(245,242,237,0.55);
-  margin-bottom: 2rem;
-}
-
-.philosophy-pillars {
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
-  gap: 2px;
-  margin-top: 1rem;
-}
-
-.pillar {
-  background: rgba(245,242,237,0.04);
-  border: 1px solid rgba(245,242,237,0.08);
-  padding: 2.5rem 2rem;
-  transition: background 0.4s ease;
-}
-
-.pillar:hover { background: rgba(184,150,110,0.08); }
-
-.pillar-number {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3rem;
-  font-weight: 300;
-  color: var(--accent);
-  opacity: 0.4;
-  line-height: 1;
-  margin-bottom: 1rem;
-}
-
-.pillar-name {
-  font-family: 'Cinzel', serif;
-  font-size: 0.6rem;
-  letter-spacing: 0.4em;
-  color: var(--paper);
-  margin-bottom: 1rem;
-}
-
-.pillar-text {
-  font-size: 0.75rem;
-  line-height: 1.8;
-  color: rgba(245,242,237,0.5);
-}
+/* PHILOSOPHY */
+.philosophy{background:var(--ink);color:var(--paper);padding:8rem 4rem;}
+.philosophy-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 2fr;gap:6rem;align-items:start;}
+.philosophy-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;font-style:italic;line-height:1.1;color:var(--paper);margin-bottom:2rem;}
+.philosophy-body{font-size:0.8rem;line-height:2;color:rgba(245,242,237,0.55);margin-bottom:2rem;}
+.philosophy-pillars{display:grid;grid-template-columns:1fr 1fr 1fr;gap:2px;}
+.pillar{background:rgba(245,242,237,0.04);border:1px solid rgba(245,242,237,0.08);padding:2.5rem 2rem;transition:background 0.4s;}
+.pillar:hover{background:rgba(184,150,110,0.08);}
+.pillar-number{font-family:'Cormorant Garamond',serif;font-size:3rem;font-weight:300;color:var(--accent);opacity:0.4;line-height:1;margin-bottom:1rem;}
+.pillar-name{font-family:'Cinzel',serif;font-size:0.6rem;letter-spacing:0.4em;color:var(--paper);margin-bottom:1rem;}
+.pillar-text{font-size:0.75rem;line-height:1.8;color:rgba(245,242,237,0.5);}
 
 /* SENSES */
-.senses {
-  padding: 8rem 4rem;
-  background: var(--paper-warm);
-}
-
-.senses-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-}
-
-.senses-header {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 4rem;
-  margin-bottom: 5rem;
-  align-items: end;
-}
-
-.senses-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 300;
-  line-height: 1.1;
-}
-
-.senses-title em { font-style: italic; color: var(--accent); }
-
-.senses-body {
-  font-size: 0.8rem;
-  line-height: 2;
-  color: var(--text-soft);
-}
-
-.sense-cards {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.sense-card {
-  background: var(--paper);
-  padding: 4rem 3rem;
-  border: 1px solid var(--rule);
-  position: relative;
-  overflow: hidden;
-  transition: border-color 0.4s ease;
-}
-
-.sense-card:hover { border-color: var(--accent); }
-
-.sense-card::before {
-  content: '';
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 2px;
-  background: var(--accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.5s ease;
-}
-
-.sense-card:hover::before { transform: scaleX(1); }
-
-.sense-icon {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 3.5rem;
-  font-weight: 300;
-  color: var(--accent);
-  opacity: 0.3;
-  margin-bottom: 1.5rem;
-  line-height: 1;
-}
-
-.sense-name {
-  font-family: 'Cinzel', serif;
-  font-size: 0.65rem;
-  letter-spacing: 0.5em;
-  color: var(--text-main);
-  margin-bottom: 1rem;
-}
-
-.sense-desc {
-  font-size: 0.8rem;
-  line-height: 1.9;
-  color: var(--text-soft);
-}
-
-.sense-products {
-  margin-top: 1.5rem;
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-}
-
-.sense-tag {
-  font-family: 'Cinzel', serif;
-  font-size: 0.45rem;
-  letter-spacing: 0.3em;
-  color: var(--accent);
-  border: 1px solid var(--rule-accent);
-  padding: 3px 8px;
-}
+.senses{padding:8rem 4rem;background:var(--paper-warm);}
+.senses-inner{max-width:1100px;margin:0 auto;}
+.senses-header{display:grid;grid-template-columns:1fr 1fr;gap:4rem;margin-bottom:5rem;align-items:end;}
+.senses-body{font-size:0.8rem;line-height:2;color:var(--text-soft);}
+.sense-cards{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.sense-card{background:var(--paper);padding:4rem 3rem;border:1px solid var(--rule);position:relative;overflow:hidden;transition:border-color 0.4s;}
+.sense-card:hover{border-color:var(--accent);}
+.sense-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform 0.5s;}
+.sense-card:hover::before{transform:scaleX(1);}
+.sense-icon{font-size:3.5rem;color:var(--accent);opacity:0.3;margin-bottom:1.5rem;line-height:1;}
+.sense-name{font-family:'Cinzel',serif;font-size:0.65rem;letter-spacing:0.5em;color:var(--text-main);margin-bottom:1rem;}
+.sense-desc{font-size:0.8rem;line-height:1.9;color:var(--text-soft);}
+.sense-products{margin-top:1.5rem;display:flex;gap:0.5rem;flex-wrap:wrap;}
+.sense-tag{font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.3em;color:var(--accent);border:1px solid var(--rule-accent);padding:3px 8px;}
 
 /* COLLECTIONS */
-.collections {
-  padding: 8rem 4rem;
-  background: var(--paper);
-}
+.collections{padding:8rem 4rem;background:var(--paper);}
+.collections-inner{max-width:1200px;margin:0 auto;}
+.collections-header{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:3rem;flex-wrap:wrap;gap:1rem;}
+.collections-link{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.4em;color:var(--text-soft);text-decoration:none;border-bottom:1px solid var(--rule);padding-bottom:2px;transition:color 0.3s,border-color 0.3s;}
+.collections-link:hover{color:var(--accent);border-color:var(--accent);}
+.coll-tabs{display:flex;border-bottom:1px solid var(--rule);margin-bottom:3rem;overflow-x:auto;-webkit-overflow-scrolling:touch;}
+.coll-tab{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.35em;color:var(--text-xsoft);padding:0.8rem 1.8rem;cursor:pointer;border:none;background:transparent;border-bottom:2px solid transparent;margin-bottom:-1px;transition:color 0.3s,border-color 0.3s;white-space:nowrap;}
+.coll-tab:hover{color:var(--accent);}
+.coll-tab.active{color:var(--accent);border-bottom-color:var(--accent);}
+.coll-panel{display:none;}
+.coll-panel.active{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem;}
 
-.collections-inner { max-width: 1200px; margin: 0 auto; }
+/* SATORINOUS FEATURED */
+.satorinous-featured{grid-column:1/-1;background:var(--ink);border:1px solid rgba(184,150,110,0.3);display:grid;grid-template-columns:1fr 2fr;overflow:hidden;text-decoration:none;color:var(--paper);transition:box-shadow 0.4s;}
+.satorinous-featured:hover{box-shadow:0 0 60px rgba(184,150,110,0.15);}
+.satorinous-visual{background:linear-gradient(135deg,#0e0e0e,#1a1205,#2a1a08);display:flex;align-items:center;justify-content:center;padding:4rem;position:relative;overflow:hidden;}
+.satorinous-visual::before{content:'✦';font-size:8rem;color:rgba(184,150,110,0.08);position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);}
+.satorinous-sigil{font-family:'Cinzel',serif;font-size:clamp(1.5rem,4vw,3rem);letter-spacing:0.3em;color:var(--accent);position:relative;z-index:1;text-align:center;}
+.satorinous-body{padding:3rem 3.5rem;display:flex;flex-direction:column;justify-content:center;}
+.satorinous-tag{font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.5em;color:var(--accent);margin-bottom:1rem;opacity:0.8;}
+.satorinous-title{font-family:'Cormorant Garamond',serif;font-size:clamp(1.8rem,3vw,2.8rem);font-weight:300;line-height:1.1;margin-bottom:1.5rem;color:var(--paper);}
+.satorinous-desc{font-size:0.82rem;line-height:2;color:rgba(245,242,237,0.6);margin-bottom:2rem;}
+.satorinous-mythologies{display:flex;flex-wrap:wrap;gap:0.5rem;margin-bottom:2rem;}
+.myth-tag{font-family:'Cinzel',serif;font-size:0.4rem;letter-spacing:0.3em;color:rgba(184,150,110,0.7);border:1px solid rgba(184,150,110,0.2);padding:3px 8px;}
+.satorinous-cta{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.4em;color:var(--accent);align-self:flex-start;border-bottom:1px solid rgba(184,150,110,0.3);padding-bottom:2px;}
 
-.collections-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-end;
-  margin-bottom: 4rem;
-}
-
-.collections-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 300;
-}
-
-.collections-title em { font-style: italic; color: var(--accent); }
-
-.collections-link {
-  font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.4em;
-  color: var(--text-soft);
-  text-decoration: none;
-  border-bottom: 1px solid var(--rule);
-  padding-bottom: 2px;
-  transition: color 0.3s, border-color 0.3s;
-}
-
-.collections-link:hover { color: var(--accent); border-color: var(--accent); }
-
-.collections-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-
-.collection-card {
-  position: relative;
-  background: var(--paper-warm);
-  border: 1px solid var(--rule);
-  overflow: hidden;
-  text-decoration: none;
-  color: inherit;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
-  display: block;
-}
-
-.collection-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 20px 60px rgba(14,14,14,0.12);
-}
-
-.collection-card-img {
-  aspect-ratio: 4/5;
-  overflow: hidden;
-  background: var(--ink);
-}
-
-.collection-card-img-placeholder {
-  width: 100%;
-  height: 100%;
-  min-height: 280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.4em;
-  color: rgba(245,242,237,0.2);
-}
-
-.collection-card-body { padding: 1.8rem 1.5rem; }
-
-.collection-universe {
-  font-family: 'Cinzel', serif;
-  font-size: 0.45rem;
-  letter-spacing: 0.4em;
-  color: var(--accent);
-  margin-bottom: 0.5rem;
-}
-
-.collection-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.4rem;
-  font-weight: 400;
-  line-height: 1.2;
-  margin-bottom: 0.75rem;
-}
-
-.collection-desc {
-  font-size: 0.72rem;
-  line-height: 1.8;
-  color: var(--text-soft);
-  margin-bottom: 1.2rem;
-}
-
-.collection-meta {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  border-top: 1px solid var(--rule);
-  padding-top: 1rem;
-}
-
-.collection-type {
-  font-family: 'Cinzel', serif;
-  font-size: 0.45rem;
-  letter-spacing: 0.3em;
-  color: var(--text-xsoft);
-}
-
-.collection-cta {
-  font-family: 'Cinzel', serif;
-  font-size: 0.5rem;
-  letter-spacing: 0.3em;
-  color: var(--accent);
-}
+.collection-card{position:relative;background:var(--paper-warm);border:1px solid var(--rule);overflow:hidden;text-decoration:none;color:inherit;transition:transform 0.4s,box-shadow 0.4s;display:block;}
+.collection-card:hover{transform:translateY(-4px);box-shadow:0 20px 60px rgba(14,14,14,0.12);}
+.collection-card-img{aspect-ratio:4/5;overflow:hidden;background:var(--ink);}
+.collection-card-img img{width:100%;height:100%;object-fit:cover;filter:saturate(0.9);pointer-events:none;}
+.collection-placeholder{width:100%;height:100%;min-height:250px;display:flex;align-items:center;justify-content:center;font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.4em;color:rgba(245,242,237,0.2);text-align:center;padding:1rem;}
+.collection-card-body{padding:1.8rem 1.5rem;}
+.collection-universe{font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.4em;color:var(--accent);margin-bottom:0.5rem;}
+.collection-name{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;line-height:1.2;margin-bottom:0.75rem;}
+.collection-desc{font-size:0.72rem;line-height:1.8;color:var(--text-soft);margin-bottom:1.2rem;}
+.collection-meta{display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--rule);padding-top:1rem;}
+.collection-type{font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.3em;color:var(--text-xsoft);}
+.collection-cta{font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.3em;color:var(--accent);}
 
 /* ABOUT */
-.about {
-  background: var(--ink);
-  padding: 8rem 4rem;
-  overflow: hidden;
-}
+.about{background:var(--ink);padding:8rem 4rem;}
+.about-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:5fr 4fr;gap:8rem;align-items:center;}
+.about-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,4vw,3.5rem);font-weight:300;font-style:italic;color:var(--paper);line-height:1.15;margin-bottom:2.5rem;}
+.about-body{font-size:0.82rem;line-height:2.1;color:rgba(245,242,237,0.6);margin-bottom:1.5rem;}
+.about-body strong{color:var(--paper);font-weight:400;}
+.about-signature{margin-top:3rem;padding-top:2rem;border-top:1px solid rgba(245,242,237,0.08);}
+.about-name{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-style:italic;color:var(--accent);}
+.about-role{font-family:'Cinzel',serif;font-size:0.45rem;letter-spacing:0.4em;color:rgba(245,242,237,0.3);margin-top:0.3rem;}
+.about-quote-block{background:rgba(245,242,237,0.04);border:1px solid rgba(245,242,237,0.08);border-left:2px solid var(--accent);padding:3rem 2.5rem;}
+.about-quote{font-family:'Cormorant Garamond',serif;font-size:1.5rem;font-style:italic;font-weight:300;color:var(--paper);line-height:1.6;opacity:0.85;}
+.about-quote-sub{margin-top:1.5rem;font-size:0.7rem;line-height:1.9;color:rgba(245,242,237,0.45);}
 
-.about-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 5fr 4fr;
-  gap: 8rem;
-  align-items: center;
-}
+/* MUSIC */
+.music{padding:8rem 4rem;background:var(--paper-warm);text-align:center;position:relative;overflow:hidden;}
+.music::before{content:'SOUND';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cinzel',serif;font-size:clamp(6rem,20vw,18rem);font-weight:600;color:rgba(184,150,110,0.04);white-space:nowrap;pointer-events:none;letter-spacing:0.2em;}
+.music-inner{position:relative;z-index:1;max-width:600px;margin:0 auto;}
+.music-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2.5rem,5vw,4rem);font-weight:300;line-height:1.1;margin-bottom:1.5rem;}
+.music-title em{font-style:italic;color:var(--accent);}
+.music-body{font-size:0.8rem;line-height:2;color:var(--text-soft);margin-bottom:2.5rem;}
+.music-badge{display:inline-block;font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.5em;color:var(--accent);border:1px solid var(--rule-accent);padding:0.7rem 2rem;}
 
-.about-label { color: var(--accent); }
-
-.about-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 4vw, 3.5rem);
-  font-weight: 300;
-  font-style: italic;
-  color: var(--paper);
-  line-height: 1.15;
-  margin-bottom: 2.5rem;
-}
-
-.about-body {
-  font-size: 0.82rem;
-  line-height: 2.1;
-  color: rgba(245,242,237,0.6);
-  margin-bottom: 1.5rem;
-}
-
-.about-body strong {
-  color: var(--paper);
-  font-weight: 400;
-}
-
-.about-signature {
-  margin-top: 3rem;
-  padding-top: 2rem;
-  border-top: 1px solid rgba(245,242,237,0.08);
-}
-
-.about-name {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.1rem;
-  font-style: italic;
-  color: var(--accent);
-}
-
-.about-role {
-  font-family: 'Cinzel', serif;
-  font-size: 0.45rem;
-  letter-spacing: 0.4em;
-  color: rgba(245,242,237,0.3);
-  margin-top: 0.3rem;
-}
-
-.about-visual {
-  position: relative;
-}
-
-.about-quote-block {
-  background: rgba(245,242,237,0.04);
-  border: 1px solid rgba(245,242,237,0.08);
-  border-left: 2px solid var(--accent);
-  padding: 3rem 2.5rem;
-}
-
-.about-quote {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: 1.5rem;
-  font-style: italic;
-  font-weight: 300;
-  color: var(--paper);
-  line-height: 1.6;
-  opacity: 0.85;
-}
-
-.about-quote-sub {
-  margin-top: 1.5rem;
-  font-size: 0.7rem;
-  line-height: 1.9;
-  color: rgba(245,242,237,0.45);
-}
-
-/* MUSIC COMING */
-.music {
-  padding: 8rem 4rem;
-  background: var(--paper-warm);
-  text-align: center;
-  overflow: hidden;
-  position: relative;
-}
-
-.music::before {
-  content: 'SOUND';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  font-family: 'Cinzel', serif;
-  font-size: clamp(6rem, 20vw, 18rem);
-  font-weight: 600;
-  color: rgba(184,150,110,0.04);
-  white-space: nowrap;
-  pointer-events: none;
-  letter-spacing: 0.2em;
-}
-
-.music-inner { position: relative; z-index: 1; max-width: 600px; margin: 0 auto; }
-
-.music-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: 300;
-  line-height: 1.1;
-  margin-bottom: 1.5rem;
-}
-
-.music-title em { font-style: italic; color: var(--accent); }
-
-.music-body {
-  font-size: 0.8rem;
-  line-height: 2;
-  color: var(--text-soft);
-  margin-bottom: 2.5rem;
-}
-
-.music-badge {
-  display: inline-block;
-  font-family: 'Cinzel', serif;
-  font-size: 0.5rem;
-  letter-spacing: 0.5em;
-  color: var(--accent);
-  border: 1px solid var(--rule-accent);
-  padding: 0.7rem 2rem;
-}
-
-/* SOCIALS */
-.connect {
-  padding: 6rem 4rem;
-  background: var(--paper);
-  border-top: 1px solid var(--rule);
-}
-
-.connect-inner {
-  max-width: 1100px;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 6rem;
-  align-items: center;
-}
-
-.connect-title {
-  font-family: 'Cormorant Garamond', serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 300;
-  line-height: 1.2;
-  margin-bottom: 1.5rem;
-}
-
-.connect-title em { font-style: italic; color: var(--accent); }
-
-.connect-body {
-  font-size: 0.8rem;
-  line-height: 2;
-  color: var(--text-soft);
-  margin-bottom: 2rem;
-}
-
-.social-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2px;
-}
-
-.social-item {
-  background: var(--paper-warm);
-  border: 1px solid var(--rule);
-  padding: 1.5rem;
-  text-decoration: none;
-  color: inherit;
-  transition: border-color 0.3s, background 0.3s;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-}
-
-.social-item:hover {
-  border-color: var(--accent);
-  background: var(--accent-light);
-}
-
-.social-platform {
-  font-family: 'Cinzel', serif;
-  font-size: 0.55rem;
-  letter-spacing: 0.35em;
-  color: var(--text-main);
-}
-
-.social-handle {
-  font-size: 0.65rem;
-  color: var(--text-xsoft);
-  margin-top: 0.2rem;
-}
+/* CONNECT */
+.connect{padding:6rem 4rem;background:var(--paper);border-top:1px solid var(--rule);}
+.connect-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:6rem;align-items:start;}
+.connect-title{font-family:'Cormorant Garamond',serif;font-size:clamp(2rem,4vw,3rem);font-weight:300;line-height:1.2;margin-bottom:1.5rem;}
+.connect-title em{font-style:italic;color:var(--accent);}
+.connect-body{font-size:0.8rem;line-height:2;color:var(--text-soft);margin-bottom:2rem;}
+.social-grid{display:grid;grid-template-columns:1fr 1fr;gap:2px;}
+.social-item{background:var(--paper-warm);border:1px solid var(--rule);padding:1.2rem 1.5rem;text-decoration:none;color:inherit;transition:border-color 0.3s,background 0.3s;display:block;}
+.social-item:hover{border-color:var(--accent);background:var(--accent-light);}
+.social-platform{font-family:'Cinzel',serif;font-size:0.55rem;letter-spacing:0.35em;color:var(--text-main);}
+.social-handle{font-size:0.65rem;color:var(--text-xsoft);margin-top:0.2rem;}
 
 /* FOOTER */
-footer {
-  background: var(--ink);
-  padding: 3rem 4rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.footer-logo {
-  font-family: 'Cinzel', serif;
-  font-size: 0.7rem;
-  letter-spacing: 0.4em;
-  color: rgba(245,242,237,0.4);
-}
-
-.footer-copy {
-  font-family: 'Jost', sans-serif;
-  font-size: 0.6rem;
-  color: rgba(245,242,237,0.25);
-  letter-spacing: 0.1em;
-}
-
-.footer-store {
-  font-family: 'Cinzel', serif;
-  font-size: 0.5rem;
-  letter-spacing: 0.4em;
-  color: var(--accent);
-  text-decoration: none;
-  opacity: 0.7;
-  transition: opacity 0.3s;
-}
-
-.footer-store:hover { opacity: 1; }
+footer{background:var(--ink);padding:3rem 4rem;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1rem;}
+.footer-logo{font-family:'Cinzel',serif;font-size:0.7rem;letter-spacing:0.4em;color:rgba(245,242,237,0.4);}
+.footer-copy{font-family:'Jost',sans-serif;font-size:0.6rem;color:rgba(245,242,237,0.25);letter-spacing:0.1em;}
+.footer-store{font-family:'Cinzel',serif;font-size:0.5rem;letter-spacing:0.4em;color:var(--accent);text-decoration:none;opacity:0.7;transition:opacity 0.3s;}
+.footer-store:hover{opacity:1;}
 
 /* ANIMATIONS */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(24px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-.reveal {
-  opacity: 0;
-  transform: translateY(32px);
-  transition: opacity 0.9s ease, transform 0.9s ease;
-}
-
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-.reveal-delay-1 { transition-delay: 0.15s; }
-.reveal-delay-2 { transition-delay: 0.3s; }
-.reveal-delay-3 { transition-delay: 0.45s; }
+@keyframes fadeUp{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@keyframes fadeIn{from{opacity:0}to{opacity:1}}
+.reveal{opacity:0;transform:translateY(32px);transition:opacity 0.9s ease,transform 0.9s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+.reveal-delay-1{transition-delay:0.15s;}
+.reveal-delay-2{transition-delay:0.3s;}
 
 /* RESPONSIVE */
-@media (max-width: 900px) {
-  nav { padding: 1.2rem 2rem; }
-  .nav-links { gap: 1.5rem; }
-  .hero { grid-template-columns: 1fr; padding: 7rem 2rem 4rem; }
-  .hero-visual { display: none; }
-  .philosophy-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .philosophy-pillars { grid-template-columns: 1fr; }
-  .senses-header { grid-template-columns: 1fr; gap: 2rem; }
-  .sense-cards { grid-template-columns: 1fr; }
-  .collections-grid { grid-template-columns: 1fr 1fr; }
-  .collections-header { flex-direction: column; align-items: start; gap: 1rem; }
-  .about-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .connect-inner { grid-template-columns: 1fr; gap: 3rem; }
-  .philosophy, .senses, .collections, .about, .music, .connect { padding: 5rem 2rem; }
-  footer { flex-direction: column; gap: 1rem; text-align: center; padding: 2rem; }
+@media(max-width:1024px){
+  .philosophy-pillars{grid-template-columns:1fr 1fr;}
+  .coll-panel.active{grid-template-columns:1fr 1fr;}
+  .satorinous-featured{grid-template-columns:1fr;}
+  .satorinous-visual{padding:3rem;min-height:200px;}
 }
-
-@media (max-width: 600px) {
-  .collections-grid { grid-template-columns: 1fr; }
-  .social-grid { grid-template-columns: 1fr; }
+@media(max-width:900px){
+  nav{padding:1.2rem 2rem;}
+  .nav-links{display:none;}
+  .hero{grid-template-columns:1fr;padding:7rem 2rem 4rem;}
+  .hero-visual{display:none;}
+  .philosophy-inner{grid-template-columns:1fr;gap:3rem;}
+  .philosophy-pillars{grid-template-columns:1fr;}
+  .senses-header{grid-template-columns:1fr;gap:2rem;}
+  .sense-cards{grid-template-columns:1fr;}
+  .about-inner{grid-template-columns:1fr;gap:3rem;}
+  .connect-inner{grid-template-columns:1fr;gap:3rem;}
+  .philosophy,.senses,.collections,.about,.music,.connect{padding:5rem 2rem;}
+  footer{flex-direction:column;gap:1rem;text-align:center;padding:2rem;}
+}
+@media(max-width:600px){
+  .coll-panel.active{grid-template-columns:1fr;}
+  .social-grid{grid-template-columns:1fr;}
+  .satorinous-body{padding:2rem;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
 <nav>
   <a href="#" class="nav-logo">LARIS ECHO</a>
-  <ul class="nav-links">
-    <li><a href="#collections">Collections</a></li>
-    <li><a href="#philosophy">Philosophy</a></li>
-    <li><a href="#about">About</a></li>
-    <li><a href="#music">Sound</a></li>
-    <li><a href="#connect">Connect</a></li>
-    <li><a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" style="color:var(--accent);">Shop →</a></li>
-  </ul>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="#sight" data-i18n="nav_sight">Sight</a></li>
+      <li><a href="#music" data-i18n="nav_sound">Sound</a></li>
+      <li><a href="#philosophy" data-i18n="nav_philosophy">Philosophy</a></li>
+      <li><a href="#about" data-i18n="nav_about">About</a></li>
+      <li><a href="#connect" data-i18n="nav_connect">Connect</a></li>
+      <li><a href="https://payhip.com/larisecho" target="_blank" rel="noopener" class="highlight" data-i18n="nav_shop">Shop →</a></li>
+    </ul>
+    <div class="lang-dropdown" id="langDropdown">
+      <button class="lang-btn" id="langBtn">🇺🇸 EN</button>
+      <div class="lang-menu" id="langMenu">
+        <button class="lang-option active" data-lang="en" data-dir="ltr"><span class="flag">🇺🇸</span> English</button>
+        <button class="lang-option" data-lang="es" data-dir="ltr"><span class="flag">🇪🇸</span> Español</button>
+        <button class="lang-option" data-lang="de" data-dir="ltr"><span class="flag">🇩🇪</span> Deutsch</button>
+        <button class="lang-option" data-lang="fr" data-dir="ltr"><span class="flag">🇫🇷</span> Français</button>
+        <button class="lang-option" data-lang="zh" data-dir="ltr"><span class="flag">🇨🇳</span> 简体中文</button>
+        <button class="lang-option" data-lang="ja" data-dir="ltr"><span class="flag">🇯🇵</span> 日本語</button>
+        <button class="lang-option" data-lang="no" data-dir="ltr"><span class="flag">🇳🇴</span> Norsk</button>
+        <button class="lang-option" data-lang="el" data-dir="ltr"><span class="flag">🇬🇷</span> Ελληνικά</button>
+        <button class="lang-option" data-lang="fa" data-dir="rtl"><span class="flag">🇮🇷</span> فارسی</button>
+        <button class="lang-option" data-lang="ar" data-dir="rtl"><span class="flag">🇦🇪</span> العربية</button>
+      </div>
+    </div>
+  </div>
 </nav>
 
 <!-- HERO -->
 <section class="hero" id="home">
   <div class="hero-text">
-    <div class="hero-eyebrow">A UNIVERSE OF HARMONY</div>
-    <h1 class="hero-title">
-      Art that<br>
-      <em>brings you</em><br>
-      back to now.
-    </h1>
-    <p class="hero-tagline">
-      Laris Echo is a creative universe of high-resolution digital art and sound — born from mythology, emotion, and the belief that beauty can return you to yourself.
-    </p>
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">A UNIVERSE OF HARMONY</div>
+    <h1 class="hero-title" data-i18n="hero_title">Art that<br><em>brings you</em><br>back to now.</h1>
+    <p class="hero-tagline" data-i18n="hero_tagline">Laris Echo is a creative universe of high-resolution digital art and sound — born from mythology, emotion, and the belief that beauty can return you to yourself.</p>
     <div class="hero-cta-row">
-      <a href="#collections" class="btn-primary">Explore Collections</a>
-      <a href="#philosophy" class="btn-secondary">Our Philosophy</a>
+      <a href="#sight" class="btn-primary" data-i18n="hero_cta1">Explore Collections</a>
+      <a href="#philosophy" class="btn-secondary" data-i18n="hero_cta2">Our Philosophy</a>
     </div>
   </div>
   <div class="hero-visual">
     <div class="hero-img-frame">
-      <img src="IMG_7738.png" alt="Laris Echo — Male Siren Collection" draggable="false" oncontextmenu="return false">
-      <div class="hero-img-caption">WANNA DROWN? · MALE SIREN COLLECTION</div>
+      <img src="IMG_7738.png" alt="Laris Echo" draggable="false" oncontextmenu="return false">
+      <div class="hero-img-caption" data-i18n="hero_caption">ETHEREAL PORTRAITS · LARIS ECHO</div>
     </div>
   </div>
   <div class="hero-scroll-hint">
-    <div class="scroll-label">SCROLL</div>
+    <div class="scroll-label" data-i18n="scroll">SCROLL</div>
     <div class="scroll-line"></div>
   </div>
 </section>
@@ -925,29 +281,15 @@ footer {
 <section class="philosophy" id="philosophy">
   <div class="philosophy-inner">
     <div class="philosophy-left reveal">
-      <div class="section-label">THE FOUNDATION</div>
+      <div class="section-label" data-i18n="phil_label">THE FOUNDATION</div>
       <div class="section-rule"></div>
-      <h2 class="philosophy-title">Three pillars.<br>One state of being.</h2>
-      <p class="philosophy-body">
-        Every piece created under Laris Echo is guided by a philosophy — not a trend. The work exists to shift something in you, even briefly. That shift is the product.
-      </p>
+      <h2 class="philosophy-title" data-i18n="phil_title">Three pillars.<br>One state of being.</h2>
+      <p class="philosophy-body" data-i18n="phil_body">Every piece created under Laris Echo is guided by a philosophy — not a trend. The work exists to shift something in you, even briefly. That shift is the product.</p>
     </div>
     <div class="philosophy-pillars reveal reveal-delay-1">
-      <div class="pillar">
-        <div class="pillar-number">I</div>
-        <div class="pillar-name">PLEASURE</div>
-        <p class="pillar-text">Aesthetic pleasure that satisfies deeply — not just visually, but emotionally. Every image, every sound is crafted to invoke a positive state of mind through precise intention.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-number">II</div>
-        <div class="pillar-name">WELLBEING</div>
-        <p class="pillar-text">If an image or sound can teach or shift a mindset toward something lighter, then it was worth creating. Laris Echo exists to add real value to the person who encounters it.</p>
-      </div>
-      <div class="pillar">
-        <div class="pillar-number">III</div>
-        <div class="pillar-name">HARMONY</div>
-        <p class="pillar-text">The most sustainable human state. Not bliss — which is a peak. Not ecstasy — which is a moment. Harmony is liveable. Imperturbable. That is what Laris Echo reaches for.</p>
-      </div>
+      <div class="pillar"><div class="pillar-number">I</div><div class="pillar-name" data-i18n="p1_name">PLEASURE</div><p class="pillar-text" data-i18n="p1_text">Aesthetic pleasure that satisfies deeply — not just visually, but emotionally. Every image, every sound is crafted to invoke a positive state of mind through precise intention.</p></div>
+      <div class="pillar"><div class="pillar-number">II</div><div class="pillar-name" data-i18n="p2_name">WELLBEING</div><p class="pillar-text" data-i18n="p2_text">If an image or sound can teach or shift a mindset toward something lighter, then it was worth creating. Laris Echo exists to add real value to the person who encounters it.</p></div>
+      <div class="pillar"><div class="pillar-number">III</div><div class="pillar-name" data-i18n="p3_name">HARMONY</div><p class="pillar-text" data-i18n="p3_text">The most sustainable human state. Not bliss — a peak. Not ecstasy — a moment. Harmony is liveable. Imperturbable. That is what Laris Echo reaches for.</p></div>
     </div>
   </div>
 </section>
@@ -957,142 +299,172 @@ footer {
   <div class="senses-inner">
     <div class="senses-header reveal">
       <div>
-        <div class="section-label">TWO BRIDGES</div>
+        <div class="section-label" data-i18n="senses_label">TWO BRIDGES</div>
         <div class="section-rule"></div>
-        <h2 class="senses-title">Sight<br>and <em>Sound.</em></h2>
+        <h2 class="section-title" data-i18n="senses_title">Sight<br>and <em>Sound.</em></h2>
       </div>
-      <p class="senses-body">
-        Of the five human senses, Laris Echo speaks through two — the ones that digital creation makes possible. Sight through imagery. Hearing through music and audio. Both aimed at the same destination: a moment of stillness, wonder, or return to self.
-      </p>
+      <p class="senses-body" data-i18n="senses_body">Of the five human senses, Laris Echo speaks through two — the ones digital creation makes possible. Sight through imagery. Hearing through music and audio. Both aimed at the same destination: a moment of stillness, wonder, or return to self.</p>
     </div>
     <div class="sense-cards">
       <div class="sense-card reveal">
         <div class="sense-icon">◎</div>
-        <div class="sense-name">SIGHT</div>
-        <p class="sense-desc">High-resolution digital art collections spanning world mythologies, elemental landscapes, and ethereal portraiture. Each image is a chapter. Each chapter is an invitation to feel something real.</p>
-        <div class="sense-products">
-          <span class="sense-tag">DIGITAL PRINTS</span>
-          <span class="sense-tag">ART COLLECTIONS</span>
-          <span class="sense-tag">MYTHOLOGICAL SERIES</span>
-        </div>
+        <div class="sense-name" data-i18n="sight_name">SIGHT</div>
+        <p class="sense-desc" data-i18n="sight_desc">High-resolution digital art collections spanning world mythologies, elemental landscapes, and ethereal portraiture. Each image is a chapter. Each chapter is an invitation to feel something real.</p>
+        <div class="sense-products"><span class="sense-tag" data-i18n="tag_prints">DIGITAL PRINTS</span><span class="sense-tag" data-i18n="tag_myth_tag">MYTHOLOGICAL SERIES</span><span class="sense-tag" data-i18n="tag_landscapes">ELEMENTAL LANDSCAPES</span></div>
       </div>
       <div class="sense-card reveal reveal-delay-1">
         <div class="sense-icon">◈</div>
-        <div class="sense-name">SOUND</div>
-        <p class="sense-desc">AI music and audio crafted for enjoyment and intention. From ambient soundscapes to purposeful audio — sound that can carry you somewhere, or anchor you exactly where you are.</p>
-        <div class="sense-products">
-          <span class="sense-tag">AI MUSIC</span>
-          <span class="sense-tag">AUDIO FILES</span>
-          <span class="sense-tag">COMING SOON</span>
-        </div>
+        <div class="sense-name" data-i18n="sound_name">SOUND</div>
+        <p class="sense-desc" data-i18n="sound_desc">AI music and audio crafted for enjoyment and intention. From ambient soundscapes to purposeful audio — sound that can carry you somewhere, or anchor you exactly where you are.</p>
+        <div class="sense-products"><span class="sense-tag" data-i18n="tag_music">AI MUSIC</span><span class="sense-tag" data-i18n="tag_audio">AUDIO FILES</span><span class="sense-tag" data-i18n="tag_soon">COMING SOON</span></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- COLLECTIONS -->
-<section class="collections" id="collections">
+<section class="collections" id="sight">
   <div class="collections-inner">
     <div class="collections-header reveal">
       <div>
-        <div class="section-label">THE UNIVERSES</div>
+        <div class="section-label" data-i18n="coll_label">SIGHT · THE UNIVERSES</div>
         <div class="section-rule"></div>
-        <h2 class="collections-title">Every world<br><em>is a feeling.</em></h2>
+        <h2 class="section-title" data-i18n="coll_title">Every world<br><em>is a feeling.</em></h2>
       </div>
-      <a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" class="collections-link">VIEW ALL IN STORE →</a>
+      <a href="https://payhip.com/larisecho" target="_blank" rel="noopener" class="collections-link" data-i18n="coll_all">VIEW ALL IN STORE →</a>
     </div>
-    <div class="collections-grid">
+    <div class="coll-tabs">
+      <button class="coll-tab active" data-tab="mythology" data-i18n="tab_myth">Ancient Mythology</button>
+      <button class="coll-tab" data-tab="general" data-i18n="tab_general">Landscapes & Portraits</button>
+      <button class="coll-tab" data-tab="everything" data-i18n="tab_all">Browse Everything</button>
+    </div>
 
-      <a href="https://payhip.com/AetherVisuals/collection/all" target="_blank" class="collection-card reveal">
-        <div class="collection-card-img">
-          <img src="IMG_7738.png" alt="Wanna Drown" style="width:100%;height:100%;object-fit:cover;filter:saturate(0.9);" draggable="false" oncontextmenu="return false">
+    <!-- MYTHOLOGY PANEL -->
+    <div class="coll-panel active" id="panel-mythology">
+
+      <!-- SATORINOUS FEATURED -->
+      <a href="https://payhip.com/larisecho/collection/satorinous" target="_blank" class="satorinous-featured reveal">
+        <div class="satorinous-visual">
+          <div class="satorinous-sigil">SATORINOUS</div>
         </div>
-        <div class="collection-card-body">
-          <div class="collection-universe">WATER · MYTHOLOGY</div>
-          <div class="collection-name">Wanna Drown?</div>
-          <p class="collection-desc">A male siren across five scenes of increasing depth. From moonlit surface to breathtaking underwater realm. Descent as invitation.</p>
-          <div class="collection-meta">
-            <span class="collection-type">5 PIECES · DIGITAL DOWNLOAD</span>
-            <span class="collection-cta">EXPLORE →</span>
+        <div class="satorinous-body">
+          <div class="satorinous-tag" data-i18n="sat_tag">✦ THE CONVERGENCE COLLECTION · ALL MYTHOLOGIES · ALL ERAS</div>
+          <h3 class="satorinous-title" data-i18n="sat_title">Where every mythology<br>becomes one.</h3>
+          <p class="satorinous-desc" data-i18n="sat_desc">SATORINOUS is the place where all mythologies intertwine. Rooted in the Latin Sator — the eternal sower, the one who plants meaning across time — this collection is the living proof that humanity, across every culture and every era, has always asked the same questions and reached for the same light. Persian purification, Aztec gratitude, Japanese cleansing, Norse radiance, Celtic sovereignty, Chinese essence, Greek catharsis — they all arrive here. SATORINOUS is not one mythology. It is the place where all of them remember they are one.</p>
+          <div class="satorinous-mythologies">
+            <span class="myth-tag">PERSIAN</span><span class="myth-tag">AZTEC</span><span class="myth-tag">JAPANESE</span><span class="myth-tag">NORSE</span><span class="myth-tag">CELTIC</span><span class="myth-tag">LATIN</span><span class="myth-tag">CHINESE</span><span class="myth-tag">GREEK</span><span class="myth-tag">+ ALL HUMAN MYTHOLOGY</span>
           </div>
+          <span class="satorinous-cta" data-i18n="explore">EXPLORE →</span>
         </div>
       </a>
 
-      <a href="https://payhip.com/AetherVisuals/collection/tlazohcamati-ixiptla" target="_blank" class="collection-card reveal reveal-delay-1">
-        <div class="collection-card-img">
-          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #1a0a00, #3d1f00);">TLAZOHCAMATI IXIPTLA</div>
-        </div>
+      <a href="https://payhip.com/larisecho/collection/%D8%AA%D8%B5%D9%81%DB%8C%D9%87-%D9%BE%D8%A7%DA%A9%DB%8C%D8%B2%DA%AF%DB%8C" target="_blank" class="collection-card reveal">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#0d1a0d,#1a3320);">تصفیه پاکیزگی</div></div>
         <div class="collection-card-body">
-          <div class="collection-universe">AZTEC · GRATITUDE</div>
+          <div class="collection-universe" data-i18n="m1_origin">PERSIAN · PURIFICATION</div>
+          <div class="collection-name">تصفیه پاکیزگی</div>
+          <p class="collection-desc" data-i18n="m1_desc">From Persian — Tasfiyeh Pakizegi: the act of deep purification and cleansing. Figures emerging from stillness, carrying the ancient belief that to purify is to return to your most essential self.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
+        </div>
+      </a>
+      <a href="https://payhip.com/larisecho/collection/tlazohcamati-ixiptla" target="_blank" class="collection-card reveal reveal-delay-1">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#1a0a00,#3d1f00);">TLAZOHCAMATI IXIPTLA</div></div>
+        <div class="collection-card-body">
+          <div class="collection-universe" data-i18n="m2_origin">AZTEC · GRATITUDE & EMBODIMENT</div>
           <div class="collection-name">Tlazohcamati Ixiptla</div>
-          <p class="collection-desc">Ethereal male portraits rooted in Aztec mythology. A world of sacred devotion, radiant gratitude, and divine embodiment.</p>
-          <div class="collection-meta">
-            <span class="collection-type">DIGITAL DOWNLOAD</span>
-            <span class="collection-cta">EXPLORE →</span>
-          </div>
+          <p class="collection-desc" data-i18n="m2_desc">From Nahuatl — Tlazohcamati: deep gratitude. Ixiptla: divine embodiment. Sacred figures who carry thankfulness as a spiritual force, rooted in Aztec reverence for the living human form as a vessel of the divine.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
         </div>
       </a>
-
-      <a href="https://payhip.com/AetherVisuals/collection/%E7%A6%8F%E7%A9%BA" target="_blank" class="collection-card reveal reveal-delay-2">
-        <div class="collection-card-img">
-          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #001a1a, #003333);">禊空</div>
-        </div>
+      <a href="https://payhip.com/larisecho/collection/%E7%A6%8F%E7%A9%BA" target="_blank" class="collection-card reveal reveal-delay-2">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#001a1a,#003333);">禊空</div></div>
         <div class="collection-card-body">
-          <div class="collection-universe">JAPANESE · PURIFICATION</div>
+          <div class="collection-universe" data-i18n="m3_origin">JAPANESE · RITUAL CLEANSING</div>
           <div class="collection-name">禊空 — Misogi Kū</div>
-          <p class="collection-desc">Ritual purification through sky and water. Japanese-inspired ethereal portraits exploring cleansing, stillness, and transcendence.</p>
-          <div class="collection-meta">
-            <span class="collection-type">DIGITAL DOWNLOAD</span>
-            <span class="collection-cta">EXPLORE →</span>
-          </div>
+          <p class="collection-desc" data-i18n="m3_desc">From Japanese — Misogi: ritual purification through water. Kū: sky, void, infinite space. Portraits suspended between water and sky, embodying the ancient Shinto practice of washing away impurity to reveal clarity within.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
         </div>
       </a>
-
-      <a href="https://payhip.com/AetherVisuals/collection/baldrfrithuz" target="_blank" class="collection-card reveal">
-        <div class="collection-card-img">
-          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #0a0a1a, #1a1a3d);">BALDRFRIÞUZ</div>
-        </div>
+      <a href="https://payhip.com/larisecho/collection/baldrfrithuz" target="_blank" class="collection-card reveal">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#0a0a1a,#1a1a3d);">BALDRFRIÞUZ</div></div>
         <div class="collection-card-body">
-          <div class="collection-universe">NORSE · PEACE</div>
+          <div class="collection-universe" data-i18n="m4_origin">NORSE · RADIANT PEACE</div>
           <div class="collection-name">BALDRFRIÞUZ</div>
-          <p class="collection-desc">From Norse mythology — the peace of Baldr. Luminous, gold-touched figures in realms of ancient serenity and sovereign calm.</p>
-          <div class="collection-meta">
-            <span class="collection-type">DIGITAL DOWNLOAD</span>
-            <span class="collection-cta">EXPLORE →</span>
-          </div>
+          <p class="collection-desc" data-i18n="m4_desc">From Proto-Norse — Baldr: the radiant god of light and purity. Friþuz: peace, sanctuary, sacred protection. Luminous figures carrying the Norse ideal of beauty as an expression of inner peace.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
         </div>
       </a>
-
-      <a href="https://payhip.com/AetherVisuals/collection/awen-fir-flaithemon" target="_blank" class="collection-card reveal reveal-delay-1">
-        <div class="collection-card-img">
-          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #0a1a0a, #1a3d1a);">AWEN FÍR FLAITHEMON</div>
-        </div>
+      <a href="https://payhip.com/larisecho/collection/awen-fir-flaithemon" target="_blank" class="collection-card reveal reveal-delay-1">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#0a1a0a,#1a3d1a);">AWEN FÍR FLAITHEMON</div></div>
         <div class="collection-card-body">
-          <div class="collection-universe">CELTIC · SOVEREIGNTY</div>
+          <div class="collection-universe" data-i18n="m5_origin">CELTIC · DIVINE INSPIRATION</div>
           <div class="collection-name">Awen Fír Flaithemon</div>
-          <p class="collection-desc">Celtic divine inspiration and the truth of sovereignty. Forest spirits, sacred light, and the ancient breath of inspired beings.</p>
-          <div class="collection-meta">
-            <span class="collection-type">DIGITAL DOWNLOAD</span>
-            <span class="collection-cta">EXPLORE →</span>
-          </div>
+          <p class="collection-desc" data-i18n="m5_desc">From Old Irish — Awen: the flowing spirit of divine inspiration. Fír Flaithemon: the truth of sovereignty. Beings lit from within by creative force and the ancestral truth of the land.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
         </div>
       </a>
-
-      <a href="https://payhip.com/AetherVisuals/collection/elemental-landscapes" target="_blank" class="collection-card reveal reveal-delay-2">
-        <div class="collection-card-img">
-          <div class="collection-card-img-placeholder" style="background: linear-gradient(135deg, #1a0a1a, #2d1a3d);">ELEMENTAL LANDSCAPES</div>
-        </div>
+      <a href="https://payhip.com/larisecho/collection/absol%C5%ABti%C5%8D-purg%C4%81ti%C5%8D" target="_blank" class="collection-card reveal reveal-delay-2">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#1a0a1a,#330022);">ABSOLŪTIŌ PURGĀTIŌ</div></div>
         <div class="collection-card-body">
-          <div class="collection-universe">NATURE · ELEMENTS</div>
-          <div class="collection-name">Elemental Landscapes</div>
-          <p class="collection-desc">Earth, fire, water, air — rendered as dreamlike worlds. Environments as emotional states. Every landscape is an inner terrain.</p>
-          <div class="collection-meta">
-            <span class="collection-type">DIGITAL DOWNLOAD</span>
-            <span class="collection-cta">EXPLORE →</span>
-          </div>
+          <div class="collection-universe" data-i18n="m7_origin">LATIN · ABSOLUTION & RELEASE</div>
+          <div class="collection-name">ABSOLŪTIŌ PURGĀTIŌ</div>
+          <p class="collection-desc" data-i18n="m7_desc">Classical Latin — Absolūtiō: release from what binds you, being made whole again. Purgātiō: the cleansing that follows. Figures at the moment of letting go — purification as freedom.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
         </div>
       </a>
+      <a href="https://payhip.com/larisecho/collection/%E7%B2%BE%E6%B0%94%E7%A5%9E" target="_blank" class="collection-card reveal">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#0a001a,#1a0033);">精气神</div></div>
+        <div class="collection-card-body">
+          <div class="collection-universe" data-i18n="m8_origin">CHINESE · ESSENCE · ENERGY · SPIRIT</div>
+          <div class="collection-name">精气神</div>
+          <p class="collection-desc" data-i18n="m8_desc">From classical Chinese philosophy — Jīng: essential life essence. Qì: the vital energy flowing through all living things. Shén: spirit and divine consciousness. Three forces in balance — the Taoist foundation of a fully realized human being.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
+        </div>
+      </a>
+      <a href="https://payhip.com/larisecho/collection/lysis-ka8arsis" target="_blank" class="collection-card reveal reveal-delay-1">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#00101a,#001a33);">ΛΎΣΙΣ ΚΆΘΑΡΣΙΣ</div></div>
+        <div class="collection-card-body">
+          <div class="collection-universe" data-i18n="m9_origin">GREEK · RELEASE & CATHARSIS</div>
+          <div class="collection-name">ΛΎΣΙΣ ΚΆΘΑΡΣΙΣ</div>
+          <p class="collection-desc" data-i18n="m9_desc">Ancient Greek — Lýsis: dissolution, the untying of what constrains. Kátharsis: the emotional cleansing Aristotle described as the highest gift of art. Figures at the threshold of transformation — beauty as healing.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
+        </div>
+      </a>
+    </div>
 
+    <!-- GENERAL PANEL -->
+    <div class="coll-panel" id="panel-general">
+      <a href="https://payhip.com/larisecho/collection/elemental-landscapes" target="_blank" class="collection-card reveal">
+        <div class="collection-card-img"><div class="collection-placeholder" style="background:linear-gradient(135deg,#101a10,#1a3320);">ELEMENTAL LANDSCAPES</div></div>
+        <div class="collection-card-body">
+          <div class="collection-universe" data-i18n="g1_origin">NATURE · EARTH · FIRE · WATER · AIR</div>
+          <div class="collection-name" data-i18n="g1_name">Elemental Landscapes</div>
+          <p class="collection-desc" data-i18n="g1_desc">Earth, fire, water, air — rendered as dreamlike worlds. Environments as emotional states. Every landscape is an inner terrain — a place you recognize because you have lived it, not visited it.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
+        </div>
+      </a>
+      <a href="https://payhip.com/larisecho/collection/ethereal-portraits" target="_blank" class="collection-card reveal reveal-delay-1">
+        <div class="collection-card-img"><img src="IMG_7738.png" alt="Ethereal Portraits" draggable="false" oncontextmenu="return false"></div>
+        <div class="collection-card-body">
+          <div class="collection-universe" data-i18n="g2_origin">PORTRAITURE · MALE · FEMALE · GENDERLESS</div>
+          <div class="collection-name" data-i18n="g2_name">Ethereal Portraits</div>
+          <p class="collection-desc" data-i18n="g2_desc">Figures suspended between worlds. From sirens rising from moonlit waters to sacred beings of light — a study of the human form as a vessel of feeling. Beauty as presence, not performance.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="download">DIGITAL DOWNLOAD</span><span class="collection-cta" data-i18n="explore">EXPLORE →</span></div>
+        </div>
+      </a>
+    </div>
+
+    <!-- EVERYTHING PANEL -->
+    <div class="coll-panel" id="panel-everything">
+      <a href="https://payhip.com/larisecho/collection/aether%E5%A4%A9%E7%A5%9E" target="_blank" class="collection-card reveal" style="grid-column:1/-1;max-width:500px;">
+        <div class="collection-card-img" style="aspect-ratio:21/9;"><div class="collection-placeholder" style="background:linear-gradient(135deg,#0e0e0e,#1a1410);min-height:160px;font-size:0.8rem;letter-spacing:0.6em;">LARIS ECHO</div></div>
+        <div class="collection-card-body">
+          <div class="collection-universe" data-i18n="all_origin">THE FULL UNIVERSE</div>
+          <div class="collection-name">LARIS ECHO</div>
+          <p class="collection-desc" data-i18n="all_desc">Every collection. Every mythology. Every piece created under the Laris Echo universe in one place. Browse the full catalog and find what resonates with you.</p>
+          <div class="collection-meta"><span class="collection-type" data-i18n="all_type">ALL COLLECTIONS · ALL PIECES</span><span class="collection-cta" data-i18n="browse">BROWSE ALL →</span></div>
+        </div>
+      </a>
     </div>
   </div>
 </section>
@@ -1101,44 +473,34 @@ footer {
 <section class="about" id="about">
   <div class="about-inner">
     <div class="about-left reveal">
-      <div class="section-label about-label">THE CREATOR</div>
-      <div class="section-rule" style="background:var(--accent);"></div>
-      <h2 class="about-title">Made by a human<br>for human harmony.</h2>
-      <p class="about-body">
-        Behind Laris Echo is <strong>Elil Rosier Espitia</strong> — an artist who learned early that <strong>pleasure, wellbeing, and stability</strong> are not luxuries. They are the essentials of a life fully lived.
-      </p>
-      <p class="about-body">
-        The work here is not escapism. Even when it's fantasy-filled, the aim is to pull you <strong>toward the present</strong> — because that is where life actually happens. Each image is born from deep emotion or mythological perspective chosen to invoke a positive state of mind. Each prompt is precise. Each world is intentional.
-      </p>
-      <p class="about-body">
-        Laris Echo is a bridge. Not everyone is reached by images. Not everyone is reached by music. But everyone is reachable — through <strong>sight, through sound</strong>, through the right combination of beauty and meaning delivered at the right moment.
-      </p>
+      <div class="section-label" style="color:var(--accent);" data-i18n="about_label">THE CREATOR</div>
+      <div class="section-rule"></div>
+      <h2 class="about-title" data-i18n="about_title">Made by a human<br>for human harmony.</h2>
+      <p class="about-body" data-i18n="about_body1">Behind Laris Echo is <strong>Elil Rosier Espitia</strong> — an artist who learned early that <strong>pleasure, wellbeing, and stability</strong> are not luxuries. They are the essentials of a life fully lived.</p>
+      <p class="about-body" data-i18n="about_body2">The work here is not escapism. Even when it's fantasy-filled, the aim is to pull you <strong>toward the present</strong> — because that is where life actually happens. Each image is born from deep emotion or mythological perspective chosen to invoke a positive state of mind.</p>
+      <p class="about-body" data-i18n="about_body3">Laris Echo is a bridge. Not everyone is reached by images. Not everyone is reached by music. But everyone is reachable — through <strong>sight, through sound</strong>, through the right combination of beauty and meaning.</p>
       <div class="about-signature">
         <div class="about-name">Elil Rosier Espitia</div>
-        <div class="about-role">CREATOR · LARIS ECHO · EST. 2025</div>
+        <div class="about-role" data-i18n="about_role">CREATOR · LARIS ECHO · EST. 2025</div>
       </div>
     </div>
     <div class="about-visual reveal reveal-delay-1">
       <div class="about-quote-block">
-        <p class="about-quote">"Harmony is not bliss — bliss is a peak. It's not ecstasy — that's a moment. Harmony is liveable. That is what I make things for."</p>
-        <p class="about-quote-sub">
-          Of the five human senses, Laris Echo speaks through two — sight and hearing. Everything created here is aimed at the same destination: a state of being that is imperturbable, balanced, and genuinely felt.
-        </p>
+        <p class="about-quote" data-i18n="about_quote">"Harmony is not bliss — bliss is a peak. It's not ecstasy — that's a moment. Harmony is liveable. That is what I make things for."</p>
+        <p class="about-quote-sub" data-i18n="about_quote_sub">Of the five human senses, Laris Echo speaks through two — sight and hearing. Everything created here is aimed at one destination: a state of being that is imperturbable, balanced, and genuinely felt.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- MUSIC -->
+<!-- SOUND -->
 <section class="music" id="music">
   <div class="music-inner reveal">
-    <div class="section-label" style="text-align:center;">COMING TO LARIS ECHO</div>
-    <div class="section-rule" style="margin: 0 auto 2.5rem;"></div>
-    <h2 class="music-title">The second<br><em>bridge arrives.</em></h2>
-    <p class="music-body">
-      AI music and audio crafted with the same intentionality as every image in this universe. Ambient soundscapes, purposeful audio, and sound that carries you somewhere — or anchors you exactly where you are. Hearing as harmony.
-    </p>
-    <div class="music-badge">SOUND · IN DEVELOPMENT</div>
+    <div class="section-label" style="text-align:center;" data-i18n="music_label">COMING TO LARIS ECHO</div>
+    <div class="section-rule" style="margin:0 auto 2.5rem;"></div>
+    <h2 class="music-title" data-i18n="music_title">The second<br><em>bridge arrives.</em></h2>
+    <p class="music-body" data-i18n="music_body">AI music and audio crafted with the same intentionality as every image in this universe. Ambient soundscapes, purposeful audio, and sound that carries you somewhere — or anchors you exactly where you are.</p>
+    <div class="music-badge" data-i18n="music_badge">SOUND · IN DEVELOPMENT</div>
   </div>
 </section>
 
@@ -1146,90 +508,131 @@ footer {
 <section class="connect" id="connect">
   <div class="connect-inner">
     <div class="reveal">
-      <div class="section-label">FIND LARIS ECHO</div>
+      <div class="section-label" data-i18n="connect_label">FIND LARIS ECHO</div>
       <div class="section-rule"></div>
-      <h2 class="connect-title">Every platform.<br><em>One universe.</em></h2>
-      <p class="connect-body">Follow the journey across all channels — new collections, behind-the-creation moments, and the ongoing world of Laris Echo published consistently and with intention.</p>
-      <a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" class="btn-primary" style="display:inline-block; margin-top:0.5rem;">Visit the Store</a>
+      <h2 class="connect-title" data-i18n="connect_title">Every platform.<br><em>One universe.</em></h2>
+      <p class="connect-body" data-i18n="connect_body">Follow the journey across all channels — new collections, behind-the-creation moments, and the ongoing world of Laris Echo published consistently and with intention.</p>
+      <a href="https://payhip.com/larisecho" target="_blank" rel="noopener" class="btn-primary" style="margin-top:0.5rem;" data-i18n="visit_store">Visit the Store</a>
     </div>
     <div class="social-grid reveal reveal-delay-1">
-      <a href="#" class="social-item">
-        <div>
-          <div class="social-platform">INSTAGRAM</div>
-          <div class="social-handle">@larisecho</div>
-        </div>
-      </a>
-      <a href="#" class="social-item">
-        <div>
-          <div class="social-platform">PINTEREST</div>
-          <div class="social-handle">Laris Echo</div>
-        </div>
-      </a>
-      <a href="#" class="social-item">
-        <div>
-          <div class="social-platform">YOUTUBE</div>
-          <div class="social-handle">Laris Echo</div>
-        </div>
-      </a>
-      <a href="#" class="social-item">
-        <div>
-          <div class="social-platform">THREADS</div>
-          <div class="social-handle">@larisecho</div>
-        </div>
-      </a>
-      <a href="#" class="social-item">
-        <div>
-          <div class="social-platform">X / TWITTER</div>
-          <div class="social-handle">@larisecho</div>
-        </div>
-      </a>
-      <a href="#" class="social-item">
-        <div>
-          <div class="social-platform">TUMBLR</div>
-          <div class="social-handle">larisecho</div>
-        </div>
-      </a>
-      <a href="#" class="social-item">
-        <div>
-          <div class="social-platform">BLUESKY</div>
-          <div class="social-handle">larisecho</div>
-        </div>
-      </a>
-      <a href="mailto:hello@larisecho.com" class="social-item">
-        <div>
-          <div class="social-platform">EMAIL</div>
-          <div class="social-handle">Contact</div>
-        </div>
-      </a>
+      <a href="https://www.instagram.com/larisecho" target="_blank" rel="noopener" class="social-item"><div class="social-platform">INSTAGRAM</div><div class="social-handle">@larisecho</div></a>
+      <a href="https://www.tiktok.com/@larisecho" target="_blank" rel="noopener" class="social-item"><div class="social-platform">TIKTOK</div><div class="social-handle">@larisecho</div></a>
+      <a href="https://youtube.com/@larisecho" target="_blank" rel="noopener" class="social-item"><div class="social-platform">YOUTUBE</div><div class="social-handle">@larisecho</div></a>
+      <a href="https://www.threads.com/@larisecho" target="_blank" rel="noopener" class="social-item"><div class="social-platform">THREADS</div><div class="social-handle">@larisecho</div></a>
+      <a href="https://x.com/larisecho" target="_blank" rel="noopener" class="social-item"><div class="social-platform">X / TWITTER</div><div class="social-handle">@larisecho</div></a>
+      <a href="https://pin.it/708dHFFah" target="_blank" rel="noopener" class="social-item"><div class="social-platform">PINTEREST</div><div class="social-handle">Laris Echo</div></a>
+      <a href="https://bsky.app/profile/larisecho.bsky.social" target="_blank" rel="noopener" class="social-item"><div class="social-platform">BLUESKY</div><div class="social-handle">larisecho.bsky.social</div></a>
+      <a href="https://payhip.com/larisecho/contact" target="_blank" rel="noopener" class="social-item"><div class="social-platform" data-i18n="contact_label">EMAIL / CONTACT</div><div class="social-handle" data-i18n="contact_sub">Send a message</div></a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer>
   <div class="footer-logo">LARIS ECHO</div>
-  <div class="footer-copy">© 2026 Laris Echo · All rights reserved · Created by Elil Rosier Espitia</div>
-  <a href="https://payhip.com/AetherVisuals" target="_blank" rel="noopener" class="footer-store">SHOP →</a>
+  <div class="footer-copy" data-i18n="footer_copy">© 2026 Laris Echo · All rights reserved · Created by Elil Rosier Espitia</div>
+  <a href="https://payhip.com/larisecho" target="_blank" rel="noopener" class="footer-store" data-i18n="nav_shop">SHOP →</a>
 </footer>
 
 <script>
-  // Scroll reveal
-  const reveals = document.querySelectorAll('.reveal');
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(e => {
-      if (e.isIntersecting) {
-        e.target.classList.add('visible');
-        observer.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.1 });
-  reveals.forEach(r => observer.observe(r));
+const T = {
+en:{nav_sight:"Sight",nav_sound:"Sound",nav_philosophy:"Philosophy",nav_about:"About",nav_connect:"Connect",nav_shop:"Shop →",hero_eyebrow:"A UNIVERSE OF HARMONY",hero_title:"Art that<br><em>brings you</em><br>back to now.",hero_tagline:"Laris Echo is a creative universe of high-resolution digital art and sound — born from mythology, emotion, and the belief that beauty can return you to yourself.",hero_cta1:"Explore Collections",hero_cta2:"Our Philosophy",hero_caption:"ETHEREAL PORTRAITS · LARIS ECHO",scroll:"SCROLL",phil_label:"THE FOUNDATION",phil_title:"Three pillars.<br>One state of being.",phil_body:"Every piece created under Laris Echo is guided by a philosophy — not a trend. The work exists to shift something in you, even briefly. That shift is the product.",p1_name:"PLEASURE",p1_text:"Aesthetic pleasure that satisfies deeply — not just visually, but emotionally. Every image, every sound is crafted to invoke a positive state of mind through precise intention.",p2_name:"WELLBEING",p2_text:"If an image or sound can teach or shift a mindset toward something lighter, then it was worth creating. Laris Echo exists to add real value to the person who encounters it.",p3_name:"HARMONY",p3_text:"The most sustainable human state. Not bliss — a peak. Not ecstasy — a moment. Harmony is liveable. Imperturbable. That is what Laris Echo reaches for.",senses_label:"TWO BRIDGES",senses_title:"Sight<br>and <em>Sound.</em>",senses_body:"Of the five human senses, Laris Echo speaks through two — the ones digital creation makes possible. Sight through imagery. Hearing through music and audio. Both aimed at the same destination: a moment of stillness, wonder, or return to self.",sight_name:"SIGHT",sight_desc:"High-resolution digital art collections spanning world mythologies, elemental landscapes, and ethereal portraiture. Each image is a chapter. Each chapter is an invitation to feel something real.",sound_name:"SOUND",sound_desc:"AI music and audio crafted for enjoyment and intention. From ambient soundscapes to purposeful audio — sound that can carry you somewhere, or anchor you exactly where you are.",tag_prints:"DIGITAL PRINTS",tag_myth_tag:"MYTHOLOGICAL SERIES",tag_landscapes:"ELEMENTAL LANDSCAPES",tag_music:"AI MUSIC",tag_audio:"AUDIO FILES",tag_soon:"COMING SOON",coll_label:"SIGHT · THE UNIVERSES",coll_title:"Every world<br><em>is a feeling.</em>",coll_all:"VIEW ALL IN STORE →",tab_myth:"Ancient Mythology",tab_general:"Landscapes & Portraits",tab_all:"Browse Everything",sat_tag:"✦ THE CONVERGENCE COLLECTION · ALL MYTHOLOGIES · ALL ERAS",sat_title:"Where every mythology<br>becomes one.",sat_desc:"SATORINOUS is the place where all mythologies intertwine. Rooted in the Latin Sator — the eternal sower, the one who plants meaning across time — this collection is the living proof that humanity, across every culture and every era, has always asked the same questions and reached for the same light. Persian purification, Aztec gratitude, Japanese cleansing, Norse radiance, Celtic sovereignty, Chinese essence, Greek catharsis — they all arrive here. SATORINOUS is not one mythology. It is the place where all of them remember they are one.",m1_origin:"PERSIAN · PURIFICATION",m1_desc:"From Persian — Tasfiyeh Pakizegi: the act of deep purification and cleansing. Figures emerging from stillness, carrying the ancient belief that to purify is to return to your most essential self.",m2_origin:"AZTEC · GRATITUDE & EMBODIMENT",m2_desc:"From Nahuatl — Tlazohcamati: deep gratitude. Ixiptla: divine embodiment. Sacred figures who carry thankfulness as a spiritual force, rooted in Aztec reverence for the living human form as a vessel of the divine.",m3_origin:"JAPANESE · RITUAL CLEANSING",m3_desc:"From Japanese — Misogi: ritual purification through water. Kū: sky, void, infinite space. Portraits suspended between water and sky, embodying the ancient Shinto practice of washing away impurity to reveal clarity within.",m4_origin:"NORSE · RADIANT PEACE",m4_desc:"From Proto-Norse — Baldr: the radiant god of light and purity. Friþuz: peace, sanctuary, sacred protection. Luminous figures carrying the Norse ideal of beauty as an expression of inner peace.",m5_origin:"CELTIC · DIVINE INSPIRATION",m5_desc:"From Old Irish — Awen: the flowing spirit of divine inspiration. Fír Flaithemon: the truth of sovereignty. Beings lit from within by creative force and the ancestral truth of the land.",m7_origin:"LATIN · ABSOLUTION & RELEASE",m7_desc:"Classical Latin — Absolūtiō: release from what binds you, being made whole again. Purgātiō: the cleansing that follows. Figures at the moment of letting go — purification as freedom.",m8_origin:"CHINESE · ESSENCE · ENERGY · SPIRIT",m8_desc:"From classical Chinese philosophy — Jīng: essential life essence. Qì: the vital energy flowing through all living things. Shén: spirit and divine consciousness. Three forces in balance — the Taoist foundation of a fully realized human being.",m9_origin:"GREEK · RELEASE & CATHARSIS",m9_desc:"Ancient Greek — Lýsis: dissolution, the untying of what constrains. Kátharsis: the emotional cleansing Aristotle described as the highest gift of art. Figures at the threshold of transformation — beauty as healing.",g1_origin:"NATURE · EARTH · FIRE · WATER · AIR",g1_name:"Elemental Landscapes",g1_desc:"Earth, fire, water, air — rendered as dreamlike worlds. Environments as emotional states. Every landscape is an inner terrain — a place you recognize because you have lived it, not visited it.",g2_origin:"PORTRAITURE · MALE · FEMALE · GENDERLESS",g2_name:"Ethereal Portraits",g2_desc:"Figures suspended between worlds. From sirens rising from moonlit waters to sacred beings of light — a study of the human form as a vessel of feeling. Beauty as presence, not performance.",all_origin:"THE FULL UNIVERSE",all_desc:"Every collection. Every mythology. Every piece created under the Laris Echo universe in one place. Browse the full catalog and find what resonates with you.",all_type:"ALL COLLECTIONS · ALL PIECES",browse:"BROWSE ALL →",download:"DIGITAL DOWNLOAD",explore:"EXPLORE →",about_label:"THE CREATOR",about_title:"Made by a human<br>for human harmony.",about_body1:"Behind Laris Echo is <strong>Elil Rosier Espitia</strong> — an artist who learned early that <strong>pleasure, wellbeing, and stability</strong> are not luxuries. They are the essentials of a life fully lived.",about_body2:"The work here is not escapism. Even when it's fantasy-filled, the aim is to pull you <strong>toward the present</strong> — because that is where life actually happens. Each image is born from deep emotion or mythological perspective chosen to invoke a positive state of mind.",about_body3:"Laris Echo is a bridge. Not everyone is reached by images. Not everyone is reached by music. But everyone is reachable — through <strong>sight, through sound</strong>, through the right combination of beauty and meaning.",about_role:"CREATOR · LARIS ECHO · EST. 2025",about_quote:'"Harmony is not bliss — bliss is a peak. It\'s not ecstasy — that\'s a moment. Harmony is liveable. That is what I make things for."',about_quote_sub:"Of the five human senses, Laris Echo speaks through two — sight and hearing. Everything created here is aimed at one destination: a state of being that is imperturbable, balanced, and genuinely felt.",music_label:"COMING TO LARIS ECHO",music_title:"The second<br><em>bridge arrives.</em>",music_body:"AI music and audio crafted with the same intentionality as every image in this universe. Ambient soundscapes, purposeful audio, and sound that carries you somewhere — or anchors you exactly where you are.",music_badge:"SOUND · IN DEVELOPMENT",connect_label:"FIND LARIS ECHO",connect_title:"Every platform.<br><em>One universe.</em>",connect_body:"Follow the journey across all channels — new collections, behind-the-creation moments, and the ongoing world of Laris Echo published consistently and with intention.",visit_store:"Visit the Store",contact_label:"EMAIL / CONTACT",contact_sub:"Send a message",footer_copy:"© 2026 Laris Echo · All rights reserved · Created by Elil Rosier Espitia"},
 
-  // Nav shrink on scroll
-  const nav = document.querySelector('nav');
-  window.addEventListener('scroll', () => {
-    nav.style.padding = window.scrollY > 60 ? '1rem 4rem' : '1.5rem 4rem';
+es:{nav_sight:"Vista",nav_sound:"Sonido",nav_philosophy:"Filosofía",nav_about:"Nosotros",nav_connect:"Contacto",nav_shop:"Tienda →",hero_eyebrow:"UN UNIVERSO DE ARMONÍA",hero_title:"Arte que te<br><em>devuelve</em><br>al presente.",hero_tagline:"Laris Echo es un universo creativo de arte digital en alta resolución y sonido — nacido de la mitología, la emoción, y la certeza de que la belleza puede devolverte a ti mismo.",hero_cta1:"Explorar Colecciones",hero_cta2:"Nuestra Filosofía",hero_caption:"RETRATOS ETÉREOS · LARIS ECHO",scroll:"SCROLL",phil_label:"LA BASE",phil_title:"Tres pilares.<br>Un estado de ser.",phil_body:"Cada pieza creada bajo Laris Echo está guiada por una filosofía — no por una tendencia. El trabajo existe para transformar algo en ti, aunque sea brevemente. Esa transformación es el producto.",p1_name:"PLACER",p1_text:"Placer estético que satisface profundamente — no solo visualmente, sino emocionalmente. Cada imagen, cada sonido está creado para invocar un estado mental positivo a través de una intención precisa.",p2_name:"BIENESTAR",p2_text:"Si una imagen o sonido puede enseñar o redirigir una mentalidad hacia algo más liviano, entonces valió la pena crearlo. Laris Echo existe para añadir valor real a quien lo encuentra.",p3_name:"ARMONÍA",p3_text:"El estado humano más sostenible. No el éxtasis — que es un pico. No el placer intenso — que es un momento. La armonía es vivible. Imperturbable. Hacia eso apunta Laris Echo.",senses_label:"DOS PUENTES",senses_title:"Vista<br>y <em>Sonido.</em>",senses_body:"De los cinco sentidos humanos, Laris Echo habla a través de dos — los que la creación digital hace posibles. Vista a través de imágenes. Oído a través de música y audio. Ambos apuntan al mismo destino: un momento de quietud, asombro o regreso a uno mismo.",sight_name:"VISTA",sight_desc:"Colecciones de arte digital en alta resolución que abarcan mitologías del mundo, paisajes elementales y retratos etéreos. Cada imagen es un capítulo. Cada capítulo es una invitación a sentir algo real.",sound_name:"SONIDO",sound_desc:"Música y audio de IA creados con disfrute e intención. Desde paisajes sonoros ambientales hasta audio con propósito — sonido que puede llevarte a algún lugar, o anclarte exactamente donde estás.",tag_prints:"IMPRESIONES DIGITALES",tag_myth_tag:"SERIES MITOLÓGICAS",tag_landscapes:"PAISAJES ELEMENTALES",tag_music:"MÚSICA IA",tag_audio:"ARCHIVOS DE AUDIO",tag_soon:"PRÓXIMAMENTE",coll_label:"VISTA · LOS UNIVERSOS",coll_title:"Cada mundo<br><em>es un sentimiento.</em>",coll_all:"VER TODO EN TIENDA →",tab_myth:"Mitología Antigua",tab_general:"Paisajes y Retratos",tab_all:"Ver Todo",sat_tag:"✦ LA COLECCIÓN CONVERGENCIA · TODAS LAS MITOLOGÍAS · TODAS LAS ERAS",sat_title:"Donde toda mitología<br>se vuelve una.",sat_desc:"SATORINOUS es el lugar donde todas las mitologías se entrelazan. Con raíces en el latín Sator — el sembrador eterno, quien planta significado a través del tiempo — esta colección es la prueba viva de que la humanidad, en cada cultura y cada era, siempre ha hecho las mismas preguntas y alcanzado hacia la misma luz. Purificación persa, gratitud azteca, pureza japonesa, radiancia nórdica, soberanía celta, esencia china, catarsis griega — todas llegan aquí. SATORINOUS no es una mitología. Es el lugar donde todas recuerdan que son una.",m1_origin:"PERSA · PURIFICACIÓN",m1_desc:"Del persa — Tasfiyeh Pakizegi: el acto de purificación y limpieza profunda. Figuras emergiendo de la quietud, portando la creencia ancestral de que purificarse es regresar a tu ser más esencial.",m2_origin:"AZTECA · GRATITUD Y ENCARNACIÓN",m2_desc:"Del náhuatl — Tlazohcamati: gratitud profunda. Ixiptla: encarnación divina. Figuras sagradas que portan el agradecimiento como fuerza espiritual, arraigadas en la reverencia azteca por el cuerpo humano como vasija de lo divino.",m3_origin:"JAPONÉS · PURIFICACIÓN RITUAL",m3_desc:"Del japonés — Misogi: purificación ritual a través del agua. Kū: cielo, vacío, espacio infinito. Retratos suspendidos entre el agua y el cielo, encarnando la práctica sintoísta de lavar la impureza para revelar la claridad interior.",m4_origin:"NÓRDICO · PAZ RADIANTE",m4_desc:"Del proto-nórdico — Baldr: el dios radiante de la luz y la pureza. Friþuz: paz, santuario, protección sagrada. Figuras luminosas que portan el ideal nórdico de la belleza como expresión de paz interior.",m5_origin:"CELTA · INSPIRACIÓN DIVINA",m5_desc:"Del irlandés antiguo — Awen: el espíritu fluyente de la inspiración divina. Fír Flaithemon: la verdad de la soberanía. Seres iluminados desde adentro por la fuerza creativa y la verdad ancestral de la tierra.",m7_origin:"LATÍN · ABSOLUCIÓN Y LIBERACIÓN",m7_desc:"Latín clásico — Absolūtiō: liberación de lo que te ata, el acto de volver a ser completo. Purgātiō: la limpieza que sigue. Figuras en el momento de soltar — la purificación como libertad.",m8_origin:"CHINO · ESENCIA · ENERGÍA · ESPÍRITU",m8_desc:"De la filosofía china clásica — Jīng: la esencia vital esencial. Qì: la energía vital que fluye a través de todos los seres. Shén: el espíritu y la conciencia divina. Tres fuerzas en equilibrio — la base taoísta de un ser humano plenamente realizado.",m9_origin:"GRIEGO · LIBERACIÓN Y CATARSIS",m9_desc:"Griego antiguo — Lýsis: disolución, el desatar de lo que limita. Kátharsis: la limpieza emocional que Aristóteles describió como el mayor regalo del arte. Figuras en el umbral de la transformación — la belleza como sanación.",g1_origin:"NATURALEZA · TIERRA · FUEGO · AGUA · AIRE",g1_name:"Paisajes Elementales",g1_desc:"Tierra, fuego, agua, aire — representados como mundos de ensueño. Entornos como estados emocionales. Cada paisaje es un terreno interior — un lugar que reconoces porque lo has vivido, no visitado.",g2_origin:"RETRATOS · MASCULINO · FEMENINO · SIN GÉNERO",g2_name:"Retratos Etéreos",g2_desc:"Figuras suspendidas entre mundos. Desde sirenos emergiendo de aguas iluminadas por la luna hasta seres sagrados de luz — un estudio del cuerpo humano como vasija de sentimiento. Belleza como presencia, no como actuación.",all_origin:"EL UNIVERSO COMPLETO",all_desc:"Cada colección. Cada mitología. Cada pieza creada bajo el universo Laris Echo en un solo lugar. Explora el catálogo completo y encuentra lo que resuena contigo.",all_type:"TODAS LAS COLECCIONES · TODAS LAS PIEZAS",browse:"VER TODO →",download:"DESCARGA DIGITAL",explore:"EXPLORAR →",about_label:"EL CREADOR",about_title:"Hecho por un humano<br>para la armonía humana.",about_body1:"Detrás de Laris Echo está <strong>Elil Rosier Espitia</strong> — un artista que aprendió temprano que el <strong>placer, el bienestar y la estabilidad</strong> no son lujos. Son los pilares esenciales de una vida plenamente vivida.",about_body2:"El trabajo aquí no es escapismo. Aunque esté lleno de fantasía, el objetivo es llevarte <strong>hacia el presente</strong> — porque ahí es donde la vida realmente ocurre. Cada imagen nace de una emoción profunda o perspectiva mitológica elegida para invocar un estado mental positivo.",about_body3:"Laris Echo es un puente. No todos son alcanzados por imágenes. No todos son alcanzados por música. Pero todos son alcanzables — a través de la <strong>vista, del sonido</strong>, a través de la combinación correcta de belleza y significado.",about_role:"CREADOR · LARIS ECHO · EST. 2025",about_quote:'"La armonía no es éxtasis — el éxtasis es un pico. No es placer intenso — eso es un momento. La armonía es vivible. Eso es para lo que creo."',about_quote_sub:"De los cinco sentidos humanos, Laris Echo habla a través de dos — vista y oído. Todo lo creado aquí apunta a un destino: un estado de ser imperturbable, equilibrado y genuinamente sentido.",music_label:"PRÓXIMAMENTE EN LARIS ECHO",music_title:"El segundo<br><em>puente llega.</em>",music_body:"Música y audio de IA creados con la misma intencionalidad que cada imagen en este universo. Paisajes sonoros ambientales, audio con propósito, y sonido que te lleva a algún lugar — o te ancla exactamente donde estás.",music_badge:"SONIDO · EN DESARROLLO",connect_label:"ENCUENTRA A LARIS ECHO",connect_title:"Cada plataforma.<br><em>Un universo.</em>",connect_body:"Sigue el viaje en todos los canales — nuevas colecciones, momentos detrás de la creación, y el mundo continuo de Laris Echo publicado con consistencia e intención.",visit_store:"Visitar la Tienda",contact_label:"EMAIL / CONTACTO",contact_sub:"Enviar mensaje",footer_copy:"© 2026 Laris Echo · Todos los derechos reservados · Creado por Elil Rosier Espitia"},
+
+de:{nav_sight:"Bild",nav_sound:"Klang",nav_philosophy:"Philosophie",nav_about:"Über uns",nav_connect:"Verbinden",nav_shop:"Shop →",hero_eyebrow:"EIN UNIVERSUM DER HARMONIE",hero_title:"Kunst, die dich<br><em>zurückbringt</em><br>ins Jetzt.",hero_tagline:"Laris Echo ist ein kreatives Universum aus hochauflösender digitaler Kunst und Klang — geboren aus Mythologie, Emotion und der Überzeugung, dass Schönheit dich zu dir selbst zurückbringen kann.",hero_cta1:"Kollektionen entdecken",hero_cta2:"Unsere Philosophie",hero_caption:"ÄTHERISCHE PORTRÄTS · LARIS ECHO",scroll:"SCROLL",phil_label:"DAS FUNDAMENT",phil_title:"Drei Säulen.<br>Ein Zustand des Seins.",phil_body:"Jedes unter Laris Echo erschaffene Werk folgt einer Philosophie — keinem Trend. Die Arbeit existiert, um etwas in dir zu verschieben, sei es auch nur kurz. Diese Verschiebung ist das Produkt.",p1_name:"GENUSS",p1_text:"Ästhetischer Genuss, der tief befriedigt — nicht nur visuell, sondern emotional. Jedes Bild, jeder Klang ist darauf ausgerichtet, durch präzise Intention einen positiven Geisteszustand hervorzurufen.",p2_name:"WOHLBEFINDEN",p2_text:"Wenn ein Bild oder Klang eine Denkweise in Richtung etwas Leichterem lehren oder verschieben kann, war es die Schöpfung wert. Laris Echo existiert, um dem Menschen, der ihm begegnet, echten Mehrwert zu bieten.",p3_name:"HARMONIE",p3_text:"Der nachhaltigste menschliche Zustand. Nicht Seligkeit — ein Gipfel. Nicht Ekstase — ein Moment. Harmonie ist lebbar. Unerschütterlich. Darauf strebt Laris Echo hin.",senses_label:"ZWEI BRÜCKEN",senses_title:"Bild<br>und <em>Klang.</em>",senses_body:"Von den fünf menschlichen Sinnen spricht Laris Echo durch zwei — diejenigen, die digitale Schöpfung ermöglicht. Sehen durch Bilder. Hören durch Musik und Audio. Beide auf dasselbe Ziel gerichtet: einen Moment der Stille, des Staunens oder der Rückkehr zu sich selbst.",sight_name:"BILD",sight_desc:"Hochauflösende digitale Kunstkollektionen, die Weltmythologien, elementare Landschaften und ätherische Porträts umspannen. Jedes Bild ist ein Kapitel. Jedes Kapitel ist eine Einladung, etwas Echtes zu fühlen.",sound_name:"KLANG",sound_desc:"KI-Musik und Audio, geschaffen für Genuss und Intention. Von Ambient-Klanglandschaften bis zu zielgerichtetem Audio — Klang, der dich woandershin tragen oder genau dort verankern kann, wo du bist.",tag_prints:"DIGITALE DRUCKE",tag_myth_tag:"MYTHOLOGISCHE SERIEN",tag_landscapes:"ELEMENTARE LANDSCHAFTEN",tag_music:"KI-MUSIK",tag_audio:"AUDIODATEIEN",tag_soon:"DEMNÄCHST",coll_label:"BILD · DIE UNIVERSEN",coll_title:"Jede Welt<br><em>ist ein Gefühl.</em>",coll_all:"ALLES IM SHOP ANSEHEN →",tab_myth:"Antike Mythologie",tab_general:"Landschaften & Porträts",tab_all:"Alles durchsuchen",sat_tag:"✦ DIE KONVERGENZ-KOLLEKTION · ALLE MYTHOLOGIEN · ALLE EPOCHEN",sat_title:"Wo jede Mythologie<br>zu einer wird.",sat_desc:"SATORINOUS ist der Ort, wo sich alle Mythologien verflechten. Verwurzelt im lateinischen Sator — dem ewigen Säer, der Bedeutung durch die Zeit pflanzt — ist diese Kollektion der lebende Beweis, dass die Menschheit über alle Kulturen und Epochen hinweg immer dieselben Fragen gestellt und nach demselben Licht gegriffen hat. Persische Reinigung, aztekische Dankbarkeit, japanische Läuterung, nordische Strahlkraft, keltische Souveränität, chinesische Essenz, griechische Katharsis — sie alle kommen hier an. SATORINOUS ist nicht eine Mythologie. Es ist der Ort, wo alle sich erinnern, dass sie eine sind.",m1_origin:"PERSISCH · REINIGUNG",m1_desc:"Aus dem Persischen — Tasfiyeh Pakizegi: der Akt der tiefen Reinigung. Figuren, die aus der Stille auftauchen und den uralten Glauben tragen, dass Reinigung bedeutet, zu seinem wesentlichsten Selbst zurückzukehren.",m2_origin:"AZTEKISCH · DANKBARKEIT & VERKÖRPERUNG",m2_desc:"Aus dem Nahuatl — Tlazohcamati: tiefe Dankbarkeit. Ixiptla: göttliche Verkörperung. Heilige Figuren, die Dankbarkeit als spirituelle Kraft tragen, verwurzelt in der aztekischen Verehrung des menschlichen Körpers als Gefäß des Göttlichen.",m3_origin:"JAPANISCH · RITUELLES REINIGEN",m3_desc:"Aus dem Japanischen — Misogi: rituelle Reinigung durch Wasser. Kū: Himmel, Leere, unendlicher Raum. Porträts, die zwischen Wasser und Himmel schweben und die alte Shinto-Praxis verkörpern, Unreinheit abzuwaschen, um innere Klarheit zu enthüllen.",m4_origin:"NORDISCH · STRAHLENDER FRIEDEN",m4_desc:"Aus dem Proto-Nordischen — Baldr: der strahlende Gott des Lichts und der Reinheit. Friþuz: Frieden, Zuflucht, heiliger Schutz. Leuchtende Figuren, die das nordische Ideal von Schönheit als Ausdruck inneren Friedens tragen.",m5_origin:"KELTISCH · GÖTTLICHE INSPIRATION",m5_desc:"Aus dem Altirischen — Awen: der fließende Geist göttlicher Inspiration. Fír Flaithemon: die Wahrheit der Souveränität. Wesen, die von innen durch kreative Kraft und die Ahnenwahrheit des Landes erleuchtet werden.",m7_origin:"LATEINISCH · ABSOLUTION & BEFREIUNG",m7_desc:"Klassisches Latein — Absolūtiō: Befreiung von dem, was dich bindet, wieder ganz werden. Purgātiō: die folgende Reinigung. Figuren im Moment des Loslassens — Reinigung als Freiheit.",m8_origin:"CHINESISCH · ESSENZ · ENERGIE · GEIST",m8_desc:"Aus der klassischen chinesischen Philosophie — Jīng: lebenswichtige Essenz. Qì: die vitale Energie, die durch alle Lebewesen fließt. Shén: Geist und göttliches Bewusstsein. Drei Kräfte im Gleichgewicht — das taoistische Fundament eines vollständig verwirklichten Menschen.",m9_origin:"GRIECHISCH · BEFREIUNG & KATHARSIS",m9_desc:"Altgriechisch — Lýsis: Auflösung, das Lösen von Fesseln. Kátharsis: die emotionale Reinigung, die Aristoteles als das höchste Geschenk der Kunst beschrieb. Figuren an der Schwelle zur Transformation — Schönheit als Heilung.",g1_origin:"NATUR · ERDE · FEUER · WASSER · LUFT",g1_name:"Elementare Landschaften",g1_desc:"Erde, Feuer, Wasser, Luft — als traumhafte Welten dargestellt. Umgebungen als emotionale Zustände. Jede Landschaft ist ein inneres Terrain — ein Ort, den du erkennst, weil du ihn gelebt hast, nicht besucht.",g2_origin:"PORTRÄT · MÄNNLICH · WEIBLICH · GESCHLECHTSNEUTRAL",g2_name:"Ätherische Porträts",g2_desc:"Figuren, die zwischen Welten schweben. Von Sirenen, die aus mondbeleuchteten Gewässern aufsteigen, bis zu heiligen Lichtwesen — eine Studie der menschlichen Form als Gefäß des Gefühls. Schönheit als Präsenz, nicht als Aufführung.",all_origin:"DAS VOLLSTÄNDIGE UNIVERSUM",all_desc:"Jede Kollektion. Jede Mythologie. Jedes unter dem Laris Echo Universum erschaffene Werk an einem Ort. Durchsuche den gesamten Katalog und finde, was mit dir resoniert.",all_type:"ALLE KOLLEKTIONEN · ALLE WERKE",browse:"ALLE ANSEHEN →",download:"DIGITALER DOWNLOAD",explore:"ENTDECKEN →",about_label:"DER SCHÖPFER",about_title:"Von einem Menschen<br>für menschliche Harmonie.",about_body1:"Hinter Laris Echo steht <strong>Elil Rosier Espitia</strong> — ein Künstler, der früh lernte, dass <strong>Genuss, Wohlbefinden und Stabilität</strong> keine Luxusgüter sind. Sie sind die wesentlichen Grundlagen eines vollständig gelebten Lebens.",about_body2:"Die Arbeit hier ist kein Eskapismus. Auch wenn sie fantasievoll ist, ist das Ziel, dich <strong>in Richtung Gegenwart</strong> zu ziehen — denn dort findet das Leben wirklich statt. Jedes Bild entsteht aus tiefer Emotion oder einer mythologischen Perspektive, die darauf ausgerichtet ist, einen positiven Geisteszustand hervorzurufen.",about_body3:"Laris Echo ist eine Brücke. Nicht jeder wird durch Bilder erreicht. Nicht jeder wird durch Musik erreicht. Aber jeder ist erreichbar — durch <strong>Bild, durch Klang</strong>, durch die richtige Kombination aus Schönheit und Bedeutung.",about_role:"SCHÖPFER · LARIS ECHO · GEGR. 2025",about_quote:'"Harmonie ist nicht Seligkeit — Seligkeit ist ein Gipfel. Es ist nicht Ekstase — das ist ein Moment. Harmonie ist lebbar. Dafür schaffe ich Dinge."',about_quote_sub:"Von den fünf menschlichen Sinnen spricht Laris Echo durch zwei — Sehen und Hören. Alles hier Erschaffene zielt auf ein Ziel: einen Seinszustand, der unerschütterlich, ausgewogen und wirklich gefühlt ist.",music_label:"DEMNÄCHST BEI LARIS ECHO",music_title:"Die zweite<br><em>Brücke kommt.</em>",music_body:"KI-Musik und Audio, erschaffen mit derselben Intentionalität wie jedes Bild in diesem Universum. Ambient-Klanglandschaften, zielgerichtetes Audio und Klang, der dich woandershin trägt — oder genau dort verankert, wo du bist.",music_badge:"KLANG · IN ENTWICKLUNG",connect_label:"FINDE LARIS ECHO",connect_title:"Jede Plattform.<br><em>Ein Universum.</em>",connect_body:"Verfolge die Reise auf allen Kanälen — neue Kollektionen, Momente hinter der Schöpfung und die kontinuierliche Welt von Laris Echo, konsistent und mit Intention veröffentlicht.",visit_store:"Den Shop besuchen",contact_label:"E-MAIL / KONTAKT",contact_sub:"Nachricht senden",footer_copy:"© 2026 Laris Echo · Alle Rechte vorbehalten · Erschaffen von Elil Rosier Espitia"},
+
+fr:{nav_sight:"Vision",nav_sound:"Son",nav_philosophy:"Philosophie",nav_about:"À propos",nav_connect:"Contact",nav_shop:"Boutique →",hero_eyebrow:"UN UNIVERS D'HARMONIE",hero_title:"L'art qui te<br><em>ramène</em><br>au présent.",hero_tagline:"Laris Echo est un univers créatif d'art numérique haute résolution et de son — né de la mythologie, de l'émotion, et de la conviction que la beauté peut te ramener à toi-même.",hero_cta1:"Explorer les Collections",hero_cta2:"Notre Philosophie",hero_caption:"PORTRAITS ÉTHÉRÉS · LARIS ECHO",scroll:"DÉFILER",phil_label:"LE FONDEMENT",phil_title:"Trois piliers.<br>Un état d'être.",phil_body:"Chaque pièce créée sous Laris Echo est guidée par une philosophie — pas une tendance. L'œuvre existe pour déplacer quelque chose en toi, même brièvement. Ce déplacement est le produit.",p1_name:"PLAISIR",p1_text:"Un plaisir esthétique qui satisfait profondément — pas seulement visuellement, mais émotionnellement. Chaque image, chaque son est conçu pour invoquer un état d'esprit positif par une intention précise.",p2_name:"BIEN-ÊTRE",p2_text:"Si une image ou un son peut enseigner ou orienter un état d'esprit vers quelque chose de plus léger, alors cela valait la peine d'être créé. Laris Echo existe pour apporter une valeur réelle à celui qui le rencontre.",p3_name:"HARMONIE",p3_text:"L'état humain le plus durable. Pas la béatitude — un sommet. Pas l'extase — un moment. L'harmonie est vivable. Imperturbable. C'est vers cela que Laris Echo tend.",senses_label:"DEUX PONTS",senses_title:"Vision<br>et <em>Son.</em>",senses_body:"Des cinq sens humains, Laris Echo parle à travers deux — ceux que la création numérique rend possibles. La vue à travers l'imagerie. L'ouïe à travers la musique et l'audio. Les deux visant la même destination : un moment de calme, d'émerveillement ou de retour à soi.",sight_name:"VISION",sight_desc:"Collections d'art numérique haute résolution couvrant les mythologies mondiales, les paysages élémentaires et les portraits éthérés. Chaque image est un chapitre. Chaque chapitre est une invitation à ressentir quelque chose de réel.",sound_name:"SON",sound_desc:"Musique et audio IA créés pour le plaisir et l'intention. Des paysages sonores ambiants à l'audio purposeful — un son qui peut te porter quelque part, ou t'ancrer exactement là où tu es.",tag_prints:"TIRAGES NUMÉRIQUES",tag_myth_tag:"SÉRIES MYTHOLOGIQUES",tag_landscapes:"PAYSAGES ÉLÉMENTAIRES",tag_music:"MUSIQUE IA",tag_audio:"FICHIERS AUDIO",tag_soon:"BIENTÔT",coll_label:"VISION · LES UNIVERS",coll_title:"Chaque monde<br><em>est un sentiment.</em>",coll_all:"VOIR TOUT EN BOUTIQUE →",tab_myth:"Mythologie Ancienne",tab_general:"Paysages & Portraits",tab_all:"Tout Parcourir",sat_tag:"✦ LA COLLECTION CONVERGENCE · TOUTES LES MYTHOLOGIES · TOUTES LES ÉPOQUES",sat_title:"Là où toute mythologie<br>devient une.",sat_desc:"SATORINOUS est le lieu où toutes les mythologies s'entrelacent. Enraciné dans le latin Sator — le semeur éternel, celui qui plante le sens à travers le temps — cette collection est la preuve vivante que l'humanité, à travers chaque culture et chaque époque, a toujours posé les mêmes questions et tendu vers la même lumière. Purification perse, gratitude aztèque, purification japonaise, rayonnance nordique, souveraineté celtique, essence chinoise, catharsis grecque — elles arrivent toutes ici. SATORINOUS n'est pas une mythologie. C'est le lieu où elles se souviennent toutes qu'elles n'en font qu'une.",m1_origin:"PERSE · PURIFICATION",m1_desc:"Du persan — Tasfiyeh Pakizegi : l'acte de purification et de nettoyage profond. Des figures émergeant du silence, portant la croyance ancestrale que se purifier, c'est retourner à son être le plus essentiel.",m2_origin:"AZTÈQUE · GRATITUDE & INCARNATION",m2_desc:"Du nahuatl — Tlazohcamati : gratitude profonde. Ixiptla : incarnation divine. Des figures sacrées qui portent la reconnaissance comme force spirituelle, enracinées dans la vénération aztèque du corps humain vivant comme vaisseau du divin.",m3_origin:"JAPONAIS · PURIFICATION RITUELLE",m3_desc:"Du japonais — Misogi : purification rituelle par l'eau. Kū : ciel, vide, espace infini. Portraits suspendus entre eau et ciel, incarnant la pratique shinto ancestrale de laver l'impureté pour révéler la clarté intérieure.",m4_origin:"NORDIQUE · PAIX RAYONNANTE",m4_desc:"Du proto-nordique — Baldr : le dieu rayonnant de la lumière et de la pureté. Friþuz : paix, sanctuaire, protection sacrée. Des figures lumineuses portant l'idéal nordique de la beauté comme expression de la paix intérieure.",m5_origin:"CELTIQUE · INSPIRATION DIVINE",m5_desc:"Du vieil irlandais — Awen : l'esprit fluide de l'inspiration divine. Fír Flaithemon : la vérité de la souveraineté. Des êtres éclairés de l'intérieur par la force créative et la vérité ancestrale de la terre.",m7_origin:"LATIN · ABSOLUTION & LIBÉRATION",m7_desc:"Latin classique — Absolūtiō : libération de ce qui te lie, être rendu entier à nouveau. Purgātiō : la purification qui suit. Des figures au moment du lâcher-prise — la purification comme liberté.",m8_origin:"CHINOIS · ESSENCE · ÉNERGIE · ESPRIT",m8_desc:"De la philosophie chinoise classique — Jīng : l'essence vitale essentielle. Qì : l'énergie vitale qui coule à travers tous les êtres vivants. Shén : l'esprit et la conscience divine. Trois forces en équilibre — le fondement taoïste d'un être humain pleinement réalisé.",m9_origin:"GREC · LIBÉRATION & CATHARSIS",m9_desc:"Grec ancien — Lýsis : dissolution, le dénouement de ce qui contraint. Kátharsis : la purification émotionnelle qu'Aristote décrivait comme le plus grand cadeau de l'art. Des figures au seuil de la transformation — la beauté comme guérison.",g1_origin:"NATURE · TERRE · FEU · EAU · AIR",g1_name:"Paysages Élémentaires",g1_desc:"Terre, feu, eau, air — rendus comme des mondes oniriques. Les environnements comme états émotionnels. Chaque paysage est un terrain intérieur — un endroit que tu reconnais parce que tu l'as vécu, non visité.",g2_origin:"PORTRAIT · MASCULIN · FÉMININ · SANS GENRE",g2_name:"Portraits Éthérés",g2_desc:"Des figures suspendues entre les mondes. Des sirènes émergeant d'eaux éclairées par la lune aux êtres sacrés de lumière — une étude de la forme humaine comme vaisseau du sentiment. La beauté comme présence, non comme performance.",all_origin:"L'UNIVERS COMPLET",all_desc:"Chaque collection. Chaque mythologie. Chaque pièce créée sous l'univers Laris Echo en un seul endroit. Parcours le catalogue complet et trouve ce qui résonne en toi.",all_type:"TOUTES LES COLLECTIONS · TOUTES LES PIÈCES",browse:"TOUT PARCOURIR →",download:"TÉLÉCHARGEMENT NUMÉRIQUE",explore:"EXPLORER →",about_label:"LE CRÉATEUR",about_title:"Fait par un humain<br>pour l'harmonie humaine.",about_body1:"Derrière Laris Echo se trouve <strong>Elil Rosier Espitia</strong> — un artiste qui a appris tôt que le <strong>plaisir, le bien-être et la stabilité</strong> ne sont pas des luxes. Ils sont les piliers essentiels d'une vie pleinement vécue.",about_body2:"Le travail ici n'est pas de l'évasion. Même lorsqu'il est rempli de fantaisie, l'objectif est de te tirer <strong>vers le présent</strong> — car c'est là que la vie se passe vraiment. Chaque image naît d'une émotion profonde ou d'une perspective mythologique choisie pour invoquer un état d'esprit positif.",about_body3:"Laris Echo est un pont. Tout le monde n'est pas atteint par les images. Tout le monde n'est pas atteint par la musique. Mais tout le monde est atteignable — à travers la <strong>vision, le son</strong>, à travers la bonne combinaison de beauté et de sens.",about_role:"CRÉATEUR · LARIS ECHO · FONDÉ EN 2025",about_quote:'"L\'harmonie n\'est pas la béatitude — la béatitude est un sommet. Ce n\'est pas l\'extase — c\'est un moment. L\'harmonie est vivable. C\'est pour cela que je crée."',about_quote_sub:"Des cinq sens humains, Laris Echo parle à travers deux — la vue et l'ouïe. Tout ce qui est créé ici vise une destination : un état d'être imperturbable, équilibré et véritablement ressenti.",music_label:"BIENTÔT SUR LARIS ECHO",music_title:"Le deuxième<br><em>pont arrive.</em>",music_body:"Musique et audio IA créés avec la même intentionnalité que chaque image de cet univers. Paysages sonores ambiants, audio purposeful, et son qui te porte quelque part — ou t'ancre exactement là où tu es.",music_badge:"SON · EN DÉVELOPPEMENT",connect_label:"TROUVEZ LARIS ECHO",connect_title:"Chaque plateforme.<br><em>Un univers.</em>",connect_body:"Suis le voyage sur tous les canaux — nouvelles collections, moments derrière la création, et le monde continu de Laris Echo publié avec constance et intention.",visit_store:"Visiter la Boutique",contact_label:"EMAIL / CONTACT",contact_sub:"Envoyer un message",footer_copy:"© 2026 Laris Echo · Tous droits réservés · Créé par Elil Rosier Espitia"},
+
+zh:{nav_sight:"视觉",nav_sound:"声音",nav_philosophy:"理念",nav_about:"关于",nav_connect:"联系",nav_shop:"商店 →",hero_eyebrow:"和谐的宇宙",hero_title:"让你<br><em>回归</em><br>当下的艺术。",hero_tagline:"Laris Echo 是一个高分辨率数字艺术与声音的创意宇宙 — 诞生于神话、情感，以及美可以让你回归自己的信念。",hero_cta1:"探索系列",hero_cta2:"我们的理念",hero_caption:"灵动肖像 · LARIS ECHO",scroll:"滚动",phil_label:"基础",phil_title:"三大支柱。<br>一种存在状态。",phil_body:"Laris Echo 下的每件作品都以哲学为指引 — 而非潮流。这份工作的意义在于在你内心移动某些东西，哪怕只是短暂的。那份移动便是产品本身。",p1_name:"愉悦",p1_text:"深层满足的审美愉悦 — 不仅是视觉上的，更是情感上的。每幅图像、每个声音都通过精准的意图被设计为唤起积极的心理状态。",p2_name:"幸福",p2_text:"如果一幅图像或声音能够引导思维向更轻盈的方向转变，那么它就值得被创造。Laris Echo 存在是为了给遇见它的人带来真实的价值。",p3_name:"和谐",p3_text:"最可持续的人类状态。不是极乐 — 那是顶峰。不是狂喜 — 那是瞬间。和谐是可以生活的。不可动摇的。这就是 Laris Echo 所追求的。",senses_label:"两座桥梁",senses_title:"视觉<br>与<em>声音。</em>",senses_body:"在人类五感中，Laris Echo 通过两种感官诉说 — 那些数字创作所能触及的。通过图像触及视觉。通过音乐和音频触及听觉。两者都指向同一目的地：一个宁静、惊奇或回归自我的时刻。",sight_name:"视觉",sight_desc:"涵盖世界神话、元素景观和灵动肖像的高分辨率数字艺术系列。每幅图像是一个章节。每个章节是感受真实事物的邀请。",sound_name:"声音",sound_desc:"为享受和意图而创作的 AI 音乐和音频。从环境音景到有目的的音频 — 能带你去某个地方，或将你锚定在当下的声音。",tag_prints:"数字印刷",tag_myth_tag:"神话系列",tag_landscapes:"元素景观",tag_music:"AI 音乐",tag_audio:"音频文件",tag_soon:"即将推出",coll_label:"视觉 · 诸宇宙",coll_title:"每个世界<br><em>都是一种感受。</em>",coll_all:"在商店查看全部 →",tab_myth:"古代神话",tab_general:"景观与肖像",tab_all:"浏览全部",sat_tag:"✦ 汇聚系列 · 所有神话 · 所有时代",sat_title:"所有神话<br>汇聚为一之处。",sat_desc:"SATORINOUS 是所有神话交织的地方。植根于拉丁语 Sator — 永恒的播种者，穿越时间播撒意义的人 — 这个系列是活生生的证明：人类，无论文化与时代，始终在追问同样的问题，朝向同样的光芒。波斯的净化、阿兹特克的感恩、日本的洁净、北欧的光辉、凯尔特的主权、中华的精华、希腊的净化 — 它们都在这里汇聚。SATORINOUS 不是一种神话。它是所有神话记起自己原本合一的地方。",m1_origin:"波斯 · 净化",m1_desc:"源自波斯语 — Tasfiyeh Pakizegi：深层净化与洁净的行为。人物从宁静中浮现，承载着古老的信念：净化即是回归最本质的自我。",m2_origin:"阿兹特克 · 感恩与化身",m2_desc:"源自纳瓦特尔语 — Tlazohcamati：深切的感恩。Ixiptla：神圣化身。神圣的人物将感激作为精神力量，植根于阿兹特克对活人身体作为神圣容器的崇敬。",m3_origin:"日本 · 仪式净化",m3_desc:"源自日语 — 禊：通过水进行的仪式净化。空：天空、虚空、无限空间。肖像悬浮于水与天空之间，体现了神道教洗去不洁以揭示内心清明的古老实践。",m4_origin:"北欧 · 光辉之和平",m4_desc:"源自古北欧语 — Baldr：光明与纯洁的光辉神。Friþuz：和平、庇护、神圣保护。承载北欧美即内心和平之表达的光辉人物。",m5_origin:"凯尔特 · 神圣灵感",m5_desc:"源自古爱尔兰语 — Awen：神圣灵感的流动精神。Fír Flaithemon：主权的真理。被创造力和土地的祖先真理从内部照亮的存在。",m7_origin:"拉丁 · 宽恕与释放",m7_desc:"古典拉丁语 — Absolūtiō：从束缚你的事物中释放，再次变得完整。Purgātiō：随之而来的净化。处于放手时刻的人物 — 净化即自由。",m8_origin:"中华 · 精 · 气 · 神",m8_desc:"源自中国古典哲学 — 精：生命本质。气：流经万物的生命能量。神：精神与神圣意识。三力平衡 — 道家完全实现的人的基础。",m9_origin:"希腊 · 释放与净化",m9_desc:"古希腊语 — Lýsis：溶解，解开束缚的东西。Kátharsis：亚里士多德描述为艺术最高馈赠的情感净化。处于蜕变门槛的人物 — 美即疗愈。",g1_origin:"自然 · 土 · 火 · 水 · 气",g1_name:"元素景观",g1_desc:"土、火、水、气 — 呈现为梦幻般的世界。环境作为情感状态。每处景观都是内心的地形 — 一个你认识的地方，因为你曾经历过它，而非参观。",g2_origin:"肖像 · 男性 · 女性 · 无性别",g2_name:"灵动肖像",g2_desc:"悬浮于世界之间的人物。从月光水面升起的海妖到神圣光之存在 — 对人体作为感受容器的研究。美即存在，非表演。",all_origin:"完整宇宙",all_desc:"每个系列。每种神话。Laris Echo 宇宙下创作的每件作品汇聚一处。浏览完整目录，找到与你共鸣的作品。",all_type:"所有系列 · 所有作品",browse:"浏览全部 →",download:"数字下载",explore:"探索 →",about_label:"创作者",about_title:"由人创造<br>为人类和谐。",about_body1:"Laris Echo 背后是 <strong>Elil Rosier Espitia</strong> — 一位早年便懂得<strong>愉悦、幸福与稳定</strong>并非奢侈品的艺术家。它们是完整生命的基本要素。",about_body2:"这里的作品不是逃避现实。即使充满幻想，目的也是将你<strong>拉向当下</strong> — 因为那是生活真正发生的地方。每幅图像都诞生于深刻的情感或精心选择的神话视角，以唤起积极的心理状态。",about_body3:"Laris Echo 是一座桥梁。不是每个人都能被图像触达。不是每个人都能被音乐触达。但每个人都是可触达的 — 通过<strong>视觉、通过声音</strong>，通过美与意义的正确组合。",about_role:"创作者 · LARIS ECHO · 创立于 2025",about_quote:'"和谐不是极乐 — 极乐是顶峰。不是狂喜 — 那是瞬间。和谐是可以生活的。这就是我创作的目的。"',about_quote_sub:"在人类五感中，Laris Echo 通过两种感官诉说 — 视觉与听觉。这里创作的一切都指向同一目的地：一种不可动摇、平衡且真实感受到的存在状态。",music_label:"即将登陆 LARIS ECHO",music_title:"第二座<br><em>桥梁降临。</em>",music_body:"以与本宇宙每幅图像相同的意图创作的 AI 音乐和音频。环境音景、有目的的音频，以及能带你去某个地方 — 或将你锚定在当下的声音。",music_badge:"声音 · 开发中",connect_label:"发现 LARIS ECHO",connect_title:"每个平台。<br><em>一个宇宙。</em>",connect_body:"在所有频道关注这段旅程 — 新系列、创作幕后时刻，以及 Laris Echo 持续以一致和意图发布的世界。",visit_store:"访问商店",contact_label:"邮件 / 联系",contact_sub:"发送消息",footer_copy:"© 2026 Laris Echo · 版权所有 · 由 Elil Rosier Espitia 创作"},
+
+ja:{nav_sight:"ビジョン",nav_sound:"サウンド",nav_philosophy:"哲学",nav_about:"私たちについて",nav_connect:"つながる",nav_shop:"ショップ →",hero_eyebrow:"調和の宇宙",hero_title:"あなたを<br><em>今ここへ</em><br>連れ戻すアート。",hero_tagline:"Laris Echoは、高解像度デジタルアートとサウンドのクリエイティブな宇宙です — 神話、感情、そして美があなたを自分自身に連れ戻せるという信念から生まれました。",hero_cta1:"コレクションを探る",hero_cta2:"私たちの哲学",hero_caption:"エーテリアルポートレート · LARIS ECHO",scroll:"スクロール",phil_label:"基盤",phil_title:"三つの柱。<br>一つの存在状態。",phil_body:"Laris Echoのもとで創られた全ての作品は哲学に導かれています — トレンドではなく。この仕事は、たとえ短くても、あなたの中の何かを動かすために存在しています。その動きが製品です。",p1_name:"喜び",p1_text:"深く満たされる美的喜び — 視覚的だけでなく、感情的にも。全ての画像、全ての音は、精密な意図によってポジティブな精神状態を呼び起こすよう作られています。",p2_name:"ウェルビーイング",p2_text:"画像や音がより軽い方向へ思考を教え、導くことができるなら、それは創る価値がありました。Laris Echoは、出会った人に真の価値をもたらすために存在しています。",p3_name:"調和",p3_text:"最も持続可能な人間の状態。至福ではなく — それは頂点。恍惚ではなく — それは瞬間。調和は生きられる。揺るぎない。それがLaris Echoの目指すものです。",senses_label:"二つの橋",senses_title:"視覚<br>と<em>音。</em>",senses_body:"人間の五感のうち、Laris Echoは二つを通して語りかけます — デジタル創造が可能にするもの。映像を通じて視覚。音楽とオーディオを通じて聴覚。どちらも同じ目的地を目指しています：静寂、驚き、または自己への帰還の瞬間。",sight_name:"ビジョン",sight_desc:"世界の神話、元素的な風景、エーテリアルな肖像にわたる高解像度デジタルアートコレクション。各画像は一章。各章は何か本物を感じるための招待です。",sound_name:"サウンド",sound_desc:"楽しみと意図のために作られたAI音楽とオーディオ。アンビエントサウンドスケープから目的のあるオーディオまで — あなたをどこかへ運ぶか、まさにそこに留める音。",tag_prints:"デジタルプリント",tag_myth_tag:"神話シリーズ",tag_landscapes:"元素的風景",tag_music:"AI音楽",tag_audio:"オーディオファイル",tag_soon:"近日公開",coll_label:"ビジョン · 諸宇宙",coll_title:"全ての世界は<br><em>感情である。</em>",coll_all:"ストアで全て見る →",tab_myth:"古代神話",tab_general:"風景と肖像",tab_all:"全て閲覧",sat_tag:"✦ 収束コレクション · 全神話 · 全時代",sat_title:"全ての神話が<br>一つになる場所。",sat_desc:"SATORINOUSは全ての神話が交わる場所です。ラテン語のSator — 時を超えて意味を植える永遠の播種者 — に根ざしたこのコレクションは、人類があらゆる文化と時代を通じて常に同じ問いを立て、同じ光へと手を伸ばしてきたことの生きた証です。ペルシャの浄化、アステカの感謝、日本の清め、北欧の輝き、ケルトの主権、中国の本質、ギリシャのカタルシス — それら全てがここに集います。SATORINOUSは一つの神話ではありません。それは全ての神話が自分たちが一つであることを思い出す場所です。",m1_origin:"ペルシャ · 浄化",m1_desc:"ペルシャ語から — タスフィイェ・パーキーザギー：深い浄化と清めの行為。静寂から浮かび上がる人物たちが、浄化とは最も本質的な自己へ帰ることだという古代の信念を携えています。",m2_origin:"アステカ · 感謝と化身",m2_desc:"ナワトル語から — Tlazohcamati：深い感謝。Ixiptla：神聖な化身。感謝を霊的な力として携える神聖な人物たち。アステカの、生きた人体を神聖な器として崇める信仰に根ざしています。",m3_origin:"日本 · 禊の清め",m3_desc:"日本語から — 禊：水による儀式的な浄化。空：天空、虚空、無限の空間。水と空の間に浮かぶ肖像は、不浄を洗い流して内なる明晰さを現す古代神道の実践を体現しています。",m4_origin:"北欧 · 輝く平和",m4_desc:"古北欧語から — バルドル：光と純粋さの輝く神。フリズ：平和、聖域、神聖な保護。内なる平和の表現としての美という北欧の理想を携える輝く人物たち。",m5_origin:"ケルト · 神聖なインスピレーション",m5_desc:"古アイルランド語から — アウェン：神聖なインスピレーションの流れる精神。フィル・フライスモン：主権の真実。創造の力と大地の祖先の真実によって内側から照らされた存在。",m7_origin:"ラテン · 赦免と解放",m7_desc:"古典ラテン語 — Absolūtiō：あなたを縛るものからの解放、再び完全になること。Purgātiō：それに続く清め。手放す瞬間の人物たち — 浄化としての自由。",m8_origin:"中国 · 精 · 気 · 神",m8_desc:"中国古典哲学から — 精：生命の本質。気：全ての生きものを流れる生命エネルギー。神：精神と神聖な意識。三力のバランス — 完全に実現した人間の道教的基盤。",m9_origin:"ギリシャ · 解放とカタルシス",m9_desc:"古代ギリシャ語 — リュシス：溶解、制約するものの解き放ち。カタルシス：アリストテレスが芸術の最高の贈り物と表現した感情的な清め。変容の閾値に立つ人物たち — 癒しとしての美。",g1_origin:"自然 · 土 · 火 · 水 · 風",g1_name:"元素的風景",g1_desc:"土、火、水、風 — 夢のような世界として描かれる。感情状態としての環境。各風景は内なる地形 — あなたが認識する場所、なぜならあなたはそこを訪れたのではなく、生きてきたから。",g2_origin:"ポートレート · 男性 · 女性 · ジェンダーレス",g2_name:"エーテリアルポートレート",g2_desc:"世界の間に浮かぶ人物たち。月明かりの水から立ち上がるサイレンから神聖な光の存在まで — 感情の器としての人体の研究。パフォーマンスではなく、存在としての美。",all_origin:"完全な宇宙",all_desc:"全コレクション。全神話。Laris Echo宇宙の下で創られた全作品が一か所に。完全なカタログを閲覧し、あなたに響くものを見つけてください。",all_type:"全コレクション · 全作品",browse:"全て閲覧 →",download:"デジタルダウンロード",explore:"探索 →",about_label:"クリエイター",about_title:"人間によって<br>人間の調和のために。",about_body1:"Laris Echoの背後には <strong>Elil Rosier Espitia</strong> がいます — <strong>喜び、ウェルビーイング、安定</strong>が贅沢ではないと早くから学んだアーティスト。それらは完全に生きられた人生の本質的な柱です。",about_body2:"ここでの作品は現実逃避ではありません。ファンタジーに満ちていても、目標はあなたを<strong>現在へと</strong>引き戻すことです — なぜならそこに本当に生が起こるから。各画像は深い感情や、ポジティブな精神状態を呼び起こすために選ばれた神話的視点から生まれています。",about_body3:"Laris Echoは橋です。全員が画像によって届けられるわけではありません。全員が音楽によって届けられるわけではありません。しかし全員は届けられる — <strong>視覚、音</strong>を通じて、美と意味の適切な組み合わせを通じて。",about_role:"クリエイター · LARIS ECHO · 2025年設立",about_quote:'「調和は至福ではありません — 至福は頂点です。恍惚でもありません — それは瞬間です。調和は生きられる。それが私が創る理由です。」',about_quote_sub:"人間の五感のうち、Laris Echoは二つを通して語りかけます — 視覚と聴覚。ここで創られる全ては一つの目的地を目指しています：揺るぎなく、バランスが取れ、真に感じられる存在状態。",music_label:"LARIS ECHOに近日公開",music_title:"第二の<br><em>橋が降臨する。</em>",music_body:"この宇宙の全画像と同じ意図で作られたAI音楽とオーディオ。アンビエントサウンドスケープ、目的のあるオーディオ、そしてあなたをどこかへ運ぶか、まさにそこに留める音。",music_badge:"サウンド · 開発中",connect_label:"LARIS ECHOを見つける",connect_title:"全てのプラットフォーム。<br><em>一つの宇宙。</em>",connect_body:"全チャンネルで旅をフォローしてください — 新コレクション、創作の裏側、そして一貫して意図を持って公開されるLaris Echoの継続的な世界。",visit_store:"ストアを訪問",contact_label:"メール / お問い合わせ",contact_sub:"メッセージを送る",footer_copy:"© 2026 Laris Echo · 全著作権所有 · Elil Rosier Espitia 制作"},
+
+no:{nav_sight:"Bilde",nav_sound:"Lyd",nav_philosophy:"Filosofi",nav_about:"Om oss",nav_connect:"Kontakt",nav_shop:"Butikk →",hero_eyebrow:"ET UNIVERS AV HARMONI",hero_title:"Kunst som<br><em>bringer deg</em><br>tilbake til nå.",hero_tagline:"Laris Echo er et kreativt univers av høyoppløselig digital kunst og lyd — født fra mytologi, følelse og troen på at skjønnhet kan bringe deg tilbake til deg selv.",hero_cta1:"Utforsk Kolleksjoner",hero_cta2:"Vår Filosofi",hero_caption:"ETERISKE PORTRETTER · LARIS ECHO",scroll:"SKROLL",phil_label:"FUNDAMENTET",phil_title:"Tre søyler.<br>Én tilværelse.",phil_body:"Hvert verk skapt under Laris Echo er styrt av en filosofi — ikke en trend. Arbeidet eksisterer for å flytte noe i deg, om enn kortvarig. Den forskyvingen er produktet.",p1_name:"NYTELSE",p1_text:"Estetisk nytelse som tilfredsstiller dypt — ikke bare visuelt, men følelsesmessig. Hvert bilde, hver lyd er utformet for å fremkalle en positiv sinnstilstand gjennom presis intensjon.",p2_name:"VELVÆRE",p2_text:"Hvis et bilde eller en lyd kan lære eller vri en tankegang mot noe lettere, var det verdt å skape. Laris Echo eksisterer for å gi reell verdi til den som møter det.",p3_name:"HARMONI",p3_text:"Den mest bærekraftige menneskelige tilstanden. Ikke lykksalighet — et høydepunkt. Ikke ekstase — et øyeblikk. Harmoni er levelig. Uforstyrret. Det er det Laris Echo strekker seg mot.",senses_label:"TO BROER",senses_title:"Bilde<br>og <em>Lyd.</em>",senses_body:"Av de fem menneskelige sansene snakker Laris Echo gjennom to — de digitale skapingen gjør mulige. Syn gjennom bilder. Hørsel gjennom musikk og lyd. Begge rettet mot samme destinasjon: et øyeblikk av stillhet, undring eller retur til seg selv.",sight_name:"BILDE",sight_desc:"Høyoppløselige digitale kunstkolleksjoner som spenner over verdens mytologi, elementære landskap og eteriske portretter. Hvert bilde er et kapittel. Hvert kapittel er en invitasjon til å føle noe ekte.",sound_name:"LYD",sound_desc:"AI-musikk og lyd skapt for nytelse og intensjon. Fra ambientlydlandskap til målrettet lyd — lyd som kan bære deg et sted, eller forankre deg akkurat der du er.",tag_prints:"DIGITALE TRYKK",tag_myth_tag:"MYTOLOGISKE SERIER",tag_landscapes:"ELEMENTÆRE LANDSKAP",tag_music:"AI-MUSIKK",tag_audio:"LYDFILER",tag_soon:"KOMMER SNART",coll_label:"BILDE · UNIVERSENE",coll_title:"Hver verden<br><em>er en følelse.</em>",coll_all:"SE ALT I BUTIKK →",tab_myth:"Antikk Mytologi",tab_general:"Landskap & Portretter",tab_all:"Bla Gjennom Alt",sat_tag:"✦ KONVERGENS-KOLLEKSJONEN · ALL MYTOLOGI · ALLE TIDER",sat_title:"Der all mytologi<br>blir én.",sat_desc:"SATORINOUS er stedet der all mytologi flettes sammen. Forankret i det latinske Sator — den evige sår, den som planter mening gjennom tid — er denne kolleksjonen det levende beviset på at menneskeheten, på tvers av alle kulturer og epoker, alltid har stilt de samme spørsmålene og nådd mot det samme lyset. Persisk renselse, aztekisk takknemlighet, japansk lutring, norrøn strålekraft, keltisk suverenitet, kinesisk essens, gresk katarsis — de ankommer alle her. SATORINOUS er ikke én mytologi. Det er stedet der alle husker at de er én.",m1_origin:"PERSISK · RENSELSE",m1_desc:"Fra persisk — Tasfiyeh Pakizegi: handlingen med dyp renselse. Figurer som stiger frem fra stillheten og bærer den eldgamle troen på at å rense seg er å vende tilbake til sitt mest essensielle selv.",m2_origin:"AZTEKISK · TAKKNEMLIGHET & LEGEMLIGGJØRING",m2_desc:"Fra nahuatl — Tlazohcamati: dyp takknemlighet. Ixiptla: guddommelig legemliggjøring. Hellige figurer som bærer takknemlighet som en åndelig kraft, forankret i aztekisk ærbødighet for den levende menneskekroppen som guddommens kar.",m3_origin:"JAPANSK · RITUELL RENSELSE",m3_desc:"Fra japansk — Misogi: rituell renselse gjennom vann. Kū: himmel, tomrom, uendelig rom. Portretter svevende mellom vann og himmel, som legemliggjør den gamle shinto-praksisen med å vaske bort urenheter for å avsløre indre klarhet.",m4_origin:"NORRØN · STRÅLENDE FRED",m4_desc:"Fra proto-norrønt — Baldr: lysenes og renselsens strålende gud. Friþuz: fred, tilflukt, hellig beskyttelse. Lysende figurer som bærer det norrøne idealet om skjønnhet som et uttrykk for indre fred.",m5_origin:"KELTISK · GUDDOMMELIG INSPIRASJON",m5_desc:"Fra gammelt irsk — Awen: den flytende ånden av guddommelig inspirasjon. Fír Flaithemon: suverenitetens sannhet. Vesener opplyst innenfra av kreativ kraft og landets forfedres sannhet.",m7_origin:"LATIN · ABSOLUSJON & FRIGJØRING",m7_desc:"Klassisk latin — Absolūtiō: frigjøring fra det som binder deg, å bli hel igjen. Purgātiō: renselsen som følger. Figurer i øyeblikket av å slippe tak — renselse som frihet.",m8_origin:"KINESISK · ESSENS · ENERGI · ÅND",m8_desc:"Fra klassisk kinesisk filosofi — Jīng: livsviktig essens. Qì: den vitale energien som strømmer gjennom alle levende ting. Shén: ånd og guddommelig bevissthet. Tre krefter i balanse — det taoistiske fundamentet for et fullt realisert menneske.",m9_origin:"GRESK · FRIGJØRING & KATARSIS",m9_desc:"Antikk gresk — Lýsis: oppløsning, det å løse opp det som begrenser. Kátharsis: den emosjonelle renselsen Aristoteles beskrev som kunstens høyeste gave. Figurer på terskelen til forvandling — skjønnhet som helbredelse.",g1_origin:"NATUR · JORD · ILD · VANN · LUFT",g1_name:"Elementære Landskap",g1_desc:"Jord, ild, vann, luft — gjengitt som drømmeaktige verdener. Omgivelser som følelsesmessige tilstander. Hvert landskap er et indre terreng — et sted du kjenner igjen fordi du har levd det, ikke besøkt det.",g2_origin:"PORTRETT · MANNLIG · KVINNELIG · KJØNNSNØYTRALT",g2_name:"Eteriske Portretter",g2_desc:"Figurer svevende mellom verdener. Fra sirener som stiger opp fra måneopplyste farvann til hellige lysvesener — en studie av den menneskelige formen som et kar for følelse. Skjønnhet som nærvær, ikke fremførelse.",all_origin:"DET FULLSTENDIGE UNIVERSET",all_desc:"Hver kolleksjon. Hver mytologi. Hvert verk skapt under Laris Echo-universet på ett sted. Bla gjennom hele katalogen og finn det som resonerer med deg.",all_type:"ALLE KOLLEKSJONER · ALLE VERK",browse:"BLA GJENNOM ALT →",download:"DIGITAL NEDLASTING",explore:"UTFORSK →",about_label:"SKAPEREN",about_title:"Laget av et menneske<br>for menneskelig harmoni.",about_body1:"Bak Laris Echo er <strong>Elil Rosier Espitia</strong> — en kunstner som lærte tidlig at <strong>nytelse, velvære og stabilitet</strong> ikke er luksusgoder. De er de essensielle søylene i et fullt levd liv.",about_body2:"Arbeidet her er ikke eskapisme. Selv om det er fylt av fantasi, er målet å trekke deg <strong>mot nåtiden</strong> — fordi det er der livet virkelig skjer. Hvert bilde er født fra dyp følelse eller et mytologisk perspektiv valgt for å fremkalle en positiv sinnstilstand.",about_body3:"Laris Echo er en bro. Ikke alle nås av bilder. Ikke alle nås av musikk. Men alle kan nås — gjennom <strong>bilde, gjennom lyd</strong>, gjennom den rette kombinasjonen av skjønnhet og mening.",about_role:"SKAPER · LARIS ECHO · GRUNNLAGT 2025",about_quote:'"Harmoni er ikke lykksalighet — lykksalighet er et høydepunkt. Det er ikke ekstase — det er et øyeblikk. Harmoni er levelig. Det er det jeg lager ting for."',about_quote_sub:"Av de fem menneskelige sansene snakker Laris Echo gjennom to — syn og hørsel. Alt som skapes her sikter mot én destinasjon: en væremåte som er uforstyrret, balansert og genuint følt.",music_label:"KOMMER TIL LARIS ECHO",music_title:"Den andre<br><em>broen ankommer.</em>",music_body:"AI-musikk og lyd skapt med samme intensjonalitet som hvert bilde i dette universet. Ambientlydlandskap, målrettet lyd, og lyd som bærer deg et sted — eller forankrer deg akkurat der du er.",music_badge:"LYD · UNDER UTVIKLING",connect_label:"FINN LARIS ECHO",connect_title:"Hver plattform.<br><em>Ett univers.</em>",connect_body:"Følg reisen på alle kanaler — nye kolleksjoner, øyeblikk bak skapingen, og den pågående verden av Laris Echo publisert konsekvent og med intensjon.",visit_store:"Besøk Butikken",contact_label:"E-POST / KONTAKT",contact_sub:"Send en melding",footer_copy:"© 2026 Laris Echo · Alle rettigheter forbeholdt · Skapt av Elil Rosier Espitia"},
+
+el:{nav_sight:"Εικόνα",nav_sound:"Ήχος",nav_philosophy:"Φιλοσοφία",nav_about:"Σχετικά",nav_connect:"Επικοινωνία",nav_shop:"Κατάστημα →",hero_eyebrow:"ΕΝΑ ΣΥΜΠΑΝ ΑΡΜΟΝΙΑΣ",hero_title:"Τέχνη που σε<br><em>επαναφέρει</em><br>στο τώρα.",hero_tagline:"Το Laris Echo είναι ένα δημιουργικό σύμπαν υψηλής ανάλυσης ψηφιακής τέχνης και ήχου — γεννημένο από μυθολογία, συναίσθημα και την πεποίθηση ότι η ομορφιά μπορεί να σε επαναφέρει στον εαυτό σου.",hero_cta1:"Εξερεύνησε Συλλογές",hero_cta2:"Η Φιλοσοφία μας",hero_caption:"ΑΙΘΕΡΙA ΠΟΡΤΡΕΤΑ · LARIS ECHO",scroll:"ΚΥΛΙΣΗ",phil_label:"ΤΟ ΘΕΜΕΛΙΟ",phil_title:"Τρεις πυλώνες.<br>Μια κατάσταση ύπαρξης.",phil_body:"Κάθε έργο που δημιουργείται υπό το Laris Echo καθοδηγείται από φιλοσοφία — όχι από τάση. Το έργο υπάρχει για να μετακινήσει κάτι μέσα σου, έστω και για λίγο. Αυτή η μετατόπιση είναι το προϊόν.",p1_name:"ΗΔΟΝΗ",p1_text:"Αισθητική ηδονή που ικανοποιεί βαθιά — όχι μόνο οπτικά, αλλά συναισθηματικά. Κάθε εικόνα, κάθε ήχος είναι σχεδιασμένος να επικαλείται μια θετική νοητική κατάσταση μέσω ακριβούς πρόθεσης.",p2_name:"ΕΥΕΞΙΑ",p2_text:"Αν μια εικόνα ή ένας ήχος μπορεί να διδάξει ή να μετατοπίσει μια νοοτροπία προς κάτι ελαφρύτερο, τότε άξιζε να δημιουργηθεί. Το Laris Echo υπάρχει για να προσφέρει πραγματική αξία σε αυτόν που το συναντά.",p3_name:"ΑΡΜΟΝΙΑ",p3_text:"Η πιο βιώσιμη ανθρώπινη κατάσταση. Όχι μακαριότητα — μια κορυφή. Όχι έκσταση — μια στιγμή. Η αρμονία είναι βιώσιμη. Ακλόνητη. Αυτό επιδιώκει το Laris Echo.",senses_label:"ΔΥΟ ΓΕΦΥΡΕΣ",senses_title:"Εικόνα<br>και <em>Ήχος.</em>",senses_body:"Από τις πέντε ανθρώπινες αισθήσεις, το Laris Echo μιλά μέσω δύο — αυτές που η ψηφιακή δημιουργία καθιστά δυνατές. Όραση μέσω εικόνων. Ακοή μέσω μουσικής και ήχου. Και οι δύο στοχεύουν στον ίδιο προορισμό: μια στιγμή ησυχίας, θαυμασμού ή επιστροφής στον εαυτό.",sight_name:"ΕΙΚΟΝΑ",sight_desc:"Συλλογές ψηφιακής τέχνης υψηλής ανάλυσης που охватывают παγκόσμιες μυθολογίες, στοιχειώδη τοπία και αιθέρια πορτρέτα. Κάθε εικόνα είναι ένα κεφάλαιο. Κάθε κεφάλαιο είναι μια πρόσκληση να νιώσεις κάτι αληθινό.",sound_name:"ΗΧΟΣ",sound_desc:"Μουσική και ήχος AI φτιαγμένα για απόλαυση και πρόθεση. Από ηχοτοπία ambient έως στοχευμένο ήχο — ήχος που μπορεί να σε μεταφέρει κάπου, ή να σε αγκυρώσει ακριβώς εκεί που είσαι.",tag_prints:"ΨΗΦΙΑΚΕΣ ΕΚΤΥΠΩΣΕΙΣ",tag_myth_tag:"ΜΥΘΟΛΟΓΙΚΕΣ ΣΕΙΡΕΣ",tag_landscapes:"ΣΤΟΙΧΕΙΩΔΗ ΤΟΠΙΑ",tag_music:"AI ΜΟΥΣΙΚΗ",tag_audio:"ΑΡΧΕΙΑ ΗΧΟΥ",tag_soon:"ΕΡΧΕΤΑΙ ΣΥΝΤΟΜΑ",coll_label:"ΕΙΚΟΝΑ · ΤΑ ΣΥΜΠΑΝΤΑ",coll_title:"Κάθε κόσμος<br><em>είναι ένα συναίσθημα.</em>",coll_all:"ΔΕΣ ΟΛΑ ΣΤΟ ΚΑΤΑΣΤΗΜΑ →",tab_myth:"Αρχαία Μυθολογία",tab_general:"Τοπία & Πορτρέτα",tab_all:"Περιήγηση σε Όλα",sat_tag:"✦ Η ΣΥΛΛΟΓΗ ΣΥΓΚΛΙΣΗΣ · ΟΛΕΣ ΟΙ ΜΥΘΟΛΟΓΙΕΣ · ΟΛΕΣ ΟΙ ΕΠΟΧΕΣ",sat_title:"Εκεί που κάθε μυθολογία<br>γίνεται μία.",sat_desc:"Το SATORINOUS είναι ο τόπος όπου όλες οι μυθολογίες συνυφαίνονται. Ριζωμένο στο λατινικό Sator — ο αιώνιος σπορέας, αυτός που φυτεύει νόημα μέσω του χρόνου — αυτή η συλλογή είναι η έμψυχη απόδειξη ότι η ανθρωπότητα, σε κάθε πολιτισμό και κάθε εποχή, έθεσε πάντα τα ίδια ερωτήματα και άπλωνε το χέρι προς το ίδιο φως. Περσική κάθαρση, αζτεκική ευγνωμοσύνη, ιαπωνική λύτρωση, σκανδιναβική λάμψη, κελτική κυριαρχία, κινεζική ουσία, ελληνική κάθαρση — όλες φτάνουν εδώ. Το SATORINOUS δεν είναι μία μυθολογία. Είναι ο τόπος όπου όλες θυμούνται ότι είναι μία.",m1_origin:"ΠΕΡΣΙΚΗ · ΚΑΤΗΑΡΣΙΣ",m1_desc:"Από τα περσικά — Tasfiyeh Pakizegi: η πράξη της βαθιάς κάθαρσης. Φιγούρες που αναδύονται από την ησυχία, φέροντας την αρχαία πεποίθηση ότι η κάθαρση σημαίνει επιστροφή στον πιο ουσιαστικό εαυτό σου.",m2_origin:"ΑΖΤΕΚΙΚΗ · ΕΥΓΝΩΜΟΣΥΝΗ & ΕΝΣΑΡΚΩΣΗ",m2_desc:"Από τη ναχουάτλ — Tlazohcamati: βαθιά ευγνωμοσύνη. Ixiptla: θεϊκή ενσάρκωση. Ιερές φιγούρες που φέρουν την ευγνωμοσύνη ως πνευματική δύναμη, ριζωμένες στην αζτεκική ευλάβεια για το ζωντανό ανθρώπινο σώμα ως δοχείο του θείου.",m3_origin:"ΙΑΠΩΝΙΚΗ · ΤΕΛΕΤΟΥΡΓΙΚΗ ΚΑΘΑΡΣΗ",m3_desc:"Από τα ιαπωνικά — Misogi: τελετουργική κάθαρση μέσω νερού. Kū: ουρανός, κενό, άπειρο χώρο. Πορτρέτα αιωρούμενα μεταξύ νερού και ουρανού, ενσαρκώνοντας την αρχαία σιντοϊστική πρακτική αποπλύνσεως της ακαθαρσίας για αποκάλυψη εσωτερικής διαύγειας.",m4_origin:"ΣΚΑΝΔΙΝΑΒΙΚΗ · ΛΑΜΠΡΗ ΕΙΡΗΝΗ",m4_desc:"Από τα πρωτο-σκανδιναβικά — Baldr: ο λαμπρός θεός του φωτός και της αγνότητας. Friþuz: ειρήνη, καταφύγιο, ιερή προστασία. Λαμπερές φιγούρες που φέρουν το σκανδιναβικό ιδεώδες της ομορφιάς ως έκφραση εσωτερικής ειρήνης.",m5_origin:"ΚΕΛΤΙΚΗ · ΘΕΪΚΗ ΕΜΠΝΕΥΣΗ",m5_desc:"Από τα παλαιά ιρλανδικά — Awen: το ρέον πνεύμα της θεϊκής έμπνευσης. Fír Flaithemon: η αλήθεια της κυριαρχίας. Όντα φωτισμένα από μέσα από δημιουργική δύναμη και την προγονική αλήθεια της γης.",m7_origin:"ΛΑΤΙΝΙΚΗ · ΑΦΕΣΗ & ΑΠΕΛΕΥΘΕΡΩΣΗ",m7_desc:"Κλασική λατινική — Absolūtiō: απελευθέρωση από αυτό που σε δεσμεύει, να γίνεις ξανά ολόκληρος. Purgātiō: η κάθαρση που ακολουθεί. Φιγούρες στη στιγμή της αφής — κάθαρση ως ελευθερία.",m8_origin:"ΚΙΝΕΖΙΚΗ · ΟΥΣΙΑ · ΕΝΕΡΓΕΙΑ · ΠΝΕΥΜΑ",m8_desc:"Από την κλασική κινεζική φιλοσοφία — Jīng: ζωτική ουσία. Qì: η ζωτική ενέργεια που ρέει μέσα από όλα τα ζωντανά πράγματα. Shén: πνεύμα και θεϊκή συνείδηση. Τρεις δυνάμεις σε ισορροπία — το ταοϊστικό θεμέλιο ενός πλήρως πραγματωμένου ανθρώπου.",m9_origin:"ΕΛΛΗΝΙΚΗ · ΛΥΣΙΣ & ΚΑΘΑΡΣΙΣ",m9_desc:"Αρχαία ελληνικά — Λύσις: διάλυση, η λύση αυτού που περιορίζει. Κάθαρσις: η συναισθηματική κάθαρση που ο Αριστοτέλης περιέγραψε ως το υψηλότερο δώρο της τέχνης. Φιγούρες στο κατώφλι της μεταμόρφωσης — ομορφιά ως θεραπεία.",g1_origin:"ΦΥΣΗ · ΓΗ · ΦΩΤΙΑ · ΝΕΡΟ · ΑΕΡΑΣ",g1_name:"Στοιχειώδη Τοπία",g1_desc:"Γη, φωτιά, νερό, αέρας — αποδοθέντα ως ονειρικοί κόσμοι. Περιβάλλοντα ως συναισθηματικές καταστάσεις. Κάθε τοπίο είναι ένα εσωτερικό έδαφος — ένα μέρος που αναγνωρίζεις γιατί το έχεις ζήσει, όχι επισκεφτεί.",g2_origin:"ΠΟΡΤΡΕΤΟ · ΑΝΤΡΙΚΟ · ΓΥΝΑΙΚΕΙΟ · ΟΥΔΕΤΕΡΟ",g2_name:"Αιθέρια Πορτρέτα",g2_desc:"Φιγούρες αιωρούμενες μεταξύ κόσμων. Από σειρήνες που αναδύονται από φεγγαρόλουστα νερά έως ιερά όντα φωτός — μια μελέτη της ανθρώπινης μορφής ως δοχείου συναισθήματος. Ομορφιά ως παρουσία, όχι επίδειξη.",all_origin:"ΤΟ ΠΛΗΡΕΣ ΣΥΜΠΑΝ",all_desc:"Κάθε συλλογή. Κάθε μυθολογία. Κάθε έργο που δημιουργήθηκε υπό το σύμπαν Laris Echo σε ένα μέρος. Περιήγηση στον πλήρη κατάλογο και βρες αυτό που σου αντηχεί.",all_type:"ΟΛΕΣ ΟΙ ΣΥΛΛΟΓΕΣ · ΟΛΑ ΤΑ ΕΡΓΑ",browse:"ΠΕΡΙΗΓΗΣΗ →",download:"ΨΗΦΙΑΚΗ ΛΗΨΗ",explore:"ΕΞΕΡΕΥΝΗΣΗ →",about_label:"Ο ΔΗΜΙΟΥΡΓΟΣ",about_title:"Φτιαγμένο από άνθρωπο<br>για ανθρώπινη αρμονία.",about_body1:"Πίσω από το Laris Echo είναι <strong>Elil Rosier Espitia</strong> — ένας καλλιτέχνης που έμαθε νωρίς ότι <strong>η ηδονή, η ευεξία και η σταθερότητα</strong> δεν είναι πολυτέλειες. Είναι οι ουσιαστικοί πυλώνες μιας ζωής που βιώνεται πλήρως.",about_body2:"Η δουλειά εδώ δεν είναι εσχατολογία. Ακόμα κι όταν είναι γεμάτη φαντασία, ο στόχος είναι να σε τραβήξει <strong>προς το παρόν</strong> — γιατί εκεί συμβαίνει πραγματικά η ζωή. Κάθε εικόνα γεννιέται από βαθύ συναίσθημα ή μυθολογική προοπτική επιλεγμένη για να επικαλεστεί θετική νοητική κατάσταση.",about_body3:"Το Laris Echo είναι μια γέφυρα. Δεν φτάνουν όλοι μέσω εικόνων. Δεν φτάνουν όλοι μέσω μουσικής. Αλλά όλοι είναι προσβάσιμοι — μέσω <strong>εικόνας, μέσω ήχου</strong>, μέσω του σωστού συνδυασμού ομορφιάς και νοήματος.",about_role:"ΔΗΜΙΟΥΡΓΟΣ · LARIS ECHO · ΙΔΡ. 2025",about_quote:'"Η αρμονία δεν είναι μακαριότητα — η μακαριότητα είναι κορυφή. Δεν είναι έκσταση — εκείνη είναι στιγμή. Η αρμονία είναι βιώσιμη. Γι\' αυτό φτιάχνω πράγματα."',about_quote_sub:"Από τις πέντε ανθρώπινες αισθήσεις, το Laris Echo μιλά μέσω δύο — όραση και ακοή. Όλα όσα δημιουργούνται εδώ στοχεύουν σε έναν προορισμό: μια κατάσταση ύπαρξης που είναι ακλόνητη, ισορροπημένη και γνήσια αισθητή.",music_label:"ΕΡΧΕΤΑΙ ΣΤΟ LARIS ECHO",music_title:"Η δεύτερη<br><em>γέφυρα φτάνει.</em>",music_body:"Μουσική και ήχος AI φτιαγμένα με την ίδια σκοπιμότητα με κάθε εικόνα αυτού του σύμπαντος. Ηχοτοπία ambient, στοχευμένος ήχος, και ήχος που σε μεταφέρει κάπου — ή σε αγκυρώνει ακριβώς εκεί που είσαι.",music_badge:"ΗΧΟΣ · ΥΠΟ ΑΝΑΠΤΥΞΗ",connect_label:"ΒΡΕΣ ΤΟ LARIS ECHO",connect_title:"Κάθε πλατφόρμα.<br><em>Ένα σύμπαν.</em>",connect_body:"Ακολούθησε το ταξίδι σε όλα τα κανάλια — νέες συλλογές, στιγμές πίσω από τη δημιουργία, και τον συνεχιζόμενο κόσμο του Laris Echo που δημοσιεύεται με συνέπεια και πρόθεση.",visit_store:"Επίσκεψη στο Κατάστημα",contact_label:"EMAIL / ΕΠΙΚΟΙΝΩΝΙΑ",contact_sub:"Αποστολή μηνύματος",footer_copy:"© 2026 Laris Echo · Όλα τα δικαιώματα διατηρούνται · Δημιουργήθηκε από τον Elil Rosier Espitia"},
+
+fa:{nav_sight:"بینش",nav_sound:"صدا",nav_philosophy:"فلسفه",nav_about:"درباره ما",nav_connect:"ارتباط",nav_shop:"فروشگاه ←",hero_eyebrow:"جهانی از هماهنگی",hero_title:"هنری که تو را<br><em>به اکنون</em><br>بازمی‌گرداند.",hero_tagline:"Laris Echo یک جهان خلاقانه از هنر دیجیتال با کیفیت بالا و صدا است — متولد شده از اسطوره، احساس، و این باور که زیبایی می‌تواند تو را به خودت بازگرداند.",hero_cta1:"کاوش مجموعه‌ها",hero_cta2:"فلسفه ما",hero_caption:"پرتره‌های اثیری · LARIS ECHO",scroll:"اسکرول",phil_label:"بنیاد",phil_title:"سه ستون.<br>یک حالت هستی.",phil_body:"هر اثری که زیر Laris Echo آفریده می‌شود با یک فلسفه هدایت می‌شود — نه یک ترند. این کار برای جابجا کردن چیزی در تو وجود دارد، حتی برای لحظه‌ای کوتاه. آن جابجایی خود محصول است.",p1_name:"لذت",p1_text:"لذت زیبایی‌شناختی که عمیقاً ارضا می‌کند — نه فقط بصری، بلکه احساسی. هر تصویر، هر صدا با قصد دقیق برای فراخوانی یک حالت ذهنی مثبت ساخته شده است.",p2_name:"سلامتی",p2_text:"اگر یک تصویر یا صدا بتواند ذهنیتی را به سوی چیزی سبک‌تر آموزش دهد یا منحرف کند، پس ارزش آفریدن داشت. Laris Echo برای افزودن ارزش واقعی به کسی که با آن روبرو می‌شود وجود دارد.",p3_name:"هماهنگی",p3_text:"پایدارترین حالت انسانی. نه سعادت — یک اوج. نه وجد — یک لحظه. هماهنگی قابل زیستن است. تزلزل‌ناپذیر. این همان چیزی است که Laris Echo به دنبالش است.",senses_label:"دو پل",senses_title:"بینش<br>و <em>صدا.</em>",senses_body:"از پنج حس انسانی، Laris Echo از طریق دو حس صحبت می‌کند — آن‌هایی که آفرینش دیجیتال ممکن می‌سازد. بینایی از طریق تصویر. شنوایی از طریق موسیقی و صدا. هر دو به سوی یک مقصد: لحظه‌ای از آرامش، شگفتی یا بازگشت به خود.",sight_name:"بینش",sight_desc:"مجموعه‌های هنر دیجیتال با کیفیت بالا که اساطیر جهانی، مناظر عنصری و پرتره‌های اثیری را در بر می‌گیرند. هر تصویر یک فصل است. هر فصل دعوتی است برای احساس چیزی واقعی.",sound_name:"صدا",sound_desc:"موسیقی و صدای هوش مصنوعی برای لذت و قصد ساخته شده. از صداهای محیطی تا صدای هدفمند — صدایی که می‌تواند تو را جایی ببرد، یا دقیقاً همان‌جا که هستی لنگر بیندازد.",tag_prints:"چاپ دیجیتال",tag_myth_tag:"سری‌های اسطوره‌ای",tag_landscapes:"مناظر عنصری",tag_music:"موسیقی هوش مصنوعی",tag_audio:"فایل‌های صوتی",tag_soon:"به زودی",coll_label:"بینش · جهان‌ها",coll_title:"هر دنیا<br><em>یک احساس است.</em>",coll_all:"همه را در فروشگاه ببین ←",tab_myth:"اسطوره‌شناسی باستانی",tab_general:"مناظر و پرتره‌ها",tab_all:"همه را مرور کن",sat_tag:"✦ مجموعه همگرایی · همه اسطوره‌ها · همه دوران‌ها",sat_title:"جایی که همه اسطوره‌ها<br>یکی می‌شوند.",sat_desc:"SATORINOUS جایی است که همه اسطوره‌ها در هم می‌تنند. ریشه در لاتین Sator — کاشت‌کار ابدی، کسی که معنا را در طول زمان می‌کارد — این مجموعه گواه زنده‌ای است که بشریت، در هر فرهنگ و هر دوران، همواره همان سؤال‌ها را پرسیده و به سوی همان نور دست دراز کرده. تطهیر فارسی، سپاسگزاری آزتک، پاکیزگی ژاپنی، درخشندگی نوردیک، حاکمیت کلتی، ذات چینی، کاتارسیس یونانی — همه اینجا می‌رسند. SATORINOUS یک اسطوره نیست. جایی است که همه آن‌ها به یاد می‌آورند که یکی هستند.",m1_origin:"فارسی · تصفیه",m1_desc:"از فارسی — تصفیه پاکیزگی: عمل تطهیر و پاکسازی عمیق. شخصیت‌هایی که از آرامش بیرون می‌آیند و باور باستانی را حمل می‌کنند که تطهیر یعنی بازگشت به ذات اصیل‌ترین خود.",m2_origin:"آزتک · سپاسگزاری و تجسم",m2_desc:"از زبان ناهواتل — Tlazohcamati: سپاسگزاری عمیق. Ixiptla: تجسم الهی. شخصیت‌های مقدسی که سپاسگزاری را به عنوان نیروی معنوی حمل می‌کنند، ریشه در احترام آزتک به بدن انسان زنده به عنوان ظرف الهی.",m3_origin:"ژاپنی · پاکسازی آیینی",m3_desc:"از ژاپنی — میسوگی: تطهیر آیینی از طریق آب. کو: آسمان، خلأ، فضای بی‌نهایت. پرتره‌هایی که بین آب و آسمان معلق هستند و تمرین شینتوی باستانی شستشوی ناپاکی برای آشکار کردن وضوح درونی را تجسم می‌بخشند.",m4_origin:"نوردیک · صلح درخشان",m4_desc:"از پروتو-نوردیک — بالدر: خدای درخشان نور و پاکی. فریتوز: صلح، پناهگاه، حمایت مقدس. شخصیت‌های درخشانی که آرمان نوردیک زیبایی به عنوان بیان صلح درونی را حمل می‌کنند.",m5_origin:"کلتی · الهام الهی",m5_desc:"از ایرلندی قدیم — اوئن: روح جاری الهام الهی. فیر فلاتمون: حقیقت حاکمیت. موجوداتی که از درون توسط نیروی خلاقانه و حقیقت نیاکانی زمین روشن شده‌اند.",m7_origin:"لاتین · بخشودگی و آزادی",m7_desc:"لاتین کلاسیک — Absolūtiō: رهایی از آنچه تو را می‌بندد، دوباره کامل شدن. Purgātiō: پاکسازی که دنبال می‌آید. شخصیت‌هایی در لحظه رها کردن — تطهیر به عنوان آزادی.",m8_origin:"چینی · ذات · انرژی · روح",m8_desc:"از فلسفه کلاسیک چینی — جینگ: ذات حیاتی اساسی. چی: انرژی حیاتی که از میان همه موجودات زنده جاری است. شن: روح و آگاهی الهی. سه نیرو در تعادل — بنیاد تائویستی یک انسان کاملاً متحقق.",m9_origin:"یونانی · رهایی و کاتارسیس",m9_desc:"یونانی باستان — لیسیس: انحلال، گشودن آنچه محدود می‌کند. کاتارسیس: پاکسازی احساسی که ارسطو آن را بالاترین هدیه هنر توصیف کرد. شخصیت‌هایی در آستانه تحول — زیبایی به عنوان درمان.",g1_origin:"طبیعت · خاک · آتش · آب · هوا",g1_name:"مناظر عنصری",g1_desc:"خاک، آتش، آب، هوا — به صورت دنیاهای رویایی نمایش داده شده. محیط‌ها به عنوان حالات احساسی. هر منظره یک زمین درونی است — جایی که تشخیص می‌دهی چون در آن زیسته‌ای، نه بازدید کرده.",g2_origin:"پرتره · مردانه · زنانه · بدون جنسیت",g2_name:"پرتره‌های اثیری",g2_desc:"شخصیت‌هایی معلق بین جهان‌ها. از پریان دریایی که از آب‌های مهتابی بیرون می‌آیند تا موجودات مقدس نور — مطالعه‌ای از شکل انسانی به عنوان ظرف احساس. زیبایی به عنوان حضور، نه اجرا.",all_origin:"جهان کامل",all_desc:"هر مجموعه. هر اسطوره. هر اثری که زیر جهان Laris Echo آفریده شده در یک مکان. کاتالوگ کامل را مرور کن و آنچه را که با تو طنین می‌اندازد بیاب.",all_type:"همه مجموعه‌ها · همه آثار",browse:"مرور همه ←",download:"دانلود دیجیتال",explore:"کاوش ←",about_label:"خالق",about_title:"ساخته شده توسط انسان<br>برای هماهنگی انسانی.",about_body1:"پشت Laris Echo <strong>الیل رازیر اسپیتیا</strong> است — هنرمندی که زود یاد گرفت <strong>لذت، سلامتی و ثبات</strong> تجملات نیستند. آن‌ها ستون‌های اساسی یک زندگی کاملاً زیسته هستند.",about_body2:"کار اینجا فرار از واقعیت نیست. حتی وقتی پر از خیال است، هدف کشیدن تو <strong>به سوی حال</strong> است — چون آنجا جایی است که زندگی واقعاً اتفاق می‌افتد. هر تصویر از احساس عمیق یا دیدگاه اسطوره‌ای انتخاب شده برای فراخوانی حالت ذهنی مثبت متولد می‌شود.",about_body3:"Laris Echo یک پل است. همه از طریق تصویر به آن‌ها نمی‌رسند. همه از طریق موسیقی به آن‌ها نمی‌رسند. اما همه قابل دسترسی هستند — از طریق <strong>بینش، از طریق صدا</strong>، از طریق ترکیب درست زیبایی و معنا.",about_role:"خالق · LARIS ECHO · تأسیس ۲۰۲۵",about_quote:'«هماهنگی سعادت نیست — سعادت یک اوج است. وجد نیست — آن یک لحظه است. هماهنگی قابل زیستن است. این چیزی است که برایش می‌آفرینم.»',about_quote_sub:"از پنج حس انسانی، Laris Echo از طریق دو حس صحبت می‌کند — بینایی و شنوایی. همه چیزی که اینجا آفریده می‌شود به یک مقصد اشاره دارد: حالتی از هستی که تزلزل‌ناپذیر، متعادل و واقعاً احساس شده است.",music_label:"به زودی در LARIS ECHO",music_title:"پل دوم<br><em>فرا می‌رسد.</em>",music_body:"موسیقی و صدای هوش مصنوعی با همان قصدی آفریده شده که هر تصویری در این جهان. صداهای محیطی، صدای هدفمند، و صدایی که تو را جایی می‌برد — یا دقیقاً همان‌جا که هستی لنگر می‌اندازد.",music_badge:"صدا · در حال توسعه",connect_label:"Laris Echo را پیدا کن",connect_title:"هر پلتفرم.<br><em>یک جهان.</em>",connect_body:"سفر را در همه کانال‌ها دنبال کن — مجموعه‌های جدید، لحظات پشت صحنه خلق، و دنیای ادامه‌دار Laris Echo که با ثبات و قصد منتشر می‌شود.",visit_store:"بازدید از فروشگاه",contact_label:"ایمیل / تماس",contact_sub:"ارسال پیام",footer_copy:"© ۲۰۲۶ Laris Echo · تمام حقوق محفوظ است · ساخته شده توسط الیل رازیر اسپیتیا"},
+
+ar:{nav_sight:"رؤية",nav_sound:"صوت",nav_philosophy:"فلسفة",nav_about:"معلومات عنا",nav_connect:"تواصل",nav_shop:"المتجر ←",hero_eyebrow:"كون من الانسجام",hero_title:"فن يعيدك<br><em>إلى اللحظة</em><br>الراهنة.",hero_tagline:"Laris Echo هو كون إبداعي من الفن الرقمي عالي الدقة والصوت — وُلد من الأساطير والعاطفة والإيمان بأن الجمال يمكنه إعادتك إلى نفسك.",hero_cta1:"استكشف المجموعات",hero_cta2:"فلسفتنا",hero_caption:"صور أثيرية · LARIS ECHO",scroll:"تمرير",phil_label:"الأساس",phil_title:"ثلاثة ركائز.<br>حالة وجود واحدة.",phil_body:"كل عمل يُبدع تحت Laris Echo يُوجَّه بفلسفة — وليس اتجاهاً. هذا العمل موجود لتحريك شيء بداخلك، ولو للحظة وجيزة. هذا التحريك هو المنتج.",p1_name:"المتعة",p1_text:"متعة جمالية تُرضي عميقاً — ليس بصرياً فحسب، بل عاطفياً. كل صورة، كل صوت مصمم لاستدعاء حالة ذهنية إيجابية من خلال نية دقيقة.",p2_name:"الرفاهية",p2_text:"إذا كانت صورة أو صوت يمكنه تعليم أو تحويل طريقة تفكير نحو شيء أخف، فقد كان يستحق الخلق. Laris Echo موجود لإضافة قيمة حقيقية للشخص الذي يصادفه.",p3_name:"الانسجام",p3_text:"الحالة الإنسانية الأكثر استدامة. ليست النعيم — ذلك قمة. وليست النشوة — تلك لحظة. الانسجام يمكن العيش فيه. لا يتزعزع. هذا ما يسعى إليه Laris Echo.",senses_label:"جسران",senses_title:"رؤية<br>و<em>صوت.</em>",senses_body:"من الحواس الخمس للإنسان، يتحدث Laris Echo من خلال اثنتين — تلك التي يُتيحها الإبداع الرقمي. البصر من خلال الصور. السمع من خلال الموسيقى والصوت. كلاهما يستهدف نفس الوجهة: لحظة من السكون أو الدهشة أو العودة إلى الذات.",sight_name:"رؤية",sight_desc:"مجموعات فن رقمي عالية الدقة تمتد عبر أساطير العالم والمناظر العنصرية والصور الأثيرية. كل صورة فصل. كل فصل دعوة للشعور بشيء حقيقي.",sound_name:"صوت",sound_desc:"موسيقى وصوت بالذكاء الاصطناعي مُصممان للاستمتاع والنية. من المشاهد الصوتية المحيطية إلى الصوت الهادف — صوت يمكنه حملك إلى مكان ما، أو تثبيتك تماماً حيث أنت.",tag_prints:"مطبوعات رقمية",tag_myth_tag:"سلاسل أسطورية",tag_landscapes:"مناظر عنصرية",tag_music:"موسيقى AI",tag_audio:"ملفات صوتية",tag_soon:"قريباً",coll_label:"رؤية · الأكوان",coll_title:"كل عالم<br><em>هو شعور.</em>",coll_all:"عرض الكل في المتجر ←",tab_myth:"الأساطير القديمة",tab_general:"المناظر والصور",tab_all:"تصفح الكل",sat_tag:"✦ مجموعة التقارب · جميع الأساطير · جميع العصور",sat_title:"حيث تتحد<br>كل الأساطير في واحدة.",sat_desc:"SATORINOUS هو المكان الذي تتشابك فيه جميع الأساطير. متجذر في اللاتينية Sator — الزارع الأبدي، من يزرع المعنى عبر الزمن — هذه المجموعة هي الدليل الحي على أن البشرية، عبر كل ثقافة وكل عصر، طرحت دائماً نفس الأسئلة وامتدت نحو نفس النور. التطهير الفارسي، الامتنان الأزتكي، التطهر الياباني، الإشراق الإسكندنافي، السيادة الكلتية، الجوهر الصيني، الكاتارسيس اليوناني — جميعها تصل إلى هنا. SATORINOUS ليست أسطورة واحدة. إنها المكان الذي تتذكر فيه جميعها أنها واحدة.",m1_origin:"فارسية · تطهير",m1_desc:"من الفارسية — تصفية باكيزگي: فعل التطهير العميق. شخصيات تبرز من الصمت، حاملةً الإيمان القديم بأن التطهير يعني العودة إلى الذات الأكثر جوهرية.",m2_origin:"أزتيكية · الامتنان والتجسيد",m2_desc:"من لغة الناهواتل — Tlazohcamati: الامتنان العميق. Ixiptla: التجسيد الإلهي. شخصيات مقدسة تحمل الامتنان قوةً روحية، متجذرة في التبجيل الأزتكي للجسد البشري الحي وعاءً للإلهي.",m3_origin:"يابانية · التطهير الطقسي",m3_desc:"من اليابانية — ميسوغي: التطهير الطقسي بالماء. كو: السماء، الفراغ، الفضاء اللانهائي. صور معلقة بين الماء والسماء، تجسيداً للممارسة الشنتوية القديمة لغسل النجاسة للكشف عن وضوح داخلي.",m4_origin:"نورديكية · سلام مشرق",m4_desc:"من البروتو-نورديكية — بالدر: الإله المشرق للنور والطهارة. فريثوز: السلام، الملاذ، الحماية المقدسة. شخصيات مضيئة تحمل المثل النورديكي للجمال بوصفه تعبيراً عن السلام الداخلي.",m5_origin:"كلتية · إلهام إلهي",m5_desc:"من الأيرلندية القديمة — أوين: الروح المتدفقة للإلهام الإلهي. فير فلاتمون: حقيقة السيادة. كائنات مضاءة من الداخل بقوة إبداعية وحقيقة أجداد الأرض.",m7_origin:"لاتينية · المغفرة والتحرر",m7_desc:"اللاتينية الكلاسيكية — Absolūtiō: التحرر مما يُقيّدك، أن تصبح كاملاً مجدداً. Purgātiō: التطهير الذي يتبع. شخصيات في لحظة الإفراج — التطهير كحرية.",m8_origin:"صينية · الجوهر · الطاقة · الروح",m8_desc:"من الفلسفة الصينية الكلاسيكية — جينغ: جوهر الحياة الأساسي. تشي: الطاقة الحيوية التي تتدفق عبر جميع الكائنات الحية. شن: الروح والوعي الإلهي. ثلاث قوى في توازن — الأساس الطاوي لإنسان متحقق بالكامل.",m9_origin:"يونانية · التحرر والكاتارسيس",m9_desc:"اليونانية القديمة — ليسيس: الحل، فك ما يُقيّد. كاتارسيس: التطهير العاطفي الذي وصفه أرسطو بأنه أعظم هبة الفن. شخصيات على عتبة التحول — الجمال علاجاً.",g1_origin:"طبيعة · تراب · نار · ماء · هواء",g1_name:"مناظر عنصرية",g1_desc:"تراب، نار، ماء، هواء — مُصوَّرة كعوالم حالمة. البيئات كحالات عاطفية. كل منظر تضاريس داخلية — مكان تتعرف عليه لأنك عشته، لا زرته.",g2_origin:"صورة · ذكر · أنثى · محايد",g2_name:"صور أثيرية",g2_desc:"شخصيات معلقة بين العوالم. من العرائس البحرية الصاعدة من مياه مضاءة بالقمر إلى الكائنات المقدسة من نور — دراسة للشكل الإنساني كوعاء للشعور. الجمال كحضور، لا كأداء.",all_origin:"الكون الكامل",all_desc:"كل مجموعة. كل أسطورة. كل عمل أُبدع تحت كون Laris Echo في مكان واحد. تصفح الكتالوج الكامل وابحث عما يتردد صداه معك.",all_type:"جميع المجموعات · جميع الأعمال",browse:"تصفح الكل ←",download:"تنزيل رقمي",explore:"استكشف ←",about_label:"المبدع",about_title:"صُنع بواسطة إنسان<br>من أجل الانسجام البشري.",about_body1:"وراء Laris Echo يقف <strong>إيليل روزيير إسبيتيا</strong> — فنان تعلّم مبكراً أن <strong>المتعة والرفاهية والاستقرار</strong> ليست رفاهيات. إنها الركائز الأساسية لحياة تُعاش بالكامل.",about_body2:"العمل هنا ليس هروباً من الواقع. حتى وإن كان مليئاً بالخيال، فالهدف هو سحبك <strong>نحو الحاضر</strong> — لأن هناك تحدث الحياة فعلاً. كل صورة وُلدت من عاطفة عميقة أو منظور أسطوري مُختار لاستدعاء حالة ذهنية إيجابية.",about_body3:"Laris Echo جسر. ليس الجميع يصلهم الصور. ليس الجميع يصلهم الموسيقى. لكن الجميع يمكن الوصول إليهم — من خلال <strong>الرؤية والصوت</strong>، من خلال المزيج الصحيح من الجمال والمعنى.",about_role:"مبدع · LARIS ECHO · تأسس 2025",about_quote:'«الانسجام ليس النعيم — النعيم قمة. وليس النشوة — تلك لحظة. الانسجام يمكن العيش فيه. لهذا أصنع الأشياء.»',about_quote_sub:"من الحواس الخمس للإنسان، يتحدث Laris Echo من خلال اثنتين — البصر والسمع. كل ما يُبدع هنا يستهدف وجهة واحدة: حالة وجود لا تتزعزع ومتوازنة وحقيقية الإحساس.",music_label:"قريباً على LARIS ECHO",music_title:"الجسر الثاني<br><em>يصل.</em>",music_body:"موسيقى وصوت بالذكاء الاصطناعي مُصممان بنفس قصدية كل صورة في هذا الكون. مشاهد صوتية محيطية وصوت هادف وصوت يمكنه حملك إلى مكان ما — أو تثبيتك تماماً حيث أنت.",music_badge:"صوت · قيد التطوير",connect_label:"ابحث عن LARIS ECHO",connect_title:"كل منصة.<br><em>كون واحد.</em>",connect_body:"تابع الرحلة عبر جميع القنوات — مجموعات جديدة ولحظات خلف الإبداع والعالم المستمر لـ Laris Echo المنشور باتساق ونية.",visit_store:"زيارة المتجر",contact_label:"بريد إلكتروني / تواصل",contact_sub:"إرسال رسالة",footer_copy:"© 2026 Laris Echo · جميع الحقوق محفوظة · من إبداع إيليل روزيير إسبيتيا"}
+};
+
+// ── APPLY LANGUAGE ─────────────────────────────────────
+const flags = {en:'🇺🇸',es:'🇪🇸',de:'🇩🇪',fr:'🇫🇷',zh:'🇨🇳',ja:'🇯🇵',no:'🇳🇴',el:'🇬🇷',fa:'🇮🇷',ar:'🇦🇪'};
+const codes = {en:'EN',es:'ES',de:'DE',fr:'FR',zh:'中文',ja:'日本語',no:'NO',el:'ΕΛ',fa:'فا',ar:'عر'};
+
+function applyLang(lang){
+  const t = T[lang];
+  if(!t) return;
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(t[k]!==undefined) el.innerHTML = t[k];
   });
+  const btn = document.getElementById('langBtn');
+  btn.innerHTML = (flags[lang]||'') + ' ' + (codes[lang]||lang.toUpperCase());
+  document.querySelectorAll('.lang-option').forEach(o=>o.classList.toggle('active', o.dataset.lang===lang));
+  // RTL
+  const dir = (lang==='ar'||lang==='fa') ? 'rtl' : 'ltr';
+  document.documentElement.setAttribute('dir', dir);
+  document.documentElement.setAttribute('lang', lang);
+  // Body font class
+  document.body.className = document.body.className.replace(/lang-\w+/g,'').trim();
+  document.body.classList.add('lang-'+lang);
+  // Store pref
+  try{ localStorage.setItem('le_lang', lang); } catch(e){}
+}
+
+document.getElementById('langBtn').addEventListener('click',()=>
+  document.getElementById('langDropdown').classList.toggle('open'));
+
+document.querySelectorAll('.lang-option').forEach(o=>{
+  o.addEventListener('click',()=>{
+    if(o.dataset.lang && T[o.dataset.lang]){
+      applyLang(o.dataset.lang);
+      document.getElementById('langDropdown').classList.remove('open');
+    }
+  });
+});
+
+document.addEventListener('click',e=>{
+  if(!document.getElementById('langDropdown').contains(e.target))
+    document.getElementById('langDropdown').classList.remove('open');
+});
+
+// Auto-detect language
+(function(){
+  try{
+    const saved = localStorage.getItem('le_lang');
+    if(saved && T[saved]){ applyLang(saved); return; }
+  } catch(e){}
+  const browser = (navigator.language||'en').slice(0,2).toLowerCase();
+  const map = {es:'es',de:'de',fr:'fr',zh:'zh',ja:'ja',no:'no',nb:'no',nn:'no',el:'el',fa:'fa',ar:'ar'};
+  if(map[browser] && T[map[browser]]) applyLang(map[browser]);
+})();
+
+// ── COLLECTION TABS ────────────────────────────────────
+document.querySelectorAll('.coll-tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.coll-tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.coll-panel').forEach(p=>p.classList.remove('active'));
+    tab.classList.add('active');
+    const panel = document.getElementById('panel-'+tab.dataset.tab);
+    if(panel) panel.classList.add('active');
+  });
+});
+
+// ── SCROLL REVEAL ──────────────────────────────────────
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){ e.target.classList.add('visible'); obs.unobserve(e.target); }
+  });
+},{threshold:0.07});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+
+// ── NAV SHRINK ─────────────────────────────────────────
+const nav = document.querySelector('nav');
+window.addEventListener('scroll',()=>{
+  nav.style.padding = window.scrollY > 60 ? '1rem 4rem' : '1.5rem 4rem';
+});
 </script>
 </body>
 </html>
